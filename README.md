@@ -1,1 +1,3 @@
-# battlesbit
+# Public
+
+SnapTrade Public Application

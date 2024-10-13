@@ -1,0 +1,8 @@
+schema: 'src/gql-codegen/schema.json'
+extensions:
+  endpoints:
+    Dev BB GraphQL Endpoint:
+      url: https://service-dev.battlesbit.xyz/graphql/query
+      headers:
+        user-agent: JS GraphQL
+      introspect: true

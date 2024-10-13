@@ -1,0 +1,8 @@
+schema:
+  - 'https://service-dev.battlesbit.xyz/graphql/query':
+      headers:
+        user-agent: JS GraphQL
+generates:
+  src/gql-codegen/schema.json:
+    plugins:
+      - introspection

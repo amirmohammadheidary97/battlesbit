@@ -1,0 +1,16 @@
+query getAssets {
+  assets {
+    id
+    name
+    priceUSD
+    iconUrl
+    volumeUSD24Hr
+  }
+}
+
+subscription assets {
+  assetsUpdated {
+    id
+    priceUSD
+  }
+}

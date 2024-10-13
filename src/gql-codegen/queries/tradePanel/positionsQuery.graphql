@@ -1,0 +1,29 @@
+query positions {
+  gameMatchPositions {
+  edges {
+    node {
+      id
+      createdAt
+      updatedAt
+      gameMatchID
+      gameMatchParticipantID
+      entryPrice
+      limitPrice
+      closePrice
+      margin
+      leverage
+      side
+      type
+      status
+      stopLoss
+      targetPoint
+      profit
+      expiredAt
+      openedAt
+      closedAt
+      quoteToken
+    }
+  },
+    totalCount
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "BattlesBit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "com.battlesbit",
+  "telemetry": false
+}
