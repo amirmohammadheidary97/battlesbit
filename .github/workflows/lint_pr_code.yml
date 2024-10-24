@@ -1,0 +1,40 @@
+name: 'Lint PR Code'
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: write-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-code
+  cancel-in-progress: true
+
+jobs:
+  main:
+    name: Lint PR code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+
+      - name: Lint
+        run: yarn lint:report
+        # Continue to the next step even if this fails
+        continue-on-error: true
+      - name: Annotate Code Linting Results
+        uses: ataylorme/eslint-annotate-action@v2
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          report-json: 'eslint_report.json'
+      - name: Upload ESLint report
+        uses: actions/upload-artifact@v2
+        with:
+          name: eslint_report.json
+          path: eslint_report.json

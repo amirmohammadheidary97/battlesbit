@@ -1,0 +1,28 @@
+mutation loginWithEmail($email: String!, $verificationCode: String!) {
+  loginWithEmail(email: $email, verificationCode: $verificationCode) {
+    accessToken
+    refreshToken
+    expiresIn
+  }
+}
+mutation loginWithPassword($email: String!, $password: String!) {
+  loginWithPassword(email: $email, password: $password) {
+    accessToken
+    refreshToken
+    expiresIn
+  }
+}
+
+mutation requestEmailVerificationCode($email: String!) {
+  requestEmailVerificationCode(email: $email) {
+    expiresIn
+  }
+}
+
+mutation refreshToken($refreshToken: String!) {
+  refreshToken(refreshToken: $refreshToken) {
+    accessToken
+    refreshToken
+    expiresIn
+  }
+}

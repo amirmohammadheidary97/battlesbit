@@ -5303,6 +5303,11 @@ extract-files@^11.0.0:
   resolved "https://registry.yarnpkg.com/extract-files/-/extract-files-11.0.0.tgz#b72d428712f787eef1f5193aff8ab5351ca8469a"
   integrity sha512-FuoE1qtbJ4bBVvv94CC7s0oTnKUGvQs+Rjf1L2SJFfS+HTVVjhPFtehPdQ0JiGPqVNfSSZvL5yzHHQq2Z4WNhQ==
 
+fancy-canvas@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/fancy-canvas/-/fancy-canvas-2.1.0.tgz#44b40e40419ad8ef8304df365e4276767e918552"
+  integrity sha512-nifxXJ95JNLFR2NgRV4/MxVP45G9909wJTEKz5fg/TZS20JJZA6hfgRVh/bC9bwl2zBtBNcYPjiBE4njQHVBwQ==
+
 fast-decode-uri-component@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/fast-decode-uri-component/-/fast-decode-uri-component-1.0.1.tgz#46f8b6c22b30ff7a81357d4f59abfae938202543"
@@ -6628,6 +6633,13 @@ levn@^0.4.1:
   dependencies:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
+
+lightweight-charts@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/lightweight-charts/-/lightweight-charts-4.2.1.tgz#a2d97048c026644507faae679e00bf3088c9c247"
+  integrity sha512-nE2zCZ5Gp7KZbVHUJi6QhQLkYRvYyxsQTnSLEXIFmc8iHOFBT4rk/Dbyecq+CLW59FNuoCPNOYjZnS63/uHDrA==
+  dependencies:
+    fancy-canvas "2.1.0"
 
 lines-and-columns@^1.1.6:
   version "1.2.4"

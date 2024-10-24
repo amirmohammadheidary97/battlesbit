@@ -1,0 +1,83 @@
+name: "Nightly CI/CD"
+
+on:
+  push:
+    branches:
+      - main
+      - feat/ionic
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.15.1
+          cache: 'yarn'
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Setup Ionic
+        run: npm install -g @ionic/cli
+
+      - name: Cache platform
+        uses: actions/cache@v4
+        with:
+          path: platforms
+          key: ${{ runner.os }}-ionic-${{ hashFiles('**/config.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-ionic-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Add keys/android.keystore
+        run: |
+          echo "$ANDROID_KEYSTORE" | base64 --decode > keys/android.keystore
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+
+      - name: Build Android
+        run: |
+          ionic capacitor build android --no-open
+          cd android && ./gradlew assembleRelease
+          mv app/build/outputs/apk/release/app-release.apk battlesbit-${{ github.sha }}.apk
+
+      - uses: zdurham/s3-upload-github-action@master
+        with:
+          args: --acl public-read --endpoint-url ${{ secrets.AWS_ENDPOINT }}
+        env:
+          FILE: android/battlesbit-${{ github.sha }}.apk
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_REGION: 'us-west-2'
+          S3_BUCKET: ${{ secrets.AWS_BUCKET }}
+          S3_KEY: battlesbit-${{ github.sha }}.apk
+
+      - name: Send Telegram Notification on New Release
+        uses: appleboy/telegram-action@master
+        with:
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          message: |
+            🚀 New App Release Published!
+            Commit: ${{ github.event.head_commit.message }}
+            Actor: ${{ github.actor }}
+            Download APK: ${{ secrets.AWS_ENDPOINT }}/${{ secrets.AWS_BUCKET }}/battlesbit-${{ github.sha }}.apk
+            View PWA: ${{ secrets.PWA_URL }}
+            Repository: ${{ github.repository }}
+            View changes: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
