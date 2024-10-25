@@ -44,6 +44,10 @@ const routeObjects: RouteObject[] = [
             path: '/live-challenge',
             element: <LiveChallengePage />,
           },
+          {
+            path: '/wallet',
+            element: <WalletPage />,
+          },
         ],
       },
       {
@@ -53,10 +57,6 @@ const routeObjects: RouteObject[] = [
       {
         path: '/matchloading',
         element: <MatchLoadingPage />,
-      },
-      {
-        path: '/wallet',
-        element: <WalletPage />,
       },
     ],
   },
