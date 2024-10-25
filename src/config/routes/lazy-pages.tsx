@@ -9,6 +9,7 @@ const LiveChallengePage = lazy(
   () => import('@/components/pages/LiveChallenge'),
 );
 const MatchLoadingPage = lazy(() => import('@/components/pages/MatchLoading'));
+const WalletPage = lazy(() => import('@/components/pages/Wallet'));
 
 export {
   ChallengesPage,
@@ -18,4 +19,5 @@ export {
   MakeMatchPage,
   MatchLoadingPage,
   OtpPage,
+  WalletPage,
 };
