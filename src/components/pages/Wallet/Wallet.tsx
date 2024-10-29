@@ -4,6 +4,7 @@ import type {SelectChangeEvent} from '@mui/material';
 import {
   Box,
   FormControl,
+  List,
   MenuItem,
   Select,
   Stack,
@@ -11,8 +12,9 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import WalletBalanceAmount from './components/atoms/moneyAmount';
 import NavigateButton from './components/atoms/navigateButtons';
+import WalletBalanceAmount from './components/molecules/moneyAmount';
+import TransactionItem from './components/molecules/TransactionItem';
 
 import {theme} from '@/config/theme';
 import {flex} from '@/utils/flexHelper';
@@ -38,12 +40,10 @@ const Wallet = () => {
       sx={{
         height: 'calc(100vh - 82px)',
         justifyContent: 'center',
-        border: '1px solid red',
       }}>
       <Grid
         size={8.2}
         sx={{
-          border: '1px solid blue',
           height: '40vh',
           ...flex().jcenter().aend().result,
         }}>
@@ -52,7 +52,6 @@ const Wallet = () => {
           gap={'4px'}
           sx={{
             width: 1,
-            border: '1px solid pink',
           }}>
           <Box sx={{...flex().jcenter().acenter().result}}>
             <FormControl sx={{width: '35%'}} variant="standard">
@@ -76,14 +75,15 @@ const Wallet = () => {
               </Select>
             </FormControl>
           </Box>
-          <WalletBalanceAmount amount={12500} />
+          <WalletBalanceAmount
+            floatSize="28px"
+            integerSize="48px"
+            amount={12500}
+          />
           <Grid container alignItems={'center'} size={12}>
-            <Grid
-              sx={{display: 'flex', gap: '10px', alignItems: 'center'}}
-              size={7}>
-              <Typography variant="caption">VSD balance:</Typography>
+            <Grid size={7}>
               <Typography variant="caption">
-                ${numberWithCommas(12500)}
+                VSD balance: $ {`  ${numberWithCommas(12500)}`}
               </Typography>
             </Grid>
             <Grid
@@ -113,6 +113,59 @@ const Wallet = () => {
             ))}
           </Box>
         </Stack>
+      </Grid>
+      <Grid
+        container
+        sx={{
+          borderTopRightRadius: '24px',
+          borderTopLeftRadius: '24px',
+          border: '1px solid red',
+        }}
+        size={12}>
+        <Grid size={12} p={'0.8rem'}>
+          <Typography variant="h6" sx={{font: '600 18px Nunito sans'}}>
+            Transactions
+          </Typography>
+        </Grid>
+        <Grid size={12}>
+          <List sx={{height: '35vh', overflow: 'scroll'}}>
+            <TransactionItem
+              trasactionType="paypal"
+              actionDate="24 july 2022"
+              amount={128.36}
+            />
+            <TransactionItem
+              trasactionType="paypal"
+              actionDate="24 july 2022"
+              amount={128.36}
+            />
+            <TransactionItem
+              trasactionType="paypal"
+              actionDate="24 july 2022"
+              amount={128.36}
+            />
+            <TransactionItem
+              trasactionType="sol"
+              actionDate="24 july 2022"
+              amount={128.36}
+            />
+            <TransactionItem
+              trasactionType="sol"
+              actionDate="24 july 2022"
+              amount={128.36}
+            />
+            <TransactionItem
+              trasactionType="sol"
+              actionDate="24 july 2022"
+              amount={128.36}
+            />
+            <TransactionItem
+              trasactionType="transfer"
+              actionDate="24 july 2022"
+              amount={128.36}
+            />
+          </List>
+        </Grid>
       </Grid>
     </Grid>
   );
