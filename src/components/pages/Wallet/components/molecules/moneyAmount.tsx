@@ -8,18 +8,23 @@ type Props = {
   amount: number;
   integerSize: string;
   floatSize: string;
-  havePlus?: boolean;
+  isTransaction?: boolean;
 };
 const WalletBalanceAmount = ({
   amount,
   floatSize,
   integerSize,
-  havePlus,
+  isTransaction,
 }: Props) => {
   const formattedMoney = numberWithCommas(amount);
   return (
-    <Box sx={{textAlign: 'center'}}>
-      {havePlus ? '+' : ''}
+    <Box
+      sx={{
+        textAlign: 'center',
+        fontWeight: isTransaction ? '900' : '400',
+        fontFamily: isTransaction ? 'Nunito Sans' : 'Alfa Slab One',
+      }}>
+      {isTransaction ? '+' : ''}
       {/* integer part of money */}
       <AmountContainer fontSize={integerSize}>
         ${formattedMoney.split('.')[0]}

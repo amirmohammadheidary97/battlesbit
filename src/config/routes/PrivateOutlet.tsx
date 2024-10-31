@@ -12,8 +12,8 @@ export const PrivateOutlet = () => {
     jwtManager.init();
   }
   //
-  // return <Outlet />
-  return (
-    <>{accessToken && !isExpired ? <Outlet /> : <Navigate to={'login'} />}</>
-  );
+  return <Outlet />;
+  // return (
+  //   <>{accessToken && !isExpired ? <Outlet /> : <Navigate to={'login'} />}</>
+  // );
 };

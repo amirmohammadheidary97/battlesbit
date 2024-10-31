@@ -12,8 +12,8 @@ export const AmountContainer = ({
     component={'span'}
     variant="button"
     sx={{
-      font: '400 Alfa Slab One',
       fontSize: fontSize,
+      lineHeight: 'normal',
     }}>
     {children}
   </Typography>
