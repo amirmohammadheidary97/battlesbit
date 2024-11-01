@@ -17,7 +17,7 @@ const WalletInfo = () => {
   const navButton: WalletAction[] = [
     {icon: <AddRounded />, title: 'deposit'},
     {icon: <ShoppingBagOutlined />, title: 'store'},
-    {icon: <CallMade />, title: 'transfor'},
+    {icon: <CallMade />, title: 'transfer'},
   ];
   return (
     <Stack
