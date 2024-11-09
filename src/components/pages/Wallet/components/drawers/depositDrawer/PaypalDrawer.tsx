@@ -55,7 +55,11 @@ const PaypalDrawer = ({isOpen, handleCloseDrawer}: PaypalDrawerProps) => {
               />
             </Grid>
             <Grid size={12}>
-              <UsdInput amount={amount} setAmount={setAmount} />
+              <UsdInput
+                withCaption={false}
+                amount={amount}
+                setAmount={setAmount}
+              />
             </Grid>
             <Grid pt={'12px'} size={12}>
               <Typography variant="body2" fontFamily={'Nunito Sans'}>
