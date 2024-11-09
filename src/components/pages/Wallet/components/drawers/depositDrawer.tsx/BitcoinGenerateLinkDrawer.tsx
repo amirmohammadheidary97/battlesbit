@@ -4,6 +4,7 @@ import {Box, Button, CircularProgress, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import WarningTip from '../../atoms/warningTip';
+import WaitForChargingWallet from '../../molecules/WaitForChargingWallet';
 import FullPageDrawerContainer from '../../organism/DrawerContainer';
 
 import QRCode from '@/assets/img/icons/general/qrCode.svg';
@@ -35,12 +36,14 @@ const BitcoinGenerateLinkDrawer = ({
       isOpen={isOpen}>
       <>
         <BackwardTitle title="Deposit Bitcoin" />
-        <Grid container pt={'12px'}>
+        <Grid container px={'1rem'} pt={'12px'}>
           <Grid size={12}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus
-            laborum odit ratione nemo repudiandae adipisci enim molestiae
-            assumenda, nulla perspiciatis hic accusantium ipsum esse voluptatum
-            commodi dicta. Ea, dignissimos.
+            <Typography variant="body2" fontFamily={'Nunito Sans'}>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus
+              laborum odit ratione nemo repudiandae adipisci enim molestiae
+              assumenda, nulla perspiciatis hic accusantium ipsum esse
+              voluptatum commodi dicta. Ea, dignissimos.
+            </Typography>
           </Grid>
           <Grid size={12}>
             <WarningTip>
@@ -60,7 +63,6 @@ const BitcoinGenerateLinkDrawer = ({
                 sx={{
                   ...flex().jcenter().result,
                   py: '21px',
-                  //   maxHeight: '215px',
                   width: 1,
                   '>img': {
                     width: '200px',
@@ -105,7 +107,7 @@ const BitcoinGenerateLinkDrawer = ({
               </Box>
             </Grid>
           )}
-          <Grid py={'24px'} size={12}>
+          <Grid py={'24px'} sx={{...flex().jcenter().result}} size={12}>
             {!generatedLink ? (
               <Button
                 endIcon={
@@ -127,7 +129,7 @@ const BitcoinGenerateLinkDrawer = ({
                 generate deposit link
               </Button>
             ) : (
-              <></>
+              <WaitForChargingWallet />
             )}
           </Grid>
         </Grid>

@@ -14,7 +14,7 @@ const Wallet = () => {
   // const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (param !== null) setOpenDrawer(true);
+    if (param !== null && param === 'deposit') setOpenDrawer(true);
     else setOpenDrawer(false);
   }, [param]);
 

@@ -113,7 +113,7 @@ const ScrollableList = ({
               }}
               onClick={() =>
                 navigate(
-                  `${location.pathname}${location.search}?network=${checkedItem}`,
+                  `${location.pathname}${location.search}&network=${checkedItem}`,
                 )
               }
               variant="contained">

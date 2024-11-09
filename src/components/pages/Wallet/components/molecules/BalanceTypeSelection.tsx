@@ -1,30 +1,62 @@
 import {useState} from 'react';
-import type {SelectChangeEvent} from '@mui/material';
-import {FormControl, MenuItem, Select, Typography} from '@mui/material';
+import type {FormControlProps, SelectChangeEvent} from '@mui/material';
+import {Box, FormControl, MenuItem, Select, Typography} from '@mui/material';
 
-const BalanceTypeSelection = () => {
-  const [value, setValue] = useState<string>('Balance');
+import BitcoinImg from '@/assets/img/icons/general/bitcoin.png';
+import {flex} from '@/utils/flexHelper';
+
+const SelectionComponent = ({
+  formControlProps,
+  options,
+  withPicture,
+}: {
+  formControlProps?: FormControlProps;
+  options: string[];
+  withPicture: boolean;
+}) => {
+  const [value, setValue] = useState<string>(options[0]);
   const handleChange = (e: SelectChangeEvent) => {
     setValue(e.target.value);
   };
 
-  const selectOptionItems: string[] = ['Balance', 'Someth', 'Another'];
   return (
-    <FormControl sx={{width: '40%'}} variant="standard">
+    <FormControl {...formControlProps} variant="standard">
       <Select
         value={value}
         onChange={handleChange}
         renderValue={selected => (
-          <Typography
+          <Box
             sx={{
-              font: '400 22px Nunito Sans',
+              px: '1rem',
+              py: '12px',
+              gap: '21px',
+              ...flex().acenter().result,
             }}>
-            {selected}
-          </Typography>
+            {withPicture && (
+              <img
+                src={BitcoinImg}
+                style={{width: '23px', height: '23px'}}
+                alt="bitcoin"
+              />
+            )}
+            <Typography
+              sx={{
+                font: '400 22px Nunito Sans',
+              }}>
+              {selected}
+            </Typography>
+          </Box>
         )}
         sx={{border: 'none'}}>
-        {selectOptionItems.map(opt => (
-          <MenuItem key={opt} value={opt}>
+        {options.map(opt => (
+          <MenuItem key={opt} sx={{gap: '21px'}} value={opt}>
+            {withPicture && (
+              <img
+                src={BitcoinImg}
+                style={{width: '23px', height: '23px'}}
+                alt="bitcoin"
+              />
+            )}
             {opt}
           </MenuItem>
         ))}
@@ -33,4 +65,4 @@ const BalanceTypeSelection = () => {
   );
 };
 
-export default BalanceTypeSelection;
+export default SelectionComponent;

@@ -22,7 +22,6 @@ const FullPageDrawerContainer = ({
         width: '100%',
         height: '100vh',
         backgroundColor: 'background.default',
-        px: '1rem',
       },
     }}>
     {children}

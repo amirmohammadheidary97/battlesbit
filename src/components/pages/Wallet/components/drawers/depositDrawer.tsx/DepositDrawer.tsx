@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useLocation} from 'react-router';
+import {useLocation, useNavigate} from 'react-router';
 import {Box, Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
@@ -25,10 +25,18 @@ const DepositDrawer = ({handleCloseDepositDrawer, isDepositopen}: Props) => {
   const [openNetworkOptionDrawer, setOpenNetworkOptionDrawer] =
     useState<boolean>(false);
   /////
-  const [openPaypalDrawer, setOpenPaypalDrawer] = useState<boolean>(false);
+  // const [openPaypalDrawer, setOpenPaypalDrawer] = useState<boolean>(false);
   /////
   const isBitcoinNetworkSelected = useLocation().search.includes('network');
+  ///
+  const isPaypalSelected = useLocation().search.includes('paypal');
+  const navigate = useNavigate();
   /////
+  // const handleCloseDrawer = () => {
+  //   if (selectedMethod === 'bitcoin') {
+  //     setOpenNetworkOptionDrawer(false);
+  //   } else setOpenPaypalDrawer(false);
+  // };
   return (
     <FullPageDrawerContainer
       isOpen={isDepositopen}
@@ -37,7 +45,7 @@ const DepositDrawer = ({handleCloseDepositDrawer, isDepositopen}: Props) => {
         <BackwardTitle title={'Deposit'} />
         <Grid
           container
-          pt={'1rem'}
+          p={'1rem'}
           height={'calc(100vh - 40px)'}
           sx={{...flex().column().acenter().result}}
           size={12}>
@@ -69,7 +77,10 @@ const DepositDrawer = ({handleCloseDepositDrawer, isDepositopen}: Props) => {
                 onClick={() => {
                   if (selectedMethod === 'bitcoin')
                     setOpenNetworkOptionDrawer(true);
-                  else setOpenPaypalDrawer(true);
+                  else {
+                    navigate('?state=deposit&paypal=true');
+                    // setOpenPaypalDrawer(true);
+                  }
                 }}
                 sx={{
                   width: 1,
@@ -91,7 +102,7 @@ const DepositDrawer = ({handleCloseDepositDrawer, isDepositopen}: Props) => {
               />
               <PaypalDrawer
                 handleCloseDrawer={() => {}}
-                isOpen={openPaypalDrawer}
+                isOpen={isPaypalSelected}
               />
             </Grid>
           </Grid>
