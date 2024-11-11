@@ -40,14 +40,14 @@ const ContainerBox = styled(Box)(() => ({
 const AnimatedBox = styled(Box)(({theme}) => ({
   width: '6px',
   height: '6px',
-  bgcolor: theme.palette.primary.main,
-  boxShadow: `0 0 10px 20px ${theme.palette.primary.main}`,
+  backgroundColor: theme.palette.primary.main,
+  boxShadow: `0 0 18px 20px #C19407`,
   borderRadius: '50%',
   position: 'absolute',
   top: 0,
   left: 0,
   zIndex: 2,
-  animation: `${rollAnimation} 1.8s ease-out infinite`,
+  animation: `${rollAnimation} 1.7s ease-out infinite`,
 }));
 
 const rollAnimation = keyframes`

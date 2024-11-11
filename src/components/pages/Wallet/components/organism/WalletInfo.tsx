@@ -27,6 +27,8 @@ const WalletInfo = () => (
     gap={'4px'}
     sx={{
       width: 1,
+      position: 'relative',
+      zIndex: 2,
     }}>
     <Box sx={{...flex().jcenter().acenter().result, width: 1}}>
       <SelectionComponent

@@ -1,16 +1,20 @@
 import type {ReactElement} from 'react';
 import {Drawer} from '@mui/material';
 
+import {BackwardTitle} from '@/components/molecules/BackwardTitle';
+
 type DrawerProps = {
   isOpen: boolean;
-  handleCloseDrawer: () => void;
+  handleCloseDrawer?: () => void;
   children: ReactElement;
+  PageTitle: string;
 };
 
 const FullPageDrawerContainer = ({
   isOpen,
   handleCloseDrawer,
   children,
+  PageTitle,
 }: DrawerProps) => (
   <Drawer
     anchor="right"
@@ -24,6 +28,7 @@ const FullPageDrawerContainer = ({
         backgroundColor: 'background.default',
       },
     }}>
+    <BackwardTitle title={PageTitle} />
     {children}
   </Drawer>
 );

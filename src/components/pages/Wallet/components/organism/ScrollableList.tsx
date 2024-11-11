@@ -66,6 +66,7 @@ const ScrollableList = ({
         maxHeight: height ?? 'calc(50vh - 83px)',
         overflowY: 'auto',
         position: 'relative',
+        zIndex: 2,
       }}
       {...containerProps}
       size={12}>

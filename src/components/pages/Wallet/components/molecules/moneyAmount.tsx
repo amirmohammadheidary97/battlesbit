@@ -1,6 +1,6 @@
 import {Box} from '@mui/material';
 
-import {AmountContainer} from '../atoms/sliced-money-container';
+import {AmountContainer} from '../atoms/SlicedMoneyContainer';
 
 import {numberWithCommas} from '@/utils/money-number-fromatter';
 

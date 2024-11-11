@@ -36,6 +36,7 @@ const DepositItem = ({
         borderColor: 'primary.main',
         aspectRatio: '1/1',
         width: 'calc((100% - 32px)/3)',
+        p: '1rem',
       }}>
       <Box>
         <img src={BitcoinIcon} alt="bitcoin-icon" />
