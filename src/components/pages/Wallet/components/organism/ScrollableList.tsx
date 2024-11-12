@@ -4,16 +4,9 @@ import {Button, List, Typography} from '@mui/material';
 import type {Grid2Props} from '@mui/material/Grid2';
 import Grid from '@mui/material/Grid2';
 
+import {networkItems, transactionList} from '../fakeData/data';
 import NetworkSelectItem from '../molecules/NetworkItem';
 import TransactionItem from '../molecules/TransactionItem';
-
-import {theme} from '@/config/theme';
-
-type transaction = {
-  type: 'Paypal' | 'SOL' | 'Transfer';
-  date: string;
-  amount: number;
-};
 
 type Props = {
   isTransaction: boolean;
@@ -22,28 +15,6 @@ type Props = {
   containerProps?: Grid2Props;
 };
 
-const listItem: transaction[] = [
-  {amount: 128.22, date: '24 july 2022', type: 'Paypal'},
-  {amount: 128.22, date: '20 july 2022', type: 'Transfer'},
-  {amount: 128.22, date: '17 july 2022', type: 'SOL'},
-  {amount: 128.22, date: '1 july 2022', type: 'Transfer'},
-  {amount: 128.22, date: '30 july 2022', type: 'Paypal'},
-];
-
-const networkItems: {id: number; title: string}[] = [
-  {
-    id: 1,
-    title: 'Bitcoin Network or any thing else',
-  },
-  {
-    id: 2,
-    title: 'Bitcoin Network',
-  },
-  {
-    id: 3,
-    title: 'Bitcoin Network',
-  },
-];
 const ScrollableList = ({
   isTransaction,
   title,
@@ -86,8 +57,8 @@ const ScrollableList = ({
       </Grid>
       <Grid height={'82%'} overflow={'auto'} size={12}>
         <List sx={{p: '8px'}}>
-          {isTransaction && listItem.length > 0
-            ? listItem.map(transaction => (
+          {isTransaction && transactionList.length > 0
+            ? transactionList.map(transaction => (
                 <TransactionItem
                   key={transaction.date + transaction.amount}
                   actionDate={transaction.date}
@@ -109,7 +80,7 @@ const ScrollableList = ({
               sx={{
                 width: 1,
                 py: '1rem',
-                borderRadius: theme.shape.borderRadius,
+                borderRadius: theme => theme.shape.borderRadius,
                 mt: 3,
               }}
               onClick={() =>

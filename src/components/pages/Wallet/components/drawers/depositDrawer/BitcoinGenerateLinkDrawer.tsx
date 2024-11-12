@@ -19,9 +19,11 @@ const BitcoinGenerateLinkDrawer = ({
   handleCloseDrawer,
   isOpen,
 }: BitcoinGenerateLinkDrawerProps) => {
+  ////
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [generatedLink, setGeneratedLink] = useState<string>();
   const [isCopied, setIsCopied] = useState<boolean>(false);
+  /////
   const handleGenerateLink = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -29,6 +31,7 @@ const BitcoinGenerateLinkDrawer = ({
       setGeneratedLink('FUNGFV8DQEyzzt6Hzx2kQ4kiXhtGjV7D85qZuRcHEnpg');
     }, 1000);
   };
+  ////
   return (
     <FullPageDrawerContainer
       handleCloseDrawer={handleCloseDrawer}

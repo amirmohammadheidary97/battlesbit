@@ -3,31 +3,14 @@ import {keyframes} from '@emotion/react';
 import {Button, Divider} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
+import {challengerDetails} from '../../fakeData/fakeData';
 import PlayersPicturesBeforeMatch from '../PlayersPictures/PlayersPictures';
 
 import MatchResultBadgeContainer from './components/MatchResultBadgeContainer';
 
 import {theme} from '@/config/theme';
 
-type MatchResult = 'win' | 'lose';
-
-type LastGames = {mine: MatchResult[]; opponent: MatchResult[]};
-
-type Achivements = {mine: number; opponent: number};
-
-type ChallengerDetailsType = {lastGames: LastGames; achivements: Achivements};
-const ChallengerDetails = () => {
-  const details: ChallengerDetailsType = {
-    lastGames: {
-      mine: ['win', 'lose', 'win', 'win', 'lose', 'win'],
-      opponent: ['lose', 'lose', 'win', 'win', 'win', 'lose'],
-    },
-    achivements: {
-      mine: 6,
-      opponent: 5,
-    },
-  };
-
+const ChallengerchallengerDetails = () => {
   const [countDownStart, setCountDownStart] = useState<number>(8);
 
   useEffect(() => {
@@ -66,7 +49,7 @@ const ChallengerDetails = () => {
         container
         sx={{px: 1}}
         size={12}>
-        {/* details about each player */}
+        {/* challengerDetails about each player */}
         <Grid
           minHeight={'11rem'}
           display={'flex'}
@@ -74,13 +57,13 @@ const ChallengerDetails = () => {
           gap={'0.5rem'}
           size={12}>
           <MatchResultBadgeContainer
-            achivements={details.achivements.mine}
-            lastGames={details.lastGames.mine}
+            achivements={challengerDetails.achivements.mine}
+            lastGames={challengerDetails.lastGames.mine}
           />
           <Divider orientation="vertical" />
           <MatchResultBadgeContainer
-            achivements={details.achivements.opponent}
-            lastGames={details.lastGames.opponent}
+            achivements={challengerDetails.achivements.opponent}
+            lastGames={challengerDetails.lastGames.opponent}
           />
         </Grid>
         <Grid size={12}>
@@ -101,7 +84,7 @@ const ChallengerDetails = () => {
   );
 };
 
-export default ChallengerDetails;
+export default ChallengerchallengerDetails;
 
 const fadeIn = keyframes`
   0% {

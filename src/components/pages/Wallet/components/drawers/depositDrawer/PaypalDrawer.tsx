@@ -15,6 +15,7 @@ type PaypalDrawerProps = {
 };
 
 const optios = ['Bitcoin', 'Bitcoin2', 'Bitcoin3'];
+///
 const PaypalDrawer = ({isOpen, handleCloseDrawer}: PaypalDrawerProps) => {
   ///
   const [amount, setAmount] = useState<number>();

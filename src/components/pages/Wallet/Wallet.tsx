@@ -39,10 +39,10 @@ const Wallet = () => {
         size={8.2}
         sx={{
           height: '50vh',
-          ...flex().jcenter().acenter().result,
+          ...flex().jcenter().aend().result,
           pb: 5,
           gap: 0,
-          zIndex: 2,
+          zIndex: 5,
         }}>
         <WalletInfo />
       </Grid>

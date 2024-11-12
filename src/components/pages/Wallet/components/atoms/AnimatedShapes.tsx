@@ -14,7 +14,7 @@ export const AnimatedBackgroundImgs = () => (
     <Box
       position={'absolute'}
       sx={{
-        zIndex: 3,
+        zIndex: 1,
         animation: `${floatAnimation} 4s linear infinite`,
         top: ' -100px',
         left: '60%',
@@ -28,7 +28,7 @@ export const AnimatedBackgroundImgs = () => (
     {/* middle animated bg  */}
     <Box
       sx={{
-        zIndex: 3,
+        zIndex: 1,
         position: 'absolute',
         width: '150px',
         height: '150px',
@@ -67,8 +67,8 @@ export const AnimatedBackgroundImgs = () => (
     <Box
       position={'absolute'}
       sx={{
-        animation: `${floatAnimation} 4s linear infinite`,
-        top: ' 36vh',
+        animation: `${floatAnimation} 4s 0.5s linear infinite`,
+        top: ' 43vh',
         left: '0',
         zIndex: 1,
       }}>

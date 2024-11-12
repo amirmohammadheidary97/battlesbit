@@ -9,8 +9,9 @@ import {useMakeMatchState} from '@/components/pages/MakeMatch/state/make-match.s
 import {theme} from '@/config/theme';
 
 const WaitingToJoinStage = () => {
-  const {startMatch, selectedFriend, setSelectedFriend} = useMakeMatchState();
   const navigate = useNavigate();
+  ////
+  const {startMatch, selectedFriend, setSelectedFriend} = useMakeMatchState();
   ////
   const handleCancelClick = () => {
     if (selectedFriend) {

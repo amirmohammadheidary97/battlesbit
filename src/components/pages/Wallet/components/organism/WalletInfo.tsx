@@ -1,26 +1,14 @@
-import {AddRounded, CallMade, ShoppingBagOutlined} from '@mui/icons-material';
 import {Box, Stack, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import NavigateButton from '../atoms/navigateButtons';
+import NavigateButton from '../atoms/NavigateButtons';
+import {navButton, selectBalanceOptions} from '../fakeData/data';
 import SelectionComponent from '../molecules/BalanceTypeSelection';
 import WalletBalanceAmount from '../molecules/moneyAmount';
 
 import {flex} from '@/utils/flexHelper';
 import {numberWithCommas} from '@/utils/money-number-fromatter';
 
-type WalletAction = {
-  icon: React.ReactNode;
-  title: string;
-};
-
-const selectOptionItems: string[] = ['Balance', 'Someth', 'Another'];
-
-const navButton: WalletAction[] = [
-  {icon: <AddRounded />, title: 'deposit'},
-  {icon: <ShoppingBagOutlined />, title: 'store'},
-  {icon: <CallMade />, title: 'transfer'},
-];
 const WalletInfo = () => (
   <Stack
     useFlexGap
@@ -28,12 +16,12 @@ const WalletInfo = () => (
     sx={{
       width: 1,
       position: 'relative',
-      zIndex: 2,
+      zIndex: '3 !important',
     }}>
     <Box sx={{...flex().jcenter().acenter().result, width: 1}}>
       <SelectionComponent
-        options={selectOptionItems}
-        formControlProps={{sx: {width: '40%'}}}
+        options={selectBalanceOptions}
+        formControlProps={{sx: {width: '44%'}}}
         withPicture={false}
       />
     </Box>

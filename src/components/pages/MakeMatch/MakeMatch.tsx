@@ -13,12 +13,15 @@ import {CustomIcon} from '@/components/atoms/icon';
 import {theme} from '@/config/theme';
 
 const MakeMatch = () => {
-  const {toggleOpenDialoge, setStartMatch} = useMakeMatchState();
   const navigate = useNavigate();
+  ///
+  const {toggleOpenDialoge, setStartMatch} = useMakeMatchState();
+  ////
   const handleStartMatchNormally = () => {
     setStartMatch('normal');
     navigate('/matchloading');
   };
+  ///
   return (
     <Grid
       container
