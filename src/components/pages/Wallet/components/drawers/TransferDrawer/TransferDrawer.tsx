@@ -3,7 +3,7 @@ import {Button, TextField, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import UsdInput from '../../atoms/UsdInput';
-import WarningTip from '../../atoms/warningTip';
+import WarningTip from '../../atoms/WarningTip';
 import FullPageDrawerContainer from '../../organism/DrawerContainer';
 
 import {flex} from '@/utils/flexHelper';

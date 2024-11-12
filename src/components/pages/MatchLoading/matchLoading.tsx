@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import Grid from '@mui/material/Grid2';
 
-import BeforeBeginMatchStage from './components/CountDownStart/BeforeBeginMatchStage';
-import WaitingToJoinStage from './components/WaitingToJoin/WaitingToJoin';
+import BeforeBeginMatchStage from './components/BeforeBeginMatchStage/BeforeBeginMatchStage';
+import WaitingToJoinStage from './components/WaitingToJoinStage/WaitingToJoin';
 
 const MatchLoading = () => {
   const [isChallengerFound, setIsChallengerFound] = useState<Boolean>(false);

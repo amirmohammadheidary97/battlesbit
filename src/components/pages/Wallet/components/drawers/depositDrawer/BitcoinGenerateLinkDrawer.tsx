@@ -3,7 +3,7 @@ import {QrCodeScannerRounded} from '@mui/icons-material';
 import {Box, Button, CircularProgress, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import WarningTip from '../../atoms/warningTip';
+import WarningTip from '../../atoms/WarningTip';
 import WaitForChargingWallet from '../../molecules/WaitForChargingWallet';
 import FullPageDrawerContainer from '../../organism/DrawerContainer';
 

@@ -3,7 +3,7 @@ import {Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import UsdInput from '../../atoms/UsdInput';
-import WarningTip from '../../atoms/warningTip';
+import WarningTip from '../../atoms/WarningTip';
 import SelectionComponent from '../../molecules/BalanceTypeSelection';
 import FullPageDrawerContainer from '../../organism/DrawerContainer';
 

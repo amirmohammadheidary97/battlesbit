@@ -1,7 +1,7 @@
 import {Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import InfoBox from './infoBox';
+import InfoBox from './InfoBox';
 
 import {theme} from '@/config/theme';
 import {flex} from '@/utils/flexHelper';

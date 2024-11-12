@@ -3,7 +3,7 @@ import {Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import TipsDialogContainer from './TipDialog/TipsDialogContainer';
-import MatchloadingPicture from './WaitingPictureContainer/matchloading-animation';
+import MatchloadingPicture from './WaitingPictureContainer/MatchloadingAnimation';
 
 import {useMakeMatchState} from '@/components/pages/MakeMatch/state/make-match.state';
 import {theme} from '@/config/theme';

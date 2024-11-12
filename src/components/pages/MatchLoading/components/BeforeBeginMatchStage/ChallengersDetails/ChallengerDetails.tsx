@@ -3,7 +3,7 @@ import {keyframes} from '@emotion/react';
 import {Button, Divider} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import PlayersPicturesBeforeMatch from '../PlayersPicture-BeforeMatch/PlayersPicture-BeforeMatch';
+import PlayersPicturesBeforeMatch from '../PlayersPictures/PlayersPictures';
 
 import MatchResultBadgeContainer from './components/MatchResultBadgeContainer';
 

@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 import {Box, TextField, Typography} from '@mui/material';
 
 import {flex} from '@/utils/flexHelper';
@@ -18,19 +17,12 @@ const UsdInput = ({
   availableAmount,
 }: TUsdInput) => {
   ///
-  const [hasError, setHasError] = useState<boolean>(false);
-  ///
   const handleAmountValue = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setAmount(e.target.value);
   };
-  ///
-  useEffect(() => {
-    if (amount !== undefined && isNaN(Number(amount))) {
-      setHasError(true);
-    } else setHasError(false);
-  }, [amount]);
+
   ///
   return (
     <Box
@@ -48,9 +40,8 @@ const UsdInput = ({
         </Typography>
       )}
       <TextField
-        error={hasError}
-        label={hasError ? 'Invalid Entry' : ''}
         variant="outlined"
+        type="number"
         value={amount}
         onChange={handleAmountValue}
         fullWidth

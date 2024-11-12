@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Box, keyframes} from '@mui/material';
 
-import InfoAboutPlayer from '../ChallengersDetails/components/infoAboutPlayer';
+import InfoAboutPlayer from '../ChallengersDetails/components/InfoAboutPlayer';
 
 import avatar from '@/assets/img/loadingmatch.jpeg';
 import {PlayerAvatar} from '@/components/atoms/PlayerAvatar';

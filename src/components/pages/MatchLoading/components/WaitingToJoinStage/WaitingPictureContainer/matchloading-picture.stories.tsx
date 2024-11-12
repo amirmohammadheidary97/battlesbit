@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 
-import MatchloadingPicture from './matchloading-animation';
+import MatchloadingPicture from './MatchloadingAnimation';
 
 const meta: Meta<typeof MatchloadingPicture> = {
   tags: ['autodocs'],
