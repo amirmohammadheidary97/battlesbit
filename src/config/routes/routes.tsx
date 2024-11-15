@@ -10,6 +10,7 @@ import {
   MatchLoadingPage,
   OtpPage,
   WalletPage,
+  StorePage
 } from './lazy-pages';
 import {PrivateOutlet} from './PrivateOutlet';
 
@@ -47,6 +48,10 @@ const routeObjects: RouteObject[] = [
           {
             path: '/wallet',
             element: <WalletPage />,
+          },
+          {
+            path: '/store',
+            element: <StorePage />,
           },
         ],
       },
