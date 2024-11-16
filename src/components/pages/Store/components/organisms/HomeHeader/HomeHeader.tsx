@@ -14,45 +14,39 @@ type HomeHeaderProps = {
 };
 
 export const HomeHeader: React.FC<HomeHeaderProps> = ({
-  current,
-  total,
   usdtAmount,
   vsdAmount,
-}) => {
-  const progress = (current / total) * 100;
-
-  return (
-    <>
-      {/*  */}
-      <Grid size="auto" container alignItems={'flex-end'} spacing={2}>
-        <Grid
-          size="auto"
-          sx={{
-            height: '42px',
-            img: {
-              borderRadius: '0.75rem',
-            },
-          }}>
-          <img src={FakeAvatarIcon} alt="User Name" />
-        </Grid>
+}) => (
+  <>
+    {/*  */}
+    <Grid size="auto" container alignItems={'flex-end'} spacing={2}>
+      <Grid
+        size="auto"
+        sx={{
+          height: '42px',
+          img: {
+            borderRadius: '0.75rem',
+          },
+        }}>
+        <img src={FakeAvatarIcon} alt="User Name" />
       </Grid>
-      {/*  */}
-      <Grid size="auto" offset={'auto'}>
-        <Grid size={12}>
-          <CurrencyDisplay
-            amount={usdtAmount}
-            currency="USDt"
-            iconUrl={TetIcon}
-          />
-        </Grid>
-        <Grid size={12}>
-          <CurrencyDisplay
-            amount={vsdAmount}
-            currency="VSD"
-            iconUrl={StarCoinIcon}
-          />
-        </Grid>
+    </Grid>
+    {/*  */}
+    <Grid size="auto" offset={'auto'}>
+      <Grid size={12}>
+        <CurrencyDisplay
+          amount={usdtAmount}
+          currency="USDt"
+          iconUrl={TetIcon}
+        />
       </Grid>
-    </>
-  );
-};
+      <Grid size={12}>
+        <CurrencyDisplay
+          amount={vsdAmount}
+          currency="VSD"
+          iconUrl={StarCoinIcon}
+        />
+      </Grid>
+    </Grid>
+  </>
+);

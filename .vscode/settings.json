@@ -18,7 +18,7 @@
     "eslint.workingDirectories": [
         "./src"
     ],
-    "prettier.configPath": ".prettierrc.cjs",
+    "prettier.configPath": ".eslintrc.cjs",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
