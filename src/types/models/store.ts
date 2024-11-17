@@ -5,3 +5,11 @@ export type ChargeWalletItemType = {
   amount: number;
   amountTwo: number;
 };
+
+export type LeverageItemType = {
+  iconUrl: string;
+  amount: number;
+  currency: string;
+  xpCuntent: string;
+  xpValue: number;
+};

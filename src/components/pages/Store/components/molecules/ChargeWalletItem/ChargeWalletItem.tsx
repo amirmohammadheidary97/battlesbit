@@ -16,7 +16,7 @@ export const ChargeWalletItem: React.FC<ChargeWalletItemType> = ({
       sx={{
         backgroundColor: '#181A20',
         height: '100%',
-        borderRadius: '15px',
+        borderRadius: '12px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

@@ -2,11 +2,13 @@ import Grid from '@mui/material/Grid2';
 
 import {ChargeWallet} from './components/organisms/ChargeWallet';
 import {HomeHeader} from './components/organisms/HomeHeader';
+import {Leverage} from './components/organisms/Leverage';
 
 import ChargeWalletItemImg1 from '@/assets/img/icons/store/charge-item-1.png';
 import ChargeWalletItemImg2 from '@/assets/img/icons/store/charge-item-2.png';
 import ChargeWalletItemImg3 from '@/assets/img/icons/store/charge-item-3.png';
 import ChargeWalletItemImg4 from '@/assets/img/icons/store/charge-item-4.png';
+import leverageImg1 from '@/assets/img/icons/store/leverage 1.png';
 
 const chargeWalletItemsList = [
   {
@@ -36,6 +38,51 @@ const chargeWalletItemsList = [
     currency: 'VSD',
     currencyTwo: 'USDT',
     iconUrl: ChargeWalletItemImg4,
+  },
+];
+
+const leverageList = [
+  {
+    amount: 10,
+    currency: 'VSD',
+    xpCuntent: 'up to',
+    xpValue: 50,
+    iconUrl: leverageImg1,
+  },
+  {
+    amount: 10,
+    currency: 'VSD',
+    xpCuntent: 'up to',
+    xpValue: 50,
+    iconUrl: leverageImg1,
+  },
+  {
+    amount: 10,
+    currency: 'VSD',
+    xpCuntent: 'up to',
+    xpValue: 100,
+    iconUrl: leverageImg1,
+  },
+  {
+    amount: 10,
+    currency: 'VSD',
+    xpCuntent: 'up to',
+    xpValue: 70,
+    iconUrl: leverageImg1,
+  },
+  {
+    amount: 10,
+    currency: 'VSD',
+    xpCuntent: 'up to',
+    xpValue: 100,
+    iconUrl: leverageImg1,
+  },
+  {
+    amount: 10,
+    currency: 'VSD',
+    xpCuntent: 'up to',
+    xpValue: 50,
+    iconUrl: leverageImg1,
   },
 ];
 
@@ -73,6 +120,20 @@ const Store = () => (
         chargeWalletItems={chargeWalletItemsList}
         description="lorem lorem lorem lorem lorem lorem ...."
         title="charge your wallet"
+      />
+    </Grid>
+    <Grid
+      sx={{
+        backgroundColor: 'transparent',
+        borderRadius: '10px',
+        position: 'relative',
+        marginTop: '10px',
+      }}
+      size={12}>
+      <Leverage
+        leverageItems={leverageList}
+        description="You can change your avatar and nickname ...."
+        title="Leverage"
       />
     </Grid>
   </Grid>
