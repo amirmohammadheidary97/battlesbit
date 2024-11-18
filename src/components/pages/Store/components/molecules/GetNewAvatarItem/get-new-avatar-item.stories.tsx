@@ -1,27 +1,26 @@
 import {Box} from '@mui/material';
 import type {Meta, StoryObj} from '@storybook/react';
 
-import {LeverageItem} from './GetNewAvatarItem';
+import {GetNewAvatarItem} from './GetNewAvatarItem';
 
-import leverageItemImg1 from '@/assets/img/icons/store/leverage 1.png';
+import monkeyItemImg1 from '@/assets/img/bg/monkey.png';
 
-const meta: Meta<typeof LeverageItem> = {
+const meta: Meta<typeof GetNewAvatarItem> = {
   tags: ['autodocs'],
-  component: LeverageItem,
+  component: GetNewAvatarItem,
 };
 
 export default meta;
-type Story = StoryObj<typeof LeverageItem>;
+type Story = StoryObj<typeof GetNewAvatarItem>;
 
 export const ChargeWalletItemStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
-      <LeverageItem
+      <GetNewAvatarItem
+        id={1}
         amount={10}
         currency="VSD"
-        iconUrl={leverageItemImg1}
-        xpCuntent="up to"
-        xpValue={50}
+        iconUrl={monkeyItemImg1}
       />
     </Box>
   ),

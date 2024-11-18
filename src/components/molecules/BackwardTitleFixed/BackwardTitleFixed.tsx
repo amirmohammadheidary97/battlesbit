@@ -16,7 +16,7 @@ export const BackwardTitleFixed: FC<IBackwardTitleProps> = ({title}) => {
       flexDirection={'row'}
       alignItems={'center'}
       justifyContent={'start'}
-      position={'fixed'}
+      position={'absolute'}
       px={1}
       pt={1}
       zIndex={10}>

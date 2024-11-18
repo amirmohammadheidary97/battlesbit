@@ -17,6 +17,7 @@ export const ChargeWalletItemStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
       <LeverageItem
+        id={1}
         amount={10}
         currency="VSD"
         iconUrl={leverageItemImg1}

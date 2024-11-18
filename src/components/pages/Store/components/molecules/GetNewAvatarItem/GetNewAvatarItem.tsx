@@ -4,21 +4,31 @@ import Grid from '@mui/material/Grid2';
 
 import type {NewAvatarsType} from '@/types/models/store';
 
-export const GetNewAvatarItem: React.FC<NewAvatarsType> = ({
+type Props = {
+  size?: number;
+  hieght?: string;
+  imageHeight?: string;
+  imageWidth?: string;
+};
+export const GetNewAvatarItem: React.FC<NewAvatarsType & Props> = ({
   id,
   amount,
   currency,
   iconUrl,
+  size = 1,
+  hieght = '50px',
+  imageHeight = '50px',
+  imageWidth = '50px',
 }) => {
   const nav = useNavigate();
   const location = useLocation();
   return (
     <Grid
       sx={{
-        height: '50px',
+        height: hieght,
         padding: '0 8px',
       }}
-      size={1}>
+      size={size}>
       <Box
         onClick={() =>
           nav(
@@ -32,8 +42,8 @@ export const GetNewAvatarItem: React.FC<NewAvatarsType> = ({
         <Grid container alignItems={'flex-end'} spacing={2}>
           <Grid
             sx={{
-              height: '50px',
-              width: '50px',
+              height: imageHeight,
+              width: imageWidth,
               img: {
                 borderRadius: '100%',
                 width: '100%',
@@ -54,7 +64,7 @@ export const GetNewAvatarItem: React.FC<NewAvatarsType> = ({
             fontSize="12px"
             fontWeight="700">
             {amount}{' '}
-            <Typography fontSize="11px" marginLeft="5px">
+            <Typography fontSize="12px" marginLeft="5px">
               {currency}
             </Typography>
           </Typography>

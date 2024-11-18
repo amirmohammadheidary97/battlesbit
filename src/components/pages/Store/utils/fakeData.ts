@@ -40,92 +40,18 @@ export const chargeWalletItemsList = [
   },
 ];
 
-export const leverageList = [
-  {
-    id: 1,
-    amount: 10,
-    currency: 'VSD',
-    xpCuntent: 'up to',
-    xpValue: 50,
-    iconUrl: leverageImg1,
-  },
-  {
-    id: 2,
-    amount: 10,
-    currency: 'VSD',
-    xpCuntent: 'up to',
-    xpValue: 50,
-    iconUrl: leverageImg1,
-  },
-  {
-    id: 3,
-    amount: 10,
-    currency: 'VSD',
-    xpCuntent: 'up to',
-    xpValue: 100,
-    iconUrl: leverageImg1,
-  },
-  {
-    id: 4,
-    amount: 10,
-    currency: 'VSD',
-    xpCuntent: 'up to',
-    xpValue: 70,
-    iconUrl: leverageImg1,
-  },
-  {
-    id: 5,
-    amount: 10,
-    currency: 'VSD',
-    xpCuntent: 'up to',
-    xpValue: 100,
-    iconUrl: leverageImg1,
-  },
-  {
-    id: 6,
-    amount: 10,
-    currency: 'VSD',
-    xpCuntent: 'up to',
-    xpValue: 50,
-    iconUrl: leverageImg1,
-  },
-];
+export const leverageList = Array.from({length: 30}, (_, index) => ({
+  id: index + 1,
+  amount: 10,
+  currency: 'VSD',
+  xpCuntent: 'up to',
+  xpValue: 50 + (index % 3) * 20,
+  iconUrl: leverageImg1,
+}));
 
-export const getNewAvatarsList = [
-  {
-    id: 1,
-    amount: 10,
-    currency: 'VSD',
-    iconUrl: MonkeyCircleImg1,
-  },
-  {
-    id: 2,
-    amount: 10,
-    currency: 'VSD',
-    iconUrl: MonkeyCircleImg1,
-  },
-  {
-    id: 3,
-    amount: 10,
-    currency: 'VSD',
-    iconUrl: MonkeyCircleImg1,
-  },
-  {
-    id: 4,
-    amount: 10,
-    currency: 'VSD',
-    iconUrl: MonkeyCircleImg1,
-  },
-  {
-    id: 5,
-    amount: 10,
-    currency: 'VSD',
-    iconUrl: MonkeyCircleImg1,
-  },
-  {
-    id: 6,
-    amount: 10,
-    currency: 'VSD',
-    iconUrl: MonkeyCircleImg1,
-  },
-];
+export const getNewAvatarsList = Array.from({length: 32}, (_, index) => ({
+  id: index + 1,
+  amount: 10,
+  currency: 'VSD',
+  iconUrl: MonkeyCircleImg1,
+}));

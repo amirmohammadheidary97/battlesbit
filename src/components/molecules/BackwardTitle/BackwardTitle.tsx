@@ -17,7 +17,7 @@ export const BackwardTitle: FC<IBackwardTitleProps> = ({title}) => {
       alignItems={'center'}
       justifyContent={'start'}
       px={1}
-      pt={0}>
+      pt={1}>
       {/* <Grid size="auto"> */}
       <IconButton onClick={() => navigate(-1)} aria-label="backward">
         <img src={backIcon} style={{width: '20px', height: '20px'}} />

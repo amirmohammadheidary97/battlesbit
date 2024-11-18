@@ -1,6 +1,7 @@
 import type {ReactElement} from 'react';
 import {Drawer} from '@mui/material';
 
+import {BackwardTitle} from '@/components/molecules/BackwardTitle';
 import {BackwardTitleFixed} from '@/components/molecules/BackwardTitleFixed';
 
 type DrawerProps = {
@@ -8,6 +9,7 @@ type DrawerProps = {
   handleCloseDrawer?: () => void;
   children: ReactElement;
   PageTitle: string;
+  isFixedBackWard?: boolean;
 };
 
 const FullPageDrawerContainer = ({
@@ -15,6 +17,7 @@ const FullPageDrawerContainer = ({
   handleCloseDrawer,
   children,
   PageTitle,
+  isFixedBackWard = false,
 }: DrawerProps) => (
   <Drawer
     anchor="right"
@@ -28,7 +31,11 @@ const FullPageDrawerContainer = ({
         backgroundColor: 'background.default',
       },
     }}>
-    <BackwardTitleFixed title={PageTitle} />
+    {isFixedBackWard ? (
+      <BackwardTitle title={PageTitle} />
+    ) : (
+      <BackwardTitleFixed title={PageTitle} />
+    )}
     {children}
   </Drawer>
 );

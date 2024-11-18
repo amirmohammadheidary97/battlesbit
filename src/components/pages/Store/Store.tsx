@@ -6,6 +6,8 @@ import {ChargeWallet} from './components/organisms/ChargeWallet';
 import {GetNewAvatars} from './components/organisms/GetNewAvatars';
 import {HomeHeader} from './components/organisms/HomeHeader';
 import {Leverage} from './components/organisms/Leverage';
+import AllAvatarsDrawerDrawer from './drawer/AllAvatarsDrawer/AllAvatarsDrawer';
+import AllLeverageDrawerDrawer from './drawer/AllLeverageDrawer/AllLeverageDrawer';
 import InfoStoreDrawer from './drawer/InfoStoreDrawer/InfoStoreDrawer';
 import {chargeWalletState} from './state/charge-wallet.state';
 import {drawerStoreState} from './state/drawer-store.state';
@@ -29,6 +31,10 @@ const Store = () => {
     setOpenLeverage,
     openNewAvatar,
     setOpenNewAvatar,
+    openAllLeverage,
+    setOpenAllLeverage,
+    openAllAvatars,
+    setOpenAllAvatars,
   } = drawerStoreState();
   const {chargeWalletInfo, setChargeWalletInfo} = chargeWalletState();
   const {leverageInfo, setLeverageInfo} = leverageState();
@@ -42,6 +48,10 @@ const Store = () => {
     else setOpenLeverage(false);
     if (state !== null && state == 'newavatar') setOpenNewAvatar(true);
     else setOpenNewAvatar(false);
+    if (state !== null && state == 'all-leverage') setOpenAllLeverage(true);
+    else setOpenAllLeverage(false);
+    if (state !== null && state == 'all-avatars') setOpenAllAvatars(true);
+    else setOpenAllAvatars(false);
   }, [state]);
 
   useEffect(() => {
@@ -112,7 +122,7 @@ const Store = () => {
         }}
         size={12}>
         <Leverage
-          leverageItems={leverageList}
+          leverageItems={leverageList.slice(0, 6)}
           description="You can change your avatar and nickname ...."
           title="Leverage"
         />
@@ -126,7 +136,7 @@ const Store = () => {
         }}
         size={12}>
         <GetNewAvatars
-          getNewAvatars={getNewAvatarsList}
+          getNewAvatars={getNewAvatarsList.slice(0, 6)}
           description="You can change your avatar and nickname"
           title="Get new Avatars"
         />
@@ -142,6 +152,16 @@ const Store = () => {
       <InfoStoreDrawer
         isInfoStoreopen={openNewAvatar}
         newAvatarInfo={newAvatarInfo}
+      />
+      <AllLeverageDrawerDrawer
+        allLeverage={leverageList}
+        title="You can change your avatar and nickname ...."
+        isAllLeverageDraweropen={openAllLeverage}
+      />
+      <AllAvatarsDrawerDrawer
+        allAvatars={getNewAvatarsList}
+        isAllAvatarsDraweropen={openAllAvatars}
+        title="You can change your avatar and nickname"
       />
     </Grid>
   );

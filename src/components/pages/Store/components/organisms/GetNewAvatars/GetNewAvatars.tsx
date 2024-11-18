@@ -1,3 +1,4 @@
+import {useLocation, useNavigate} from 'react-router';
 import {Box, styled, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
@@ -24,39 +25,47 @@ export const GetNewAvatars: React.FC<GetNewAvatarsProps> = ({
   description,
   getNewAvatars,
   title,
-}) => (
-  <GetNewAvatarsWrapper>
-    <Grid display="flex" alignItems="start" justifyContent="space-between">
-      <Grid display="flex" padding="2px" flexDirection="column">
-        <Typography
-          component="p"
-          variant="caption"
-          marginBottom="10px"
-          fontSize="16px"
-          fontFamily="'Nunito Sans', sans-serif"
-          lineHeight="10px"
-          color="text.white">
-          {title}
-        </Typography>
-        <Typography
-          component="span"
-          variant="caption"
-          fontWeight="400"
-          fontSize="12px"
-          lineHeight="15px"
-          fontFamily="'Nunito Sans', sans-serif"
-          color="text.secondary">
-          {description}
-        </Typography>
+}) => {
+  const nav = useNavigate();
+  const location = useLocation();
+  return (
+    <GetNewAvatarsWrapper>
+      <Grid display="flex" alignItems="start" justifyContent="space-between">
+        <Grid display="flex" padding="2px" flexDirection="column">
+          <Typography
+            component="p"
+            variant="caption"
+            marginBottom="10px"
+            fontSize="16px"
+            fontFamily="'Nunito Sans', sans-serif"
+            lineHeight="10px"
+            color="text.white">
+            {title}
+          </Typography>
+          <Typography
+            component="span"
+            variant="caption"
+            fontWeight="400"
+            fontSize="12px"
+            lineHeight="15px"
+            fontFamily="'Nunito Sans', sans-serif"
+            color="text.secondary">
+            {description}
+          </Typography>
+        </Grid>
+        <Grid>
+          <MoreItem
+            navigateToDetail={() => {
+              nav(location.pathname + '?state=all-avatars');
+            }}
+          />
+        </Grid>
       </Grid>
-      <Grid>
-        <MoreItem navigateToDetail={() => {}} />
+      <Grid container marginTop="8px" spacing={2} columns={6}>
+        {getNewAvatars.map((item, index) => (
+          <GetNewAvatarItem key={index} {...item} />
+        ))}
       </Grid>
-    </Grid>
-    <Grid container marginTop="8px" spacing={2} columns={6}>
-      {getNewAvatars.map((item, index) => (
-        <GetNewAvatarItem key={index} {...item} />
-      ))}
-    </Grid>
-  </GetNewAvatarsWrapper>
-);
+    </GetNewAvatarsWrapper>
+  );
+};
