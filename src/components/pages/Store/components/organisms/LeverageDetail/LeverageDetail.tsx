@@ -4,25 +4,23 @@ import {styled, useTheme} from '@mui/material/styles';
 
 import {DetailAvatarItem} from '../../molecules/DetailAvatar';
 
-import type {ChargeWalletItemType} from '@/types/models/store';
+import type {LeverageItemType} from '@/types/models/store';
 
-type ChargeWalletProps = {
-  chargeWalletInfo: ChargeWalletItemType;
+type LeverageProps = {
+  leverageInfo: LeverageItemType;
 };
 
-const ChargeWalletWrapper = styled(Box)(() => ({
+const LeverageWrapper = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
   height: '100%',
 }));
 
-export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
-  chargeWalletInfo,
-}) => {
+export const LeverageDetail: React.FC<LeverageProps> = ({leverageInfo}) => {
   const theme = useTheme();
   return (
-    <ChargeWalletWrapper>
+    <LeverageWrapper>
       <Grid container spacing={2} display="flex">
         <Grid
           position={'absolute'}
@@ -33,7 +31,7 @@ export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
               filter: 'brightness(40%) blur(4px)',
             },
           }}>
-          <img src={chargeWalletInfo.iconUrl} alt={chargeWalletInfo.currency} />
+          <img src={leverageInfo.iconUrl} alt={leverageInfo.currency} />
         </Grid>
         <Grid
           size={12}
@@ -42,28 +40,29 @@ export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
           alignItems={'flex-end'}
           marginTop={'100px'}>
           <DetailAvatarItem
-            icon={chargeWalletInfo.iconUrl}
-            amount={chargeWalletInfo.amountTwo}
-            currency={chargeWalletInfo.currencyTwo}
+            icon={leverageInfo.iconUrl}
+            amount={leverageInfo.amount}
+            currency={leverageInfo.currency}
             onClick={() => {}}
           />
         </Grid>
-        <Grid size={12} display="flex" justifyContent="center">
+        <Grid size={12} padding="0 18px" display="flex" justifyContent="start">
           <Typography
-            color={theme.palette.primary.main}
+            color={'test.white'}
             variant="caption"
-            fontWeight={'800'}
+            fontWeight={'400'}
             fontSize={'34px'}
             fontFamily="'Nunito Sans', sans-serif">
-            {chargeWalletInfo.amount}{' '}
+            {leverageInfo.xpCuntent}{' '}
             <Typography
+              color={theme.palette.primary.main}
               component="span"
               variant="caption"
               fontFamily="'Nunito Sans', sans-serif"
               fontSize="22px"
               lineHeight="11px"
               textTransform="uppercase">
-              {chargeWalletInfo.currency}
+              {leverageInfo.xpValue}
             </Typography>
           </Typography>
         </Grid>
@@ -96,6 +95,6 @@ export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
           </Typography>
         </Grid>
       </Grid>
-    </ChargeWalletWrapper>
+    </LeverageWrapper>
   );
 };

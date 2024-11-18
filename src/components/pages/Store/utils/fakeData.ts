@@ -1,4 +1,4 @@
-import MonkeyCircleImg1 from '@/assets/img/bg/monkey-circle.png';
+import MonkeyCircleImg1 from '@/assets/img/bg/monkey.png';
 import ChargeWalletItemImg1 from '@/assets/img/icons/store/charge-item-1.png';
 import ChargeWalletItemImg2 from '@/assets/img/icons/store/charge-item-2.png';
 import ChargeWalletItemImg3 from '@/assets/img/icons/store/charge-item-3.png';
@@ -8,7 +8,7 @@ import leverageImg1 from '@/assets/img/icons/store/leverage 1.png';
 export const chargeWalletItemsList = [
   {
     id: 1,
-    amount: 10.99,
+    amount: 100,
     amountTwo: 0.99,
     currency: 'VSD',
     currencyTwo: 'USDT',
@@ -16,7 +16,7 @@ export const chargeWalletItemsList = [
   },
   {
     id: 2,
-    amount: 10.99,
+    amount: 310,
     amountTwo: 0.99,
     currency: 'VSD',
     currencyTwo: 'USDT',
@@ -24,7 +24,7 @@ export const chargeWalletItemsList = [
   },
   {
     id: 3,
-    amount: 10.99,
+    amount: 78,
     amountTwo: 0.99,
     currency: 'VSD',
     currencyTwo: 'USDT',
@@ -32,7 +32,7 @@ export const chargeWalletItemsList = [
   },
   {
     id: 4,
-    amount: 10.99,
+    amount: 88,
     amountTwo: 0.99,
     currency: 'VSD',
     currencyTwo: 'USDT',
@@ -43,7 +43,7 @@ export const chargeWalletItemsList = [
 export const leverageList = [
   {
     id: 1,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     xpCuntent: 'up to',
     xpValue: 50,
@@ -51,7 +51,7 @@ export const leverageList = [
   },
   {
     id: 2,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     xpCuntent: 'up to',
     xpValue: 50,
@@ -59,7 +59,7 @@ export const leverageList = [
   },
   {
     id: 3,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     xpCuntent: 'up to',
     xpValue: 100,
@@ -67,7 +67,7 @@ export const leverageList = [
   },
   {
     id: 4,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     xpCuntent: 'up to',
     xpValue: 70,
@@ -75,7 +75,7 @@ export const leverageList = [
   },
   {
     id: 5,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     xpCuntent: 'up to',
     xpValue: 100,
@@ -83,7 +83,7 @@ export const leverageList = [
   },
   {
     id: 6,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     xpCuntent: 'up to',
     xpValue: 50,
@@ -94,37 +94,37 @@ export const leverageList = [
 export const getNewAvatarsList = [
   {
     id: 1,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     iconUrl: MonkeyCircleImg1,
   },
   {
     id: 2,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     iconUrl: MonkeyCircleImg1,
   },
   {
     id: 3,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     iconUrl: MonkeyCircleImg1,
   },
   {
     id: 4,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     iconUrl: MonkeyCircleImg1,
   },
   {
     id: 5,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     iconUrl: MonkeyCircleImg1,
   },
   {
     id: 6,
-    amount: 10.99,
+    amount: 10,
     currency: 'VSD',
     iconUrl: MonkeyCircleImg1,
   },

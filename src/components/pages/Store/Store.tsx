@@ -9,6 +9,8 @@ import {Leverage} from './components/organisms/Leverage';
 import InfoStoreDrawer from './drawer/InfoStoreDrawer/InfoStoreDrawer';
 import {chargeWalletState} from './state/charge-wallet.state';
 import {drawerStoreState} from './state/drawer-store.state';
+import {leverageState} from './state/leverage.state';
+import {newAvatarState} from './state/new-avatar.state';
 import {
   chargeWalletItemsList,
   getNewAvatarsList,
@@ -20,15 +22,26 @@ const Store = () => {
   const state = useSearchParams()[0].get('state');
   const value = useSearchParams()[0].get('value');
   ///
-  const {openChargeWallet, setOpenChargeWallet} = drawerStoreState();
+  const {
+    openChargeWallet,
+    setOpenChargeWallet,
+    openLeverage,
+    setOpenLeverage,
+    openNewAvatar,
+    setOpenNewAvatar,
+  } = drawerStoreState();
   const {chargeWalletInfo, setChargeWalletInfo} = chargeWalletState();
+  const {leverageInfo, setLeverageInfo} = leverageState();
+  const {newAvatarInfo, setNewAvatarInfo} = newAvatarState();
 
   ///
   useEffect(() => {
-    if (state !== null && state === 'chargewallet') setOpenChargeWallet(true);
-    else {
-      setOpenChargeWallet(false);
-    }
+    if (state !== null && state == 'chargewallet') setOpenChargeWallet(true);
+    else setOpenChargeWallet(false);
+    if (state !== null && state == 'leverage') setOpenLeverage(true);
+    else setOpenLeverage(false);
+    if (state !== null && state == 'newavatar') setOpenNewAvatar(true);
+    else setOpenNewAvatar(false);
   }, [state]);
 
   useEffect(() => {
@@ -38,6 +51,18 @@ const Store = () => {
       );
       if (findDetialChargeWallet) {
         setChargeWalletInfo(findDetialChargeWallet);
+      }
+      const findDetialLeverage = leverageList.find(
+        item => item.id == Number(value),
+      );
+      if (findDetialLeverage) {
+        setLeverageInfo(findDetialLeverage);
+      }
+      const findDetialNewAvatar = getNewAvatarsList.find(
+        item => item.id == Number(value),
+      );
+      if (findDetialNewAvatar) {
+        setNewAvatarInfo(findDetialNewAvatar);
       }
     }
   }, [value]);
@@ -109,6 +134,14 @@ const Store = () => {
       <InfoStoreDrawer
         isInfoStoreopen={openChargeWallet}
         chargeWalletInfo={chargeWalletInfo}
+      />
+      <InfoStoreDrawer
+        isInfoStoreopen={openLeverage}
+        leverageInfo={leverageInfo}
+      />
+      <InfoStoreDrawer
+        isInfoStoreopen={openNewAvatar}
+        newAvatarInfo={newAvatarInfo}
       />
     </Grid>
   );

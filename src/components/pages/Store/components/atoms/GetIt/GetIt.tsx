@@ -18,6 +18,7 @@ export const GetIt: React.FC<GetItTypeProps> = ({amount, currency}) => {
         width: '138px',
         height: '32px',
         transform: 'translateY(-17px)',
+        borderRadius: '10px',
       }}>
       <Typography
         color={theme.palette.primary.dark}

@@ -7,6 +7,8 @@ type DetailAvatarTypeProps = {
   amount: number;
   currency: string;
   icon: string;
+  paddingValue?: string;
+  backColor?: string;
 };
 
 export const DetailAvatarItem: React.FC<DetailAvatarTypeProps> = ({
@@ -14,6 +16,8 @@ export const DetailAvatarItem: React.FC<DetailAvatarTypeProps> = ({
   currency,
   onClick,
   icon,
+  paddingValue = '10px',
+  backColor = '#25272f',
 }) => (
   <Grid
     sx={{
@@ -28,8 +32,8 @@ export const DetailAvatarItem: React.FC<DetailAvatarTypeProps> = ({
       <Grid
         position={'relative'}
         sx={{
-          backgroundColor: '#25272f',
-          padding: '10px',
+          backgroundColor: backColor,
+          padding: paddingValue,
           maxHeight: '272px',
           width: '100%',
           img: {
