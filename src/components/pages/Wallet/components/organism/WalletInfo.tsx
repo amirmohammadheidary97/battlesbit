@@ -1,7 +1,7 @@
 import {Box, Stack, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import NavigateButton from '../atoms/NavigateButtons';
+import NavigateButton from '../atoms/navigateButtons';
 import {navButton, selectBalanceOptions} from '../fakeData/data';
 import SelectionComponent from '../molecules/BalanceTypeSelection';
 import WalletBalanceAmount from '../molecules/moneyAmount';

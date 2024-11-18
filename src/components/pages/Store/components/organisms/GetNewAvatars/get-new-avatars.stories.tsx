@@ -1,23 +1,23 @@
 import {Box} from '@mui/material';
 import type {Meta, StoryObj} from '@storybook/react';
 
-import {Leverage} from './Leverage';
+import {GetNewAvatars} from './GetNewAvatars';
 
-const meta: Meta<typeof Leverage> = {
+const meta: Meta<typeof GetNewAvatars> = {
   tags: ['autodocs'],
-  component: Leverage,
+  component: GetNewAvatars,
 };
 
 export default meta;
-type Story = StoryObj<typeof Leverage>;
+type Story = StoryObj<typeof GetNewAvatars>;
 
-export const LeverageStories: Story = {
+export const GetNewAvatarsStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
-      <Leverage
+      <GetNewAvatars
         description="You can change your avatar and nickname"
-        leverageItems={[]}
-        title="Leverage"
+        getNewAvatars={[]}
+        title="Get new Avatars"
       />
     </Box>
   ),

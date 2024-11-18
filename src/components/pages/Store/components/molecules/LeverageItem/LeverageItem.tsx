@@ -44,14 +44,15 @@ export const LeverageItem: React.FC<LeverageItemType> = ({
         <Typography
           variant="caption"
           fontFamily="'Nunito Sans', sans-serif"
-          fontSize="16px"
+          fontSize="14px"
           marginTop="7px">
           {xpCuntent}{' '}
           <Typography
             component="span"
             variant="caption"
             fontFamily="'Nunito Sans', sans-serif"
-            fontSize="16px"
+            fontSize="15px"
+            sx={{typography: {sm: 'body1'}}}
             color={theme.palette.primary.main}
             lineHeight="11px"
             textTransform="uppercase">
@@ -65,8 +66,7 @@ export const LeverageItem: React.FC<LeverageItemType> = ({
           color={'text.white'}
           variant="caption"
           fontSize="10px"
-          fontWeight="700"
-          marginTop="2px">
+          fontWeight="700">
           {amount}{' '}
           <Typography fontSize="10px" marginLeft="5px">
             {currency}

@@ -1,19 +1,18 @@
-import {Box, Typography} from '@mui/material';
+import {Box, styled, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import {styled} from '@mui/material/styles';
 
-import {LeverageItem} from '../../molecules/LeverageItem';
+import {GetNewAvatarItem} from '../../molecules/GetNewAvatarItem';
 import {MoreItem} from '../../molecules/MoreItem/MoreItem';
 
-import type {LeverageItemType} from '@/types/models/store';
+import type {NewAvatarsType} from '@/types/models/store';
 
-type LeverageProps = {
-  leverageItems: LeverageItemType[];
+type GetNewAvatarsProps = {
   title: string;
   description: string;
+  getNewAvatars: NewAvatarsType[];
 };
 
-const LeverageWrapper = styled(Box)(() => ({
+const GetNewAvatarsWrapper = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   paddingTop: '5px',
@@ -21,12 +20,12 @@ const LeverageWrapper = styled(Box)(() => ({
   height: '100%',
 }));
 
-export const Leverage: React.FC<LeverageProps> = ({
+export const GetNewAvatars: React.FC<GetNewAvatarsProps> = ({
   description,
-  leverageItems,
+  getNewAvatars,
   title,
 }) => (
-  <LeverageWrapper>
+  <GetNewAvatarsWrapper>
     <Grid display="flex" alignItems="start" justifyContent="space-between">
       <Grid display="flex" padding="2px" flexDirection="column">
         <Typography
@@ -54,10 +53,10 @@ export const Leverage: React.FC<LeverageProps> = ({
         <MoreItem navigateToDetail={() => {}} />
       </Grid>
     </Grid>
-    <Grid container rowSpacing={1} marginTop="8px" columnSpacing={1}>
-      {leverageItems.map((item, index) => (
-        <LeverageItem key={index} {...item} />
+    <Grid container marginTop="8px" spacing={2} columns={6}>
+      {getNewAvatars.map((item, index) => (
+        <GetNewAvatarItem key={index} {...item} />
       ))}
     </Grid>
-  </LeverageWrapper>
+  </GetNewAvatarsWrapper>
 );

@@ -48,14 +48,7 @@ export const ChargeWallet: React.FC<ChargeWalletProps> = ({
     </Typography>
     <Grid container spacing={1} marginTop="8px" sx={{height: '100%'}}>
       {chargeWalletItems.map((item, index) => (
-        <ChargeWalletItem
-          key={index}
-          amount={item.amount}
-          amountTwo={item.amountTwo}
-          currency={item.currency}
-          currencyTwo={item.currencyTwo}
-          iconUrl={item.iconUrl}
-        />
+        <ChargeWalletItem key={index} {...item} />
       ))}
     </Grid>
   </ChargeWalletWrapper>
