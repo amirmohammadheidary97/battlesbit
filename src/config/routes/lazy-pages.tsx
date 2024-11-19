@@ -20,6 +20,6 @@ export {
   MakeMatchPage,
   MatchLoadingPage,
   OtpPage,
+  StorePage,
   WalletPage,
-  StorePage
 };

@@ -4,8 +4,13 @@ import Grid from '@mui/material/Grid2';
 type GetItTypeProps = {
   amount: number;
   currency: string;
+  isFunds: boolean;
 };
-export const GetIt: React.FC<GetItTypeProps> = ({amount, currency}) => {
+export const GetIt: React.FC<GetItTypeProps> = ({
+  amount,
+  currency,
+  isFunds,
+}) => {
   const theme = useTheme();
   return (
     <Grid
@@ -13,7 +18,9 @@ export const GetIt: React.FC<GetItTypeProps> = ({amount, currency}) => {
       display="flex"
       alignItems="center"
       sx={{
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: !isFunds
+          ? theme.palette.primary.main
+          : 'rgba(89, 89, 89, 1)',
         zIndex: 3,
         width: '138px',
         height: '32px',
@@ -21,7 +28,7 @@ export const GetIt: React.FC<GetItTypeProps> = ({amount, currency}) => {
         borderRadius: '10px',
       }}>
       <Typography
-        color={theme.palette.primary.dark}
+        color={!isFunds ? theme.palette.primary.dark : 'text.white'}
         variant="caption"
         fontWeight={'800'}
         fontSize={'12px'}
@@ -42,10 +49,10 @@ export const GetIt: React.FC<GetItTypeProps> = ({amount, currency}) => {
         sx={{
           height: '90%',
           width: '1px',
-          backgroundColor: theme.palette.primary.dark,
+          backgroundColor: !isFunds ? theme.palette.primary.dark : '#fff',
         }}></Grid>
       <Typography
-        color={theme.palette.primary.dark}
+        color={!isFunds ? theme.palette.primary.dark : 'text.white'}
         component="span"
         variant="caption"
         fontFamily="'Nunito Sans', sans-serif"

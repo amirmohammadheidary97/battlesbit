@@ -1,8 +1,11 @@
+import {useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import {styled, useTheme} from '@mui/material/styles';
 
+import ConfirmationDrawer from '../../../drawer/ConfirmationDrawer/ConfirmationDrawer';
 import {DetailAvatarItem} from '../../molecules/DetailAvatar';
+import {FundsMessageItem} from '../../molecules/FundsMessage';
 
 import type {LeverageItemType} from '@/types/models/store';
 
@@ -19,6 +22,10 @@ const LeverageWrapper = styled(Box)(() => ({
 
 export const LeverageDetail: React.FC<LeverageProps> = ({leverageInfo}) => {
   const theme = useTheme();
+
+  ///
+  const [isFunds, setIsfunds] = useState<boolean>(false);
+  const [showBuyDrawer, setShowBuyDrawer] = useState<boolean>(false);
   return (
     <LeverageWrapper>
       <Grid container spacing={2} display="flex">
@@ -40,12 +47,28 @@ export const LeverageDetail: React.FC<LeverageProps> = ({leverageInfo}) => {
           alignItems={'flex-end'}
           marginTop={'100px'}>
           <DetailAvatarItem
+            isFunds={isFunds}
             icon={leverageInfo.iconUrl}
             amount={leverageInfo.amount}
             currency={leverageInfo.currency}
-            onClick={() => {}}
+            onClick={() => {
+              if (leverageInfo.funds == 0) {
+                setIsfunds(true);
+              }
+            }}
           />
         </Grid>
+        {isFunds && (
+          <Grid size={12} padding={'0px 20px'} marginBottom={'8px'}>
+            <FundsMessageItem
+              onClick={() => {
+                setShowBuyDrawer(!showBuyDrawer);
+              }}
+              description="please charge your wallet to get new items"
+              errorMessage="Insufficient funds"
+            />
+          </Grid>
+        )}
         <Grid size={12} padding="0 18px" display="flex" justifyContent="start">
           <Typography
             color={'test.white'}
@@ -95,6 +118,19 @@ export const LeverageDetail: React.FC<LeverageProps> = ({leverageInfo}) => {
           </Typography>
         </Grid>
       </Grid>
+      <ConfirmationDrawer
+        amount={leverageInfo.amount}
+        currency={leverageInfo.currency}
+        icon={leverageInfo.iconUrl}
+        onClose={() => {
+          setShowBuyDrawer(!showBuyDrawer);
+        }}
+        amount2={120}
+        currency2={'up to'}
+        open={showBuyDrawer}
+        type="Leverage"
+        walletAmount={100.9}
+      />
     </LeverageWrapper>
   );
 };

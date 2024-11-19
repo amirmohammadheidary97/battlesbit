@@ -13,6 +13,7 @@ export const chargeWalletItemsList = [
     currency: 'VSD',
     currencyTwo: 'USDT',
     iconUrl: ChargeWalletItemImg1,
+    funds: 0,
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ export const chargeWalletItemsList = [
     currency: 'VSD',
     currencyTwo: 'USDT',
     iconUrl: ChargeWalletItemImg2,
+    funds: 0,
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ export const chargeWalletItemsList = [
     currency: 'VSD',
     currencyTwo: 'USDT',
     iconUrl: ChargeWalletItemImg3,
+    funds: 0,
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ export const chargeWalletItemsList = [
     currency: 'VSD',
     currencyTwo: 'USDT',
     iconUrl: ChargeWalletItemImg4,
+    funds: 0,
   },
 ];
 
@@ -47,6 +51,7 @@ export const leverageList = Array.from({length: 30}, (_, index) => ({
   xpCuntent: 'up to',
   xpValue: 50 + (index % 3) * 20,
   iconUrl: leverageImg1,
+  funds: 0,
 }));
 
 export const getNewAvatarsList = Array.from({length: 32}, (_, index) => ({
@@ -54,4 +59,5 @@ export const getNewAvatarsList = Array.from({length: 32}, (_, index) => ({
   amount: 10,
   currency: 'VSD',
   iconUrl: MonkeyCircleImg1,
+  funds: 0,
 }));

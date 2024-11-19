@@ -23,6 +23,7 @@ export const ChargeWalletItemStories: Story = {
         currency="USDT"
         currencyTwo="VSD"
         iconUrl={ChargeWalletItemImg1}
+        funds={0}
       />
     </Box>
   ),

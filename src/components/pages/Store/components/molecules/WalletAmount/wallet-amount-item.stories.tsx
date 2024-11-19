@@ -1,7 +1,7 @@
 import {Box} from '@mui/material';
 import type {Meta, StoryObj} from '@storybook/react';
 
-import {DetailAvatarItem} from './DetailAvatar';
+import {DetailAvatarItem} from './WalletAmount';
 
 import MonkeyImg from '@/assets/img/bg/monkey.png';
 

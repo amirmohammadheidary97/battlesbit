@@ -7,6 +7,7 @@ type DetailAvatarTypeProps = {
   amount: number;
   currency: string;
   icon: string;
+  isFunds: boolean;
   paddingValue?: string;
   backColor?: string;
 };
@@ -16,6 +17,7 @@ export const DetailAvatarItem: React.FC<DetailAvatarTypeProps> = ({
   currency,
   onClick,
   icon,
+  isFunds,
   paddingValue = '10px',
   backColor = '#25272f',
 }) => (
@@ -47,7 +49,7 @@ export const DetailAvatarItem: React.FC<DetailAvatarTypeProps> = ({
       </Grid>
     </Grid>
     <Grid display={'flex'} justifyContent={'center'} onClick={onClick}>
-      <GetIt amount={amount} currency={currency} />
+      <GetIt amount={amount} isFunds={isFunds} currency={currency} />
     </Grid>
   </Grid>
 );

@@ -1,8 +1,11 @@
+import {useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import {styled, useTheme} from '@mui/material/styles';
 
+import ConfirmationDrawer from '../../../drawer/ConfirmationDrawer/ConfirmationDrawer';
 import {DetailAvatarItem} from '../../molecules/DetailAvatar';
+import {FundsMessageItem} from '../../molecules/FundsMessage';
 
 import type {ChargeWalletItemType} from '@/types/models/store';
 
@@ -21,6 +24,10 @@ export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
   chargeWalletInfo,
 }) => {
   const theme = useTheme();
+
+  ///
+  const [isFunds, setIsfunds] = useState<boolean>(false);
+  const [showBuyDrawer, setShowBuyDrawer] = useState<boolean>(false);
   return (
     <ChargeWalletWrapper>
       <Grid container spacing={2} display="flex">
@@ -45,9 +52,25 @@ export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
             icon={chargeWalletInfo.iconUrl}
             amount={chargeWalletInfo.amountTwo}
             currency={chargeWalletInfo.currencyTwo}
-            onClick={() => {}}
+            isFunds={isFunds}
+            onClick={() => {
+              if (chargeWalletInfo.funds == 0) {
+                setIsfunds(true);
+              }
+            }}
           />
         </Grid>
+        {isFunds && (
+          <Grid size={12} padding={'0px 20px'} marginBottom={'8px'}>
+            <FundsMessageItem
+              onClick={() => {
+                setShowBuyDrawer(!showBuyDrawer);
+              }}
+              description="please charge your wallet to get new items"
+              errorMessage="Insufficient funds"
+            />
+          </Grid>
+        )}
         <Grid size={12} display="flex" justifyContent="center">
           <Typography
             color={theme.palette.primary.main}
@@ -96,6 +119,19 @@ export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
           </Typography>
         </Grid>
       </Grid>
+      <ConfirmationDrawer
+        amount={chargeWalletInfo.amount}
+        currency={chargeWalletInfo.currency}
+        icon={chargeWalletInfo.iconUrl}
+        onClose={() => {
+          setShowBuyDrawer(!showBuyDrawer);
+        }}
+        amount2={chargeWalletInfo.amountTwo}
+        currency2={chargeWalletInfo.currencyTwo}
+        open={showBuyDrawer}
+        type="ChargeWallet"
+        walletAmount={100.9}
+      />
     </ChargeWalletWrapper>
   );
 };

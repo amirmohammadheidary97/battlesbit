@@ -5,6 +5,7 @@ export type ChargeWalletItemType = {
   currencyTwo: string;
   amount: number;
   amountTwo: number;
+  funds: number;
 };
 
 export type LeverageItemType = {
@@ -14,6 +15,7 @@ export type LeverageItemType = {
   currency: string;
   xpCuntent: string;
   xpValue: number;
+  funds: number;
 };
 
 export type NewAvatarsType = {
@@ -21,4 +23,5 @@ export type NewAvatarsType = {
   iconUrl: string;
   amount: number;
   currency: string;
+  funds: number;
 };
