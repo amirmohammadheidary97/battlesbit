@@ -27,6 +27,7 @@ export const WalletAmountItem: React.FC<WalletAmountTypeProps> = ({
     <Typography
       color="text.white"
       component="span"
+      variant="caption"
       fontFamily="'Nunito Sans', sans-serif"
       fontSize="15px"
       margin={'0px 5px'}
@@ -37,6 +38,7 @@ export const WalletAmountItem: React.FC<WalletAmountTypeProps> = ({
     <Typography
       color="text.white"
       component="span"
+      variant="caption"
       fontFamily="'Nunito Sans', sans-serif"
       fontSize="15px"
       fontWeight={'400'}

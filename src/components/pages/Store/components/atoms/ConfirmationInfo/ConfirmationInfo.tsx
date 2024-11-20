@@ -21,6 +21,7 @@ export const ConfirmationInfo: React.FC<ConfirmationInfoTypeProps> = ({
     justifyContent={'space-between'}
     flexDirection={'column'}>
     <Typography
+      variant="caption"
       component="span"
       marginTop={'4px'}
       fontFamily="'Nunito Sans', sans-serif"
@@ -31,6 +32,7 @@ export const ConfirmationInfo: React.FC<ConfirmationInfoTypeProps> = ({
       {type}
     </Typography>
     <Typography
+      variant="caption"
       component="span"
       fontFamily="'Nunito Sans', sans-serif"
       fontSize="15px"
@@ -41,6 +43,7 @@ export const ConfirmationInfo: React.FC<ConfirmationInfoTypeProps> = ({
     </Typography>
     <Typography
       component="span"
+      variant="caption"
       fontFamily="'Nunito Sans', sans-serif"
       fontSize="15px"
       fontWeight={'400'}
