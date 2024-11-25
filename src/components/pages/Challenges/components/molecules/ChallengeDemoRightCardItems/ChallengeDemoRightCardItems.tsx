@@ -1,12 +1,10 @@
 import Grid from '@mui/material/Grid2';
-import {styled} from '@mui/material/styles';
 
 import MoreButton from './MoreButton';
 import ProfileImageStack from './ProfileImageStack';
 
 import Ava1 from '@/assets/img/icons/avatars/Ava1.png';
 import Ava2 from '@/assets/img/icons/avatars/Ava2.png';
-import {theme} from '@/config/theme';
 
 const ChallengeDemoRightCardItems = () => (
   <Grid container>
@@ -31,12 +29,5 @@ const ChallengeDemoRightCardItems = () => (
     </Grid>
   </Grid>
 );
-
-const StyledCard = styled(Grid)(() => ({
-  maxWidth: '110px',
-  color: theme.palette.primary.main,
-  whiteSpace: 'nowrap',
-  justifyContent: 'center',
-}));
 
 export {ChallengeDemoRightCardItems};

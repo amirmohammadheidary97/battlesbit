@@ -1,16 +1,5 @@
 import {devtoolsExchange} from '@urql/devtools';
-import {
-  cacheExchange,
-  // errorExchange,
-  fetchExchange,
-  subscriptionExchange,
-} from 'urql';
-
-// const globalErrorExchange = errorExchange({
-//   onError: (error) => {
-//     // error
-//   },
-// });
+import {cacheExchange, fetchExchange} from 'urql';
 
 export const zeroConfigExchanges = [
   cacheExchange,

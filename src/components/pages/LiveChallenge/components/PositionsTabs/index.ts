@@ -1,1 +1,1 @@
-export * from './PositionsTabs';
+export {default} from './PositionsTabs';

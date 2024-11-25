@@ -1,21 +1,27 @@
 // eslint-disable-next-line no-restricted-syntax
 import React from 'react';
+import {useNavigate} from 'react-router';
 import {Box, Typography, useTheme} from '@mui/material';
 
 type NavigationItemProps = {
   icon: string;
   label: string;
+  path?: string;
 };
 
 export const NavigationItem: React.FC<NavigationItemProps> = ({
   icon,
   label,
+  path,
 }) => {
+  const navigate = useNavigate();
   const theme = useTheme();
-
+  const onClick = () => {
+    path && navigate(path);
+  };
   return (
     <Box
-      component="button"
+      onClick={onClick}
       sx={{
         display: 'flex',
         flexDirection: 'column',

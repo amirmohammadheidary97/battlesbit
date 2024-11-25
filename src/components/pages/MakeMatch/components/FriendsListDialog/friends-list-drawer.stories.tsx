@@ -1,4 +1,7 @@
+import {Box, Button} from '@mui/material';
 import type {Meta, StoryObj} from '@storybook/react';
+
+import {useMakeMatchState} from '../../state/make-match.state';
 
 import {FriendsListDialog} from './FriendsListDialog';
 
@@ -11,9 +14,16 @@ export default meta;
 type Story = StoryObj<typeof FriendsListDialog>;
 
 export const FriendsListDialogStories: Story = {
-  render: () => (
-    // <Box display={'flex'} flexDirection={'column'} gap={2}>
-    <FriendsListDialog />
-    // </Box>
-  ),
+  render: () => {
+    const {toggleOpenDialoge} = useMakeMatchState();
+
+    return (
+      <Box display={'flex'} flexDirection={'column'} gap={2}>
+        <Button onClick={() => toggleOpenDialoge()} variant="contained">
+          open dialog
+        </Button>
+        <FriendsListDialog />
+      </Box>
+    );
+  },
 };

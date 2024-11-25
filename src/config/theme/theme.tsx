@@ -20,6 +20,13 @@ const getTheme = (mode: 'light' | 'dark') =>
         },
         name: 'grey1',
       }),
+      black: theme.palette.augmentColor({
+        color: {
+          main: darkPalette.background?.default ?? '#000',
+          contrastText: darkPalette.text?.secondary,
+        },
+        name: 'black',
+      }),
     },
     shape: {borderRadius: 3.47},
     typography: {

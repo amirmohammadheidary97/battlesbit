@@ -1,5 +1,5 @@
-import type {SubmitHandler} from 'react-hook-form';
-import {useForm} from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import {
   Box,
   Button,
@@ -10,28 +10,28 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import {usePositionsState} from '../../state/positions.state';
-import {getPositionChips} from '../../utils/getPositionChips';
-import type {PositionChipProps} from '../PositionItem/components/PositionChip';
-import {PositionChip} from '../PositionItem/components/PositionChip';
+import { usePositionsState } from '../../state/positions.state';
+import { getPositionChips } from '../../utils/getPositionChips';
+import type { PositionChipProps } from '../PositionItem/components/PositionChip';
+import { PositionChip } from '../PositionItem/components/PositionChip';
 
-import {Center} from '@/components/atoms/Center';
-import {ModalHeader} from '@/components/molecules/ModalHeader';
+import { Center } from '@/components/atoms/Center';
+import { ModalHeader } from '@/components/molecules/ModalHeader';
 
 type Inputs = {
   tp: number;
   sl: number;
 };
 
-export const TpslDrawer = () => {
+const TpslDrawer = () => {
   //
   const theme = useTheme();
-  const {setSelectedPositionToEditTpsl, selectedPositionToEditTpsl} =
+  const { setSelectedPositionToEditTpsl, selectedPositionToEditTpsl } =
     usePositionsState();
   const open = Boolean(selectedPositionToEditTpsl);
   const onClose = () => setSelectedPositionToEditTpsl(undefined);
 
-  const {register, handleSubmit} = useForm<Inputs>();
+  const { register, handleSubmit } = useForm<Inputs>();
 
   const chips: PositionChipProps[] = selectedPositionToEditTpsl
     ? getPositionChips(selectedPositionToEditTpsl)
@@ -67,7 +67,7 @@ export const TpslDrawer = () => {
         <ModalHeader
           onClose={onClose}
           title="TP/SL"
-          containerProps={{sx: {p: 0}}}
+          containerProps={{ sx: { p: 0 } }}
         />
         {/* Asset name and chips */}
         <Grid container spacing={0.5}>
@@ -179,6 +179,8 @@ export const TpslDrawer = () => {
     </Drawer>
   );
 };
+
+export default TpslDrawer;
 
 const TitleValue = ({
   title,

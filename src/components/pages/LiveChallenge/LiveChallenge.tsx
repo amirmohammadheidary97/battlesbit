@@ -1,24 +1,25 @@
-import {Typography, useTheme} from '@mui/material';
+import { lazy, Suspense } from 'react';
+import { Typography, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import {BalanceProfit} from './components/BalanceProfit';
-import {CancelAndReverseWarningDialog} from './components/CancelAndReverseWarningDialog';
-import {ClosePositionDrawer} from './components/ClosePositionDrawer';
-import {OrderForm} from './components/OrderForm/OrderForm';
-import {PositionsTabs} from './components/PositionsTabs';
-import {TpslDrawer} from './components/TpslDrawer';
-import {useAssetsList} from './hooks/useAssetsList';
+import { BalanceProfit } from './components/BalanceProfit';
+import { AssetsChart } from './components/Chart';
+import { ClosePositionDrawer } from './components/ClosePositionDrawer';
+import { OrderForm } from './components/OrderForm/OrderForm';
 
-import {BackwardTitle} from '@/components/molecules/BackwardTitle';
-import {CustomCircularProgress} from '@/components/molecules/CustomCircularProgress';
-import {MatchStatusSlider} from '@/components/molecules/MatchStatusSlider';
-import {useElementRect} from '@/hooks/custom/useElementRect';
+import { BackwardTitle } from '@/components/molecules/BackwardTitle';
+import { CustomCircularProgress } from '@/components/molecules/CustomCircularProgress';
+import { MatchStatusSlider } from '@/components/molecules/MatchStatusSlider';
+import { useElementRect } from '@/hooks/custom/useElementRect';
+
+const CancelAndReverseWarningDialog = lazy(() => import("./components/CancelAndReverseWarningDialog"))
+const PositionsTabs = lazy(() => import("./components/PositionsTabs"))
+const TpslDrawer = lazy(() => import("./components/TpslDrawer"))
 
 const LiveChallenge = () => {
   //
   const theme = useTheme();
-  const {containerRef, rect} = useElementRect({});
-  const {assets} = useAssetsList();
+  const { containerRef, rect } = useElementRect({});
   //
   return (
     <Grid container spacing={2} p={2}>
@@ -52,6 +53,7 @@ const LiveChallenge = () => {
           <BalanceProfit role="profit" unit="USDT" value={2000} />
         </Grid>
       </Grid>
+
       {/*  */}
       <Grid size={12} container>
         <Grid
@@ -59,7 +61,7 @@ const LiveChallenge = () => {
           container
           sx={{
             backgroundColor: theme.palette.background.paper,
-            padding: 2,
+            padding: 1,
             borderRadius: theme.shape.borderRadius,
           }}>
           <MatchStatusSlider
@@ -78,12 +80,20 @@ const LiveChallenge = () => {
           />
         </Grid>
       </Grid>
-      {/*  */}
-      <OrderForm assets={assets} />
+      <Grid container size={12}>
+        <AssetsChart />
+      </Grid>
+      <OrderForm />
       <ClosePositionDrawer />
-      <TpslDrawer />
-      <CancelAndReverseWarningDialog />
-      <PositionsTabs />
+      <Suspense fallback={<></>}>
+        <TpslDrawer />
+      </Suspense>
+      <Suspense fallback={<></>}>
+        <CancelAndReverseWarningDialog />
+      </Suspense>
+      <Suspense fallback={<></>}>
+        <PositionsTabs />
+      </Suspense>
     </Grid>
   );
 };

@@ -1,5 +1,5 @@
-import {useEffect} from 'react';
-// import {Typography} from '@mui/material';
+import {useNavigate} from 'react-router';
+import {Divider, Typography} from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,66 +7,72 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid2';
 
-import {useInvitationState} from '../../state/inviteFriend.state';
+import {useMakeMatchState} from '../../state/make-match.state';
 
 import {FriendItem} from './FriendItem';
 
-import Avatar from '@/assets/img/icons/avatars/Ava1.png';
-import Avatar2 from '@/assets/img/icons/avatars/Ava2.png';
 import {theme} from '@/config/theme';
 import type {User} from '@/types/models/user';
 
 export const FriendsListDialog = () => {
-  const {isOpen, setIsOpen, setFriends} = useInvitationState();
+  const navigate = useNavigate();
+  const {isOpen, toggleOpenDialoge, setStartMatch, setSelectedFriend, friends} =
+    useMakeMatchState();
 
-  type friendItem = {
-    user: User;
-    isOnline: boolean;
+  const handleStartMatchWithFriends = () => {
+    setStartMatch('friendly');
+    toggleOpenDialoge();
+    navigate('/matchloading');
   };
 
-  const friendsList: friendItem[] = [
-    {user: {id: 1, name: 'john Doe', avatar: Avatar}, isOnline: true},
-    {user: {id: 2, name: 'john Sina'}, isOnline: false},
-    {user: {id: 3, name: 'john Man', avatar: Avatar2}, isOnline: true},
-  ];
-
-  useEffect(() => {
-    setFriends(friendsList);
-  }, []);
+  const handleInviteFriend = (user: User) => {
+    setSelectedFriend(user);
+  };
 
   return (
     <Dialog
       maxWidth={'lg'}
       fullWidth
       open={isOpen}
-      onClose={() => setIsOpen()}
+      onClose={() => toggleOpenDialoge()}
       aria-labelledby={'friends-list-dialog'}
       sx={{
         '.MuiPaper-root': {
           borderRadius: theme.shape.borderRadius,
+          height: '26.43rem',
+          p: 1,
         },
       }}>
-      <DialogTitle id={'friends-list-dialog'}>Friends List</DialogTitle>
-      <DialogContent>
-        <Grid container size={12} spacing={2}>
-          {/* <Grid size={12}>
-            <Typography variant="h6" color={theme.palette.text.primary}>
-              Friends List
-            </Typography>
-          </Grid> */}
-          <Grid size={12}>
-            {friendsList.map(fr => (
+      <DialogTitle sx={{px: 1}} id={'friends-list-dialog'}>
+        <Typography variant="h6" fontFamily={'Nunito Sans, sans-serif'}>
+          Friends List
+        </Typography>
+      </DialogTitle>
+      <DialogContent sx={{p: 1}}>
+        <Grid container size={12}>
+          {friends.map((fr, index) => (
+            <Grid size={12} key={fr.user.id}>
               <FriendItem
+                inviteFriendFn={handleInviteFriend}
                 isOnline={fr.isOnline}
                 user={fr.user}
-                key={fr.user.id}
               />
-            ))}
-          </Grid>
+              {index < friends.length - 1 && <Divider sx={{my: 1}} />}
+            </Grid>
+          ))}
         </Grid>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={() => setIsOpen()} color="primary">
+      <DialogActions sx={{width: 1}}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          sx={{
+            width: 1,
+            borderRadius: theme.shape.borderRadius,
+            py: '1rem',
+          }}
+          onClick={handleStartMatchWithFriends}>
           Done
         </Button>
       </DialogActions>

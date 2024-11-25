@@ -1,1 +1,1 @@
-export * from './TpslDrawer';
+export {default} from './TpslDrawer';

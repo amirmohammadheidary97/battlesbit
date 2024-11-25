@@ -2,12 +2,16 @@ import type {RouteObject} from 'react-router';
 import {createBrowserRouter} from 'react-router-dom';
 
 import {
+  AchievementPage,
   ChallengesPage,
   HomePage,
   LiveChallengePage,
   LoginPage,
   MakeMatchPage,
+  MatchLoadingPage,
   OtpPage,
+  StorePage,
+  WalletPage,
 } from './lazy-pages';
 import {PrivateOutlet} from './PrivateOutlet';
 
@@ -42,11 +46,27 @@ const routeObjects: RouteObject[] = [
             path: '/live-challenge',
             element: <LiveChallengePage />,
           },
+          {
+            path: '/wallet',
+            element: <WalletPage />,
+          },
+          {
+            path: '/store',
+            element: <StorePage />,
+          },
+          {
+            path: '/achievements',
+            element: <AchievementPage />,
+          },
         ],
       },
       {
         path: '/makematch',
         element: <MakeMatchPage />,
+      },
+      {
+        path: '/matchloading',
+        element: <MatchLoadingPage />,
       },
     ],
   },

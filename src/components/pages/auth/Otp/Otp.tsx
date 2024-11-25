@@ -68,7 +68,6 @@ const Otp = () => {
                 onChange={onChange}
                 numInputs={5}
                 containerStyle={{
-                  direction: 'ltr',
                   backgroundColor: theme.palette.background.paper,
                   padding: theme.spacing(2),
                   borderRadius: '0.75rem',
@@ -84,12 +83,15 @@ const Otp = () => {
                       flexGrow: 1,
                       borderRadius: '0.75rem',
                       aspectRatio: '1/1',
+                      textAlign: 'center',
                       input: {
                         padding: 1,
-                        textAlign: 'center',
+                        textAlign: 'center !important',
+                        width: '100% !important',
+                        height: 1,
                       },
                     }}
-                    {...props}
+                    inputProps={props}
                     type="number"
                   />
                 )}
@@ -164,6 +166,7 @@ const Otp = () => {
                         onComplete={onCountDownCompleted}
                       />
                     ),
+                    // eslint-disable-next-line react-hooks/exhaustive-deps
                     [countDownKey],
                   )}
                 </Typography>

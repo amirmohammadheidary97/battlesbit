@@ -1,6 +1,8 @@
 /* eslint-disable max-lines */
 import {useState} from 'react';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CloseIcon from '@mui/icons-material/Close';
+import type {SelectChangeEvent} from '@mui/material';
 import {
   Box,
   Button,
@@ -12,41 +14,57 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import {AssetsDrawer} from '../AssetsDrawer';
+import {LeverageDrawer} from '../LeverageDrawer';
 
 import {Tpsl} from './components/Tpsl';
 
+import {Center} from '@/components/atoms/Center';
 import {AmountSlider} from '@/components/molecules/AmountSlider';
+import {SelectControl} from '@/components/molecules/SelectControl';
 import {TitleValue} from '@/components/molecules/TitleValue';
-import type {Asset} from '@/gql-codegen/generated';
 import {useDisclosure} from '@/hooks/custom/useDisclosure';
+import type {marginType, orderType} from '@/types/common';
 import {flex} from '@/utils/flexHelper';
 
-type Props = {
-  assets: Asset[];
-};
+const orderTypes: orderType[] = ['limit', 'market', 'stoplimit'];
+const marginTypes: marginType[] = ['cross', 'isolate'];
+const amountTypes: string[] = ['BTC', 'USDT'];
 
-export const OrderForm = ({assets}: Props) => {
+export const OrderForm = () => {
   const max = 1000;
   const theme = useTheme();
   const [value, setValue] = useState<number | number[]>(250);
 
-  const [selectedAsset, setSelectedAsset] = useState<Asset | 'Market'>(
-    'Market',
-  );
   const {isOpen: isBuySellOpen, onToggle: onBuySellToggle} = useDisclosure();
+
   const {
-    isOpen: isAssetsOpen,
-    onClose: onAssetsClose,
-    onOpen: onAssetsOpen,
+    isOpen: isLeverageDrawerOpen,
+    onClose: onLeverageDrawerClose,
+    onOpen: onLeverageDrawerOpen,
   } = useDisclosure();
+  const [leverage, setLeverage] = useState<number>(1);
+
+  const [selectedOrderType, setSelectedOrderType] =
+    useState<orderType>('limit');
+  const handleOrderTypeChange = (event: SelectChangeEvent) => {
+    setSelectedOrderType(event.target.value as orderType);
+  };
+
+  const [selectedAmountType, setSelectedAmountType] = useState<string>('USDT');
+  const handleAmountTypeChange = (event: SelectChangeEvent) => {
+    setSelectedAmountType(event.target.value as string);
+  };
+
+  const [selectedMarginType, setSelectedMarginType] =
+    useState<marginType>('isolate');
+  const handleMarginTypeChange = (event: SelectChangeEvent) => {
+    setSelectedMarginType(event.target.value as marginType);
+  };
+
   const handleBuySellBtnClick = () => {
     if (!isBuySellOpen) {
       onBuySellToggle();
     }
-  };
-  const handleSelectAsset = (asset: Asset) => {
-    setSelectedAsset(asset);
   };
   //
   return (
@@ -75,36 +93,104 @@ export const OrderForm = ({assets}: Props) => {
         size={12}
         spacing={2}
         display={isBuySellOpen ? 'flex' : 'none'}>
-        <Grid size={12}>
-          <TextField
-            fullWidth
-            label={'Market'}
-            variant="filled"
-            value={selectedAsset === 'Market' ? 'Market' : selectedAsset.id}
-            onClick={onAssetsOpen}
-            InputLabelProps={{
-              shrink: selectedAsset !== undefined,
-            }}
-          />
+        <Grid size={12} container spacing={1} alignItems={'stretch'}>
+          <Grid>
+            <SelectControl
+              selectedOption={{
+                name: selectedMarginType,
+                value: selectedMarginType,
+              }}
+              options={marginTypes.map(ot => ({name: ot, value: ot}))}
+              onChange={handleMarginTypeChange}
+              getValue={op => op.value}
+              getLabel={op => op.name}
+              slotProps={miniSelectSlotProps}
+            />
+          </Grid>
+          <Grid>
+            <Box
+              onClick={onLeverageDrawerOpen}
+              sx={{
+                ...flex().row().acenter().result,
+                borderRadius: '0.2rem',
+                height: 1,
+                backgroundColor: theme.palette.background.paper,
+                cursor: 'pointer',
+                py: 0,
+                px: 0.5,
+              }}>
+              <Typography variant="overline">{`${leverage} X`}</Typography>
+              <ArrowDropDownIcon />
+            </Box>
+          </Grid>
         </Grid>
         <Grid size={12}>
-          <TextField fullWidth label={'Cross'} variant="filled" />
-        </Grid>
-        <Grid size={12}>
-          <TextField
-            fullWidth
-            label={'Price'}
-            id="filled-price-start-adornment"
-            slotProps={{
-              input: {
-                endAdornment: (
-                  <InputAdornment position="end">USDT</InputAdornment>
-                ),
-              },
+          <SelectControl
+            label="Order Type"
+            selectedOption={{
+              name: selectedOrderType,
+              value: selectedOrderType,
             }}
-            variant="filled"
-            type="number"
+            options={orderTypes.map(ot => ({name: ot, value: ot}))}
+            onChange={handleOrderTypeChange}
+            getValue={op => op.value}
+            getLabel={op => op.name}
+            slotProps={{formControlProps: {fullWidth: true}}}
           />
+        </Grid>
+        <Grid container size={12}>
+          <Grid
+            sx={{position: 'relative'}}
+            size={selectedOrderType === 'stoplimit' ? 6 : 12}>
+            <TextField
+              fullWidth
+              label={selectedOrderType === 'market' ? '' : 'Price'}
+              id="filled-price-start-adornment"
+              disabled={selectedOrderType === 'market'}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      {selectedOrderType === 'market' ? '' : 'USDT'}
+                    </InputAdornment>
+                  ),
+                },
+              }}
+              variant="filled"
+              type="number"
+            />
+            {selectedOrderType === 'market' && (
+              <Center
+                fullSize
+                containerProps={{
+                  sx: {
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                  },
+                }}>
+                Market Price
+              </Center>
+            )}
+          </Grid>
+          {selectedOrderType === 'stoplimit' && (
+            <Grid size={6}>
+              <TextField
+                fullWidth
+                label={'Limit'}
+                id="filled-limit-start-adornment"
+                slotProps={{
+                  input: {
+                    endAdornment: (
+                      <InputAdornment position="end">{'USDT'}</InputAdornment>
+                    ),
+                  },
+                }}
+                variant="filled"
+                type="number"
+              />
+            </Grid>
+          )}
         </Grid>
         <Grid size={12}>
           {/* Input */}
@@ -115,7 +201,25 @@ export const OrderForm = ({assets}: Props) => {
             slotProps={{
               input: {
                 endAdornment: (
-                  <InputAdornment position="end">BTC</InputAdornment>
+                  <InputAdornment
+                    position="end"
+                    sx={{
+                      'div.MuiInputBase-root.MuiFilledInput-root': {
+                        backgroundColor: 'transparent',
+                      },
+                    }}>
+                    <SelectControl
+                      selectedOption={{
+                        name: selectedAmountType,
+                        value: selectedAmountType,
+                      }}
+                      options={amountTypes.map(ot => ({name: ot, value: ot}))}
+                      onChange={handleAmountTypeChange}
+                      getValue={op => op.value}
+                      getLabel={op => op.name}
+                      slotProps={miniSelectSlotProps}
+                    />
+                  </InputAdornment>
                 ),
               },
             }}
@@ -124,7 +228,7 @@ export const OrderForm = ({assets}: Props) => {
             }}
             variant="filled"
             type="number"
-            value={value}
+            value={(value as number) * leverage}
           />
           {/* Slider */}
           <Box
@@ -209,14 +313,54 @@ export const OrderForm = ({assets}: Props) => {
           </Button>
         </Grid>
       </Grid>
-      <AssetsDrawer
-        assets={assets}
-        handleSelect={handleSelectAsset}
-        selectedAsset={selectedAsset}
-        isOpen={isAssetsOpen}
-        onClose={onAssetsClose}
-        onOpen={onAssetsOpen}
+      {/* Drawers */}
+      <LeverageDrawer
+        open={isLeverageDrawerOpen}
+        onClose={onLeverageDrawerClose}
+        leverage={leverage}
+        setLeverage={setLeverage}
       />
     </Grid>
   );
+};
+const miniSelectSlotProps = {
+  formControlProps: {
+    sx: {
+      '.MuiInputBase-root': {
+        height: 'unset',
+        borderRadius: '0.2rem',
+      },
+      '.MuiSelect-select': {
+        paddingTop: '0.125rem',
+        paddingBottom: '0.125rem',
+        paddingRight: '1.5rem !important',
+        fontSize: '10px',
+        fontWeight: '700',
+      },
+      '.MuiList-root': {
+        '.MuiButtonBase-root': {
+          fontSize: '10px',
+        },
+      },
+      '.MuiSvgIcon-root': {
+        right: '0px',
+      },
+    },
+  },
+  selectProps: {
+    MenuProps: {
+      MenuListProps: {
+        sx: {
+          py: 0,
+          li: {
+            padding: 0.5,
+            fontSize: '10px',
+            lineHeight: '11px',
+            minHeight: 'unset !important',
+            height: '2rem !important',
+          },
+        },
+      },
+    },
+  },
 };

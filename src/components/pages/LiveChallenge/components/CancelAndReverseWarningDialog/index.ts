@@ -1,1 +1,1 @@
-export * from './CancelAndReverseWarningDialog';
+export {default} from './CancelAndReverseWarningDialog';

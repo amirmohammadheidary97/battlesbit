@@ -2,7 +2,7 @@ import {Box, Button, Typography, useTheme} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import {usePositionsState} from '../../state/positions.state';
-import {gameMatchPositionFakeData} from '../ClosePositionDrawer/close-position-drawer.stories';
+import {GameMatchPositionFakeData} from '../ClosePositionDrawer/close-position-drawer.stories';
 
 import {
   HistoryFirstRow,
@@ -54,7 +54,7 @@ export const PositionItem = ({
   const theme = useTheme();
   const {setSelectedPositionToCancel} = usePositionsState();
   const handleCancelPosition = () => {
-    setSelectedPositionToCancel(gameMatchPositionFakeData);
+    setSelectedPositionToCancel(GameMatchPositionFakeData);
   };
   //
   return (

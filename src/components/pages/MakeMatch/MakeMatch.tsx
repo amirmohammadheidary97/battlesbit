@@ -1,9 +1,10 @@
+import {useNavigate} from 'react-router';
 import {Box, Button} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import {FriendsListDialog} from './components/FriendsListDialog';
 import {MatchConfig} from './components/MatchConfig';
-import {useInvitationState} from './state/inviteFriend.state';
+import {useMakeMatchState} from './state/make-match.state';
 
 import bg from '@/assets/img/bg/matchmake-bg.png';
 import {Center} from '@/components/atoms/Center';
@@ -11,7 +12,12 @@ import {CustomIcon} from '@/components/atoms/icon';
 import {theme} from '@/config/theme';
 
 const MakeMatch = () => {
-  const {setIsOpen, isOpen} = useInvitationState();
+  const {toggleOpenDialoge, setStartMatch} = useMakeMatchState();
+  const navigate = useNavigate();
+  const handleStartMatchNormally = () => {
+    setStartMatch('normal');
+    navigate('/matchloading');
+  };
   return (
     <Grid
       container
@@ -50,7 +56,12 @@ const MakeMatch = () => {
           },
         }}>
         <Grid size={'grow'}>
-          <Button fullWidth color="primary" variant="contained" sx={{py: 1.5}}>
+          <Button
+            onClick={handleStartMatchNormally}
+            fullWidth
+            color="primary"
+            variant="contained"
+            sx={{py: 1.5}}>
             Start MatchMaking
           </Button>
         </Grid>
@@ -65,11 +76,7 @@ const MakeMatch = () => {
               maxWidth: '52px !important',
               p: 0,
             }}
-            onClick={() => {
-              console.log(isOpen);
-
-              setIsOpen();
-            }}>
+            onClick={() => toggleOpenDialoge()}>
             <Center fullSize>
               <CustomIcon type="addFriend" />
             </Center>

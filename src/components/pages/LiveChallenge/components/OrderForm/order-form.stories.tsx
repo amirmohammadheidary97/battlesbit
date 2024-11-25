@@ -21,7 +21,7 @@ export const OrderFormStories: Story = {
         gap={2}
         p={2}
         bgcolor={theme.palette.background.default}>
-        <OrderForm assets={[]} />
+        <OrderForm />
       </Box>
     );
   },

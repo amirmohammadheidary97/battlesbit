@@ -1,0 +1,34 @@
+import {Box, Typography} from '@mui/material';
+import Grid from '@mui/material/Grid2';
+
+import {useAchievementState} from '../../state/achievement.state';
+import CircularAchievement from '../atoms/CircularAchievement';
+
+import {flex} from '@/utils/flexHelper';
+
+const HighlightedAchieves = () => {
+  const {allAchievements} = useAchievementState();
+  return (
+    <Grid size={12} p={'1rem'} sx={{...flex().column().gap('0.5rem').result}}>
+      <Typography sx={{fontFamily: 'Nunito Sans'}} variant="caption">
+        Also you can change your highlighted achievements which other see in
+        your profile
+      </Typography>
+      <Box width={1} sx={{...flex().acenter().jbetween().gap('4px').result}}>
+        {allAchievements &&
+          allAchievements
+            .slice(0, 6)
+            .map(ach => (
+              <CircularAchievement
+                key={ach.id}
+                isFullWidth={false}
+                isSelected={ach?.isSelected || false}
+                title={ach.title}
+              />
+            ))}
+      </Box>
+    </Grid>
+  );
+};
+
+export default HighlightedAchieves;

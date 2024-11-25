@@ -20,7 +20,7 @@ const meta: Meta<typeof ClosePositionDrawer> = {
 export default meta;
 type Story = StoryObj<typeof ClosePositionDrawer>;
 
-export const gameMatchPositionFakeData: GameMatchPosition = {
+export const GameMatchPositionFakeData: GameMatchPosition = {
   __typename: 'GameMatchPosition',
   baseToken: 'ETH',
   closePrice: 1800,
@@ -52,7 +52,7 @@ export const ClosePositionDrawerStories: Story = {
   render: () => {
     const {setSelectedPositionToClose} = usePositionsState();
     const onClick = () => {
-      setSelectedPositionToClose(gameMatchPositionFakeData);
+      setSelectedPositionToClose(GameMatchPositionFakeData);
     };
     return (
       <Box display={'flex'} flexDirection={'column'} gap={2}>

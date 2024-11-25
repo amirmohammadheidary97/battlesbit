@@ -1,14 +1,14 @@
-import {useState} from 'react';
-import {Tab, Tabs} from '@mui/material';
+import { useState } from 'react';
+import { Tab, Tabs, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import {PositionItem} from '../PositionItem';
-import {PositionsFakeData} from '../PositionItem/position-item.stories';
+import { PositionItem } from '../PositionItem';
+import { PositionsFakeData } from '../PositionItem/position-item.stories';
 
-import {TabPanel} from '@/components/atoms/ TabPanel';
+import { TabPanel } from '@/components/atoms/ TabPanel';
 // import {a11yProps} from '@/utils/a11yProps';
 
-export const PositionsTabs = () => {
+const PositionsTabs = () => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -28,9 +28,9 @@ export const PositionsTabs = () => {
             flexGrow: 1,
           },
         }}>
-        <Tab label="Position" />
-        <Tab label="Open Order" />
-        <Tab label="History" />
+        <Tab label={<Typography variant="caption">Position</Typography>} />
+        <Tab label={<Typography variant="caption">Open Order</Typography>} />
+        <Tab label={<Typography variant="caption">History</Typography>} />
       </Tabs>
       {/* Panels */}
       <TabPanel value={value} index={0}>
@@ -51,3 +51,5 @@ export const PositionsTabs = () => {
     </Grid>
   );
 };
+
+export default PositionsTabs;

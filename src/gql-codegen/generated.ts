@@ -1,28 +1,37 @@
 import gql from 'graphql-tag';
 import * as Urql from 'urql';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends {[key: string]: unknown}> = {[K in keyof T]: T[K]};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<T extends {[key: string]: unknown}, K extends keyof T> = {
+  [_ in K]?: never;
+};
+export type Incremental<T> =
+  | T
+  | {[P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never};
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  Cursor: { input: any; output: any; }
-  Duration: { input: any; output: any; }
-  Time: { input: any; output: any; }
-  Uint8: { input: any; output: any; }
-  Uint64: { input: any; output: any; }
-  Upload: { input: any; output: any; }
-  _Any: { input: any; output: any; }
-  _FieldSet: { input: any; output: any; }
+  ID: {input: string; output: string};
+  String: {input: string; output: string};
+  Boolean: {input: boolean; output: boolean};
+  Int: {input: number; output: number};
+  Float: {input: number; output: number};
+  Cursor: {input: any; output: any};
+  Duration: {input: any; output: any};
+  Time: {input: any; output: any};
+  Uint8: {input: any; output: any};
+  Uint64: {input: any; output: any};
+  Upload: {input: any; output: any};
+  _Any: {input: any; output: any};
+  _FieldSet: {input: any; output: any};
 };
 
 export type Achievement = Node & {
@@ -58,7 +67,6 @@ export type AchievementDefinition = Node & {
   query: Scalars['String']['output'];
   updatedAt: Scalars['Time']['output'];
 };
-
 
 export type AchievementDefinitionProgressesArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -106,7 +114,7 @@ export type AchievementDefinitionOrder = {
 /** Properties by which AchievementDefinition connections can be ordered. */
 export enum AchievementDefinitionOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type AchievementDefinitionsPage = {
@@ -135,7 +143,7 @@ export type AchievementOrder = {
 /** Properties by which Achievement connections can be ordered. */
 export enum AchievementOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type Asset = {
@@ -267,7 +275,7 @@ export type GameConnection = {
 /** GameCurrency is enum for the field currency */
 export enum GameCurrency {
   Solana = 'solana',
-  Usdt = 'usdt'
+  Usdt = 'usdt',
 }
 
 /** An edge in a connection. */
@@ -338,7 +346,7 @@ export type GameMatchOrder = {
 /** Properties by which GameMatch connections can be ordered. */
 export enum GameMatchOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type GameMatchParticipant = Node & {
@@ -369,7 +377,7 @@ export type GameMatchParticipantConnection = {
 /** GameMatchParticipantCurrency is enum for the field currency */
 export enum GameMatchParticipantCurrency {
   Solana = 'solana',
-  Usdt = 'usdt'
+  Usdt = 'usdt',
 }
 
 /** An edge in a connection. */
@@ -392,7 +400,7 @@ export type GameMatchParticipantOrder = {
 /** Properties by which GameMatchParticipant connections can be ordered. */
 export enum GameMatchParticipantOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type GameMatchPosition = Node & {
@@ -459,13 +467,13 @@ export type GameMatchPositionOrder = {
 /** Properties by which GameMatchPosition connections can be ordered. */
 export enum GameMatchPositionOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 /** GameMatchPositionSide is enum for the field side */
 export enum GameMatchPositionSide {
   Buy = 'buy',
-  Sell = 'sell'
+  Sell = 'sell',
 }
 
 /** GameMatchPositionStatus is enum for the field status */
@@ -474,13 +482,13 @@ export enum GameMatchPositionStatus {
   Liquidated = 'liquidated',
   Open = 'open',
   Pending = 'pending',
-  Settled = 'settled'
+  Settled = 'settled',
 }
 
 /** GameMatchPositionType is enum for the field type */
 export enum GameMatchPositionType {
   Limit = 'limit',
-  Market = 'market'
+  Market = 'market',
 }
 
 export type GameMatchPositionsPage = {
@@ -493,7 +501,7 @@ export type GameMatchPositionsPage = {
 export enum GameMatchStatus {
   Closed = 'closed',
   Open = 'open',
-  Pending = 'pending'
+  Pending = 'pending',
 }
 
 export type GameMatchesPage = {
@@ -513,7 +521,7 @@ export type GameOrder = {
 /** Properties by which Game connections can be ordered. */
 export enum GameOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type GamesPage = {
@@ -559,95 +567,77 @@ export type Mutation = {
   updateUser: User;
 };
 
-
 export type MutationCancelGameMatchPositionArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type MutationCreateAchievementDefinitionArgs = {
   createAchievementDefinitionInput: CreateAchievementDefinitionInput;
 };
 
-
 export type MutationCreateGameArgs = {
   createGameInput: CreateGameInput;
 };
-
 
 export type MutationCreateGameMatchPositionArgs = {
   createGameInput: CreateGameMatchPositionInput;
 };
 
-
 export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
 };
-
 
 export type MutationCreateWalletArgs = {
   createWalletInput: CreateWalletInput;
 };
 
-
 export type MutationDeleteAchievementDefinitionArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type MutationDeleteGameArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type MutationDeleteUserArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type MutationJoinGameArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type MutationLoginWithEmailArgs = {
   email: Scalars['String']['input'];
   verificationCode: Scalars['String']['input'];
 };
 
-
 export type MutationLoginWithPasswordArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
 
-
 export type MutationRefreshTokenArgs = {
   refreshToken: Scalars['String']['input'];
 };
 
-
 export type MutationRequestEmailVerificationCodeArgs = {
   email: Scalars['String']['input'];
 };
-
 
 export type MutationUpdateAchievementDefinitionArgs = {
   id: Scalars['ID']['input'];
   updateAchievementDefinitionInput: UpdateAchievementDefinitionInput;
 };
 
-
 export type MutationUpdateGameArgs = {
   id: Scalars['ID']['input'];
   updateGameInput: UpdateGameInput;
 };
 
-
 export type MutationUpdateProfileArgs = {
   updateProfileInput: UpdateProfileInput;
 };
-
 
 export type MutationUpdateUserArgs = {
   id: Scalars['ID']['input'];
@@ -676,20 +666,20 @@ export type Notification = {
 export enum NotificationAction {
   Canceled = 'CANCELED',
   Created = 'CREATED',
-  Updated = 'UPDATED'
+  Updated = 'UPDATED',
 }
 
 export enum NotificationTarget {
   Game = 'GAME',
   Match = 'MATCH',
   Position = 'POSITION',
-  Wallet = 'WALLET'
+  Wallet = 'WALLET',
 }
 
 export enum NotificationType {
   Error = 'ERROR',
   Info = 'INFO',
-  Warning = 'WARNING'
+  Warning = 'WARNING',
 }
 
 /** Possible directions in which to order a list of items when provided an `orderBy` argument. */
@@ -697,7 +687,7 @@ export enum OrderDirection {
   /** Specifies an ascending order for a given `orderBy` argument. */
   Asc = 'ASC',
   /** Specifies a descending order for a given `orderBy` argument. */
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 /**
@@ -785,11 +775,9 @@ export type Query = {
   walletsPage: WalletsPage;
 };
 
-
 export type QueryAchievementDefinitionArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryAchievementDefinitionsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -800,33 +788,27 @@ export type QueryAchievementDefinitionsArgs = {
   orderBy?: InputMaybe<AchievementDefinitionOrder>;
 };
 
-
 export type QueryAchievementDefinitionsPageArgs = {
   filterBy?: InputMaybe<AchievementDefinitionFilter>;
   orderBy?: InputMaybe<AchievementDefinitionOrder>;
   paginateBy?: InputMaybe<Pagination>;
 };
 
-
 export type QueryAssetArgs = {
   id: Scalars['String']['input'];
 };
-
 
 export type QueryGameArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type QueryGameMatchArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type QueryGameMatchPositionArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryGameMatchPositionsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -837,13 +819,11 @@ export type QueryGameMatchPositionsArgs = {
   orderBy?: InputMaybe<GameMatchPositionOrder>;
 };
 
-
 export type QueryGameMatchPositionsPageArgs = {
   filterBy?: InputMaybe<GameMatchPositionFilter>;
   orderBy?: InputMaybe<GameMatchPositionOrder>;
   paginateBy?: InputMaybe<Pagination>;
 };
-
 
 export type QueryGameMatchesArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -854,13 +834,11 @@ export type QueryGameMatchesArgs = {
   orderBy?: InputMaybe<GameMatchOrder>;
 };
 
-
 export type QueryGameMatchesPageArgs = {
   filterBy?: InputMaybe<GameMatchFilter>;
   orderBy?: InputMaybe<GameMatchOrder>;
   paginateBy?: InputMaybe<Pagination>;
 };
-
 
 export type QueryGamesArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -871,28 +849,23 @@ export type QueryGamesArgs = {
   orderBy?: InputMaybe<GameOrder>;
 };
 
-
 export type QueryGamesPageArgs = {
   filterBy?: InputMaybe<GameFilter>;
   orderBy?: InputMaybe<GameOrder>;
   paginateBy?: InputMaybe<Pagination>;
 };
 
-
 export type QueryNodeArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryNodesArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
-
 export type QueryTransactionArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryTransactionsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -903,18 +876,15 @@ export type QueryTransactionsArgs = {
   orderBy?: InputMaybe<TransactionOrder>;
 };
 
-
 export type QueryTransactionsPageArgs = {
   filterBy?: InputMaybe<TransactionFilter>;
   orderBy?: InputMaybe<TransactionOrder>;
   paginateBy?: InputMaybe<Pagination>;
 };
 
-
 export type QueryUserArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryUsersArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -925,18 +895,15 @@ export type QueryUsersArgs = {
   orderBy?: InputMaybe<UserOrder>;
 };
 
-
 export type QueryUsersPageArgs = {
   filterBy?: InputMaybe<UserFilter>;
   orderBy?: InputMaybe<UserOrder>;
   paginateBy?: InputMaybe<Pagination>;
 };
 
-
 export type QueryWalletArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryWalletsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -946,7 +913,6 @@ export type QueryWalletsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   orderBy?: InputMaybe<WalletOrder>;
 };
-
 
 export type QueryWalletsPageArgs = {
   filterBy?: InputMaybe<WalletFilter>;
@@ -970,7 +936,6 @@ export type Subscription = {
   /**  Subscribe to notification created event **(authenticated only)** */
   notificationCreated: Notification;
 };
-
 
 export type SubscriptionAssetUpdatedArgs = {
   id: Scalars['String']['input'];
@@ -1009,7 +974,7 @@ export type TransactionConnection = {
 /** TransactionCurrency is enum for the field currency */
 export enum TransactionCurrency {
   Solana = 'solana',
-  Usdt = 'usdt'
+  Usdt = 'usdt',
 }
 
 /** An edge in a connection. */
@@ -1038,7 +1003,7 @@ export type TransactionOrder = {
 /** Properties by which Transaction connections can be ordered. */
 export enum TransactionOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type TransactionsPage = {
@@ -1115,7 +1080,6 @@ export type User = Node & {
   wonMatches: GameMatchConnection;
 };
 
-
 export type UserAchievementsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
   before?: InputMaybe<Scalars['Cursor']['input']>;
@@ -1123,7 +1087,6 @@ export type UserAchievementsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   orderBy?: InputMaybe<AchievementOrder>;
 };
-
 
 export type UserMatchesArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -1133,7 +1096,6 @@ export type UserMatchesArgs = {
   orderBy?: InputMaybe<GameMatchParticipantOrder>;
 };
 
-
 export type UserTransactionsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
   before?: InputMaybe<Scalars['Cursor']['input']>;
@@ -1141,7 +1103,6 @@ export type UserTransactionsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   orderBy?: InputMaybe<TransactionOrder>;
 };
-
 
 export type UserWonMatchesArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>;
@@ -1187,7 +1148,7 @@ export type UserOrder = {
 /** Properties by which User connections can be ordered. */
 export enum UserOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type UsersPage = {
@@ -1223,7 +1184,7 @@ export type WalletConnection = {
 /** WalletCurrency is enum for the field currency */
 export enum WalletCurrency {
   Solana = 'solana',
-  Usdt = 'usdt'
+  Usdt = 'usdt',
 }
 
 /** An edge in a connection. */
@@ -1252,7 +1213,7 @@ export type WalletOrder = {
 /** Properties by which Wallet connections can be ordered. */
 export enum WalletOrderField {
   CreatedAt = 'CREATED_AT',
-  UpdatedAt = 'UPDATED_AT'
+  UpdatedAt = 'UPDATED_AT',
 }
 
 export type WalletsPage = {
@@ -1271,156 +1232,249 @@ export type LoginWithEmailMutationVariables = Exact<{
   verificationCode: Scalars['String']['input'];
 }>;
 
-
-export type LoginWithEmailMutation = { __typename?: 'Mutation', loginWithEmail: { __typename?: 'Token', accessToken: string, refreshToken: string, expiresIn: number } };
+export type LoginWithEmailMutation = {
+  __typename?: 'Mutation';
+  loginWithEmail: {
+    __typename?: 'Token';
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: number;
+  };
+};
 
 export type LoginWithPasswordMutationVariables = Exact<{
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
 }>;
 
-
-export type LoginWithPasswordMutation = { __typename?: 'Mutation', loginWithPassword: { __typename?: 'Token', accessToken: string, refreshToken: string, expiresIn: number } };
+export type LoginWithPasswordMutation = {
+  __typename?: 'Mutation';
+  loginWithPassword: {
+    __typename?: 'Token';
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: number;
+  };
+};
 
 export type RequestEmailVerificationCodeMutationVariables = Exact<{
   email: Scalars['String']['input'];
 }>;
 
-
-export type RequestEmailVerificationCodeMutation = { __typename?: 'Mutation', requestEmailVerificationCode: { __typename?: 'RequestVerificationCodePayload', expiresIn: number } };
+export type RequestEmailVerificationCodeMutation = {
+  __typename?: 'Mutation';
+  requestEmailVerificationCode: {
+    __typename?: 'RequestVerificationCodePayload';
+    expiresIn: number;
+  };
+};
 
 export type RefreshTokenMutationVariables = Exact<{
   refreshToken: Scalars['String']['input'];
 }>;
 
+export type RefreshTokenMutation = {
+  __typename?: 'Mutation';
+  refreshToken: {
+    __typename?: 'Token';
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: number;
+  };
+};
 
-export type RefreshTokenMutation = { __typename?: 'Mutation', refreshToken: { __typename?: 'Token', accessToken: string, refreshToken: string, expiresIn: number } };
+export type GetAssetsQueryVariables = Exact<{[key: string]: never}>;
 
-export type GetAssetsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAssetsQuery = {
+  __typename?: 'Query';
+  assets?: Array<{
+    __typename?: 'Asset';
+    id: string;
+    name: string;
+    priceUSD: number;
+    iconUrl: string;
+    volumeUSD24Hr: number;
+  } | null> | null;
+};
 
+export type AssetsSubscriptionVariables = Exact<{[key: string]: never}>;
 
-export type GetAssetsQuery = { __typename?: 'Query', assets?: Array<{ __typename?: 'Asset', id: string, name: string, priceUSD: number, iconUrl: string, volumeUSD24Hr: number } | null> | null };
+export type AssetsSubscription = {
+  __typename?: 'Subscription';
+  assetsUpdated?: Array<{
+    __typename?: 'AssetUpdate';
+    id: string;
+    priceUSD: number;
+  } | null> | null;
+};
 
-export type AssetsSubscriptionVariables = Exact<{ [key: string]: never; }>;
+export type PositionsQueryVariables = Exact<{[key: string]: never}>;
 
-
-export type AssetsSubscription = { __typename?: 'Subscription', assetsUpdated?: Array<{ __typename?: 'AssetUpdate', id: string, priceUSD: number } | null> | null };
-
-export type PositionsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type PositionsQuery = { __typename?: 'Query', gameMatchPositions: { __typename?: 'GameMatchPositionConnection', totalCount: number, edges?: Array<{ __typename?: 'GameMatchPositionEdge', node?: { __typename?: 'GameMatchPosition', id: string, createdAt: any, updatedAt: any, gameMatchID: string, gameMatchParticipantID: string, entryPrice: number, limitPrice?: number | null, closePrice: number, margin: number, leverage: any, side: GameMatchPositionSide, type: GameMatchPositionType, status: GameMatchPositionStatus, stopLoss?: number | null, targetPoint?: number | null, profit?: number | null, expiredAt?: any | null, openedAt?: any | null, closedAt?: any | null, quoteToken: string } | null } | null> | null } };
-
+export type PositionsQuery = {
+  __typename?: 'Query';
+  gameMatchPositions: {
+    __typename?: 'GameMatchPositionConnection';
+    totalCount: number;
+    edges?: Array<{
+      __typename?: 'GameMatchPositionEdge';
+      node?: {
+        __typename?: 'GameMatchPosition';
+        id: string;
+        createdAt: any;
+        updatedAt: any;
+        gameMatchID: string;
+        gameMatchParticipantID: string;
+        entryPrice: number;
+        limitPrice?: number | null;
+        closePrice: number;
+        margin: number;
+        leverage: any;
+        side: GameMatchPositionSide;
+        type: GameMatchPositionType;
+        status: GameMatchPositionStatus;
+        stopLoss?: number | null;
+        targetPoint?: number | null;
+        profit?: number | null;
+        expiredAt?: any | null;
+        openedAt?: any | null;
+        closedAt?: any | null;
+        quoteToken: string;
+      } | null;
+    } | null> | null;
+  };
+};
 
 export const LoginWithEmailDocument = gql`
-    mutation loginWithEmail($email: String!, $verificationCode: String!) {
-  loginWithEmail(email: $email, verificationCode: $verificationCode) {
-    accessToken
-    refreshToken
-    expiresIn
-  }
-}
-    `;
-
-export function useLoginWithEmailMutation() {
-  return Urql.useMutation<LoginWithEmailMutation, LoginWithEmailMutationVariables>(LoginWithEmailDocument);
-};
-export const LoginWithPasswordDocument = gql`
-    mutation loginWithPassword($email: String!, $password: String!) {
-  loginWithPassword(email: $email, password: $password) {
-    accessToken
-    refreshToken
-    expiresIn
-  }
-}
-    `;
-
-export function useLoginWithPasswordMutation() {
-  return Urql.useMutation<LoginWithPasswordMutation, LoginWithPasswordMutationVariables>(LoginWithPasswordDocument);
-};
-export const RequestEmailVerificationCodeDocument = gql`
-    mutation requestEmailVerificationCode($email: String!) {
-  requestEmailVerificationCode(email: $email) {
-    expiresIn
-  }
-}
-    `;
-
-export function useRequestEmailVerificationCodeMutation() {
-  return Urql.useMutation<RequestEmailVerificationCodeMutation, RequestEmailVerificationCodeMutationVariables>(RequestEmailVerificationCodeDocument);
-};
-export const RefreshTokenDocument = gql`
-    mutation refreshToken($refreshToken: String!) {
-  refreshToken(refreshToken: $refreshToken) {
-    accessToken
-    refreshToken
-    expiresIn
-  }
-}
-    `;
-
-export function useRefreshTokenMutation() {
-  return Urql.useMutation<RefreshTokenMutation, RefreshTokenMutationVariables>(RefreshTokenDocument);
-};
-export const GetAssetsDocument = gql`
-    query getAssets {
-  assets {
-    id
-    name
-    priceUSD
-    iconUrl
-    volumeUSD24Hr
-  }
-}
-    `;
-
-export function useGetAssetsQuery(options?: Omit<Urql.UseQueryArgs<GetAssetsQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetAssetsQuery, GetAssetsQueryVariables>({ query: GetAssetsDocument, ...options });
-};
-export const AssetsDocument = gql`
-    subscription assets {
-  assetsUpdated {
-    id
-    priceUSD
-  }
-}
-    `;
-
-export function useAssetsSubscription<TData = AssetsSubscription>(options?: Omit<Urql.UseSubscriptionArgs<AssetsSubscriptionVariables>, 'query'>, handler?: Urql.SubscriptionHandler<AssetsSubscription, TData>) {
-  return Urql.useSubscription<AssetsSubscription, TData, AssetsSubscriptionVariables>({ query: AssetsDocument, ...options }, handler);
-};
-export const PositionsDocument = gql`
-    query positions {
-  gameMatchPositions {
-    edges {
-      node {
-        id
-        createdAt
-        updatedAt
-        gameMatchID
-        gameMatchParticipantID
-        entryPrice
-        limitPrice
-        closePrice
-        margin
-        leverage
-        side
-        type
-        status
-        stopLoss
-        targetPoint
-        profit
-        expiredAt
-        openedAt
-        closedAt
-        quoteToken
-      }
+  mutation loginWithEmail($email: String!, $verificationCode: String!) {
+    loginWithEmail(email: $email, verificationCode: $verificationCode) {
+      accessToken
+      refreshToken
+      expiresIn
     }
-    totalCount
   }
-}
-    `;
+`;
 
-export function usePositionsQuery(options?: Omit<Urql.UseQueryArgs<PositionsQueryVariables>, 'query'>) {
-  return Urql.useQuery<PositionsQuery, PositionsQueryVariables>({ query: PositionsDocument, ...options });
-};
+export const useLoginWithEmailMutation = () =>
+  Urql.useMutation<LoginWithEmailMutation, LoginWithEmailMutationVariables>(
+    LoginWithEmailDocument,
+  );
+export const LoginWithPasswordDocument = gql`
+  mutation loginWithPassword($email: String!, $password: String!) {
+    loginWithPassword(email: $email, password: $password) {
+      accessToken
+      refreshToken
+      expiresIn
+    }
+  }
+`;
+
+export const useLoginWithPasswordMutation = () =>
+  Urql.useMutation<
+    LoginWithPasswordMutation,
+    LoginWithPasswordMutationVariables
+  >(LoginWithPasswordDocument);
+export const RequestEmailVerificationCodeDocument = gql`
+  mutation requestEmailVerificationCode($email: String!) {
+    requestEmailVerificationCode(email: $email) {
+      expiresIn
+    }
+  }
+`;
+
+export const useRequestEmailVerificationCodeMutation = () =>
+  Urql.useMutation<
+    RequestEmailVerificationCodeMutation,
+    RequestEmailVerificationCodeMutationVariables
+  >(RequestEmailVerificationCodeDocument);
+export const RefreshTokenDocument = gql`
+  mutation refreshToken($refreshToken: String!) {
+    refreshToken(refreshToken: $refreshToken) {
+      accessToken
+      refreshToken
+      expiresIn
+    }
+  }
+`;
+
+export const useRefreshTokenMutation = () =>
+  Urql.useMutation<RefreshTokenMutation, RefreshTokenMutationVariables>(
+    RefreshTokenDocument,
+  );
+export const GetAssetsDocument = gql`
+  query getAssets {
+    assets {
+      id
+      name
+      priceUSD
+      iconUrl
+      volumeUSD24Hr
+    }
+  }
+`;
+
+export const useGetAssetsQuery = (
+  options?: Omit<Urql.UseQueryArgs<GetAssetsQueryVariables>, 'query'>,
+) =>
+  Urql.useQuery<GetAssetsQuery, GetAssetsQueryVariables>({
+    query: GetAssetsDocument,
+    ...options,
+  });
+export const AssetsDocument = gql`
+  subscription assets {
+    assetsUpdated {
+      id
+      priceUSD
+    }
+  }
+`;
+
+export const useAssetsSubscription = <TData = AssetsSubscription>(
+  options?: Omit<
+    Urql.UseSubscriptionArgs<AssetsSubscriptionVariables>,
+    'query'
+  >,
+  handler?: Urql.SubscriptionHandler<AssetsSubscription, TData>,
+) =>
+  Urql.useSubscription<AssetsSubscription, TData, AssetsSubscriptionVariables>(
+    {query: AssetsDocument, ...options},
+    handler,
+  );
+export const PositionsDocument = gql`
+  query positions {
+    gameMatchPositions {
+      edges {
+        node {
+          id
+          createdAt
+          updatedAt
+          gameMatchID
+          gameMatchParticipantID
+          entryPrice
+          limitPrice
+          closePrice
+          margin
+          leverage
+          side
+          type
+          status
+          stopLoss
+          targetPoint
+          profit
+          expiredAt
+          openedAt
+          closedAt
+          quoteToken
+        }
+      }
+      totalCount
+    }
+  }
+`;
+
+export const usePositionsQuery = (
+  options?: Omit<Urql.UseQueryArgs<PositionsQueryVariables>, 'query'>,
+) =>
+  Urql.useQuery<PositionsQuery, PositionsQueryVariables>({
+    query: PositionsDocument,
+    ...options,
+  });
