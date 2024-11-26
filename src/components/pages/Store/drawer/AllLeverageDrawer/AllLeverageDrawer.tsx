@@ -19,7 +19,7 @@ const AllLeverageDrawerDrawer = ({
   title,
 }: Props) => (
   <FullPageDrawerContainer
-    isFixedBackWard={true}
+    isFixedBackWard={false}
     isOpen={isAllLeverageDraweropen}
     handleCloseDrawer={handleCloseAllLeverageDrawerDrawer}
     PageTitle={'Leverage'}>

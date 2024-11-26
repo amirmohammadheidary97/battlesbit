@@ -1,5 +1,3 @@
-import {useEffect} from 'react';
-import {useSearchParams} from 'react-router-dom';
 import Grid from '@mui/material/Grid2';
 
 import {ChargeWallet} from './components/organisms/ChargeWallet';
@@ -9,10 +7,7 @@ import {Leverage} from './components/organisms/Leverage';
 import AllAvatarsDrawerDrawer from './drawer/AllAvatarsDrawer/AllAvatarsDrawer';
 import AllLeverageDrawerDrawer from './drawer/AllLeverageDrawer/AllLeverageDrawer';
 import InfoStoreDrawer from './drawer/InfoStoreDrawer/InfoStoreDrawer';
-import {chargeWalletState} from './state/charge-wallet.state';
-import {drawerStoreState} from './state/drawer-store.state';
-import {leverageState} from './state/leverage.state';
-import {newAvatarState} from './state/new-avatar.state';
+import {useMyStore} from './hooks/useStore';
 import {
   chargeWalletItemsList,
   getNewAvatarsList,
@@ -21,62 +16,17 @@ import {
 
 const Store = () => {
   ///
-  const state = useSearchParams()[0].get('state');
-  const value = useSearchParams()[0].get('value');
-  ///
   const {
-    openChargeWallet,
-    setOpenChargeWallet,
-    openLeverage,
-    setOpenLeverage,
-    openNewAvatar,
-    setOpenNewAvatar,
-    openAllLeverage,
-    setOpenAllLeverage,
+    chargeWalletInfo,
+    leverageInfo,
+    newAvatarInfo,
     openAllAvatars,
-    setOpenAllAvatars,
-  } = drawerStoreState();
-  const {chargeWalletInfo, setChargeWalletInfo} = chargeWalletState();
-  const {leverageInfo, setLeverageInfo} = leverageState();
-  const {newAvatarInfo, setNewAvatarInfo} = newAvatarState();
+    openAllLeverage,
+    openChargeWallet,
+    openLeverage,
+    openNewAvatar,
+  } = useMyStore();
 
-  ///
-  useEffect(() => {
-    if (state !== null && state == 'chargewallet') setOpenChargeWallet(true);
-    else setOpenChargeWallet(false);
-    if (state !== null && state == 'leverage') setOpenLeverage(true);
-    else setOpenLeverage(false);
-    if (state !== null && state == 'newavatar') setOpenNewAvatar(true);
-    else setOpenNewAvatar(false);
-    if (state !== null && state == 'all-leverage') setOpenAllLeverage(true);
-    else setOpenAllLeverage(false);
-    if (state !== null && state == 'all-avatars') setOpenAllAvatars(true);
-    else setOpenAllAvatars(false);
-  }, [state]);
-
-  useEffect(() => {
-    if (value) {
-      const findDetialChargeWallet = chargeWalletItemsList.find(
-        item => item.id == Number(value),
-      );
-      if (findDetialChargeWallet) {
-        setChargeWalletInfo(findDetialChargeWallet);
-      }
-      const findDetialLeverage = leverageList.find(
-        item => item.id == Number(value),
-      );
-      if (findDetialLeverage) {
-        setLeverageInfo(findDetialLeverage);
-      }
-      const findDetialNewAvatar = getNewAvatarsList.find(
-        item => item.id == Number(value),
-      );
-      if (findDetialNewAvatar) {
-        setNewAvatarInfo(findDetialNewAvatar);
-      }
-    }
-  }, [value]);
-  ////
   return (
     <Grid
       container

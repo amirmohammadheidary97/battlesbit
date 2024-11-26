@@ -45,6 +45,7 @@ const InfoStoreDrawer = ({
   return (
     <FullPageDrawerContainer
       isOpen={isInfoStoreopen}
+      isFixedBackWard={true}
       handleCloseDrawer={handleCloseInfoStoreDrawer}
       PageTitle={getNameTitle()}>
       <Grid size={12}>
