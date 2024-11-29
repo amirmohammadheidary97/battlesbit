@@ -4,6 +4,8 @@ import createTheme from '@mui/material/styles/createTheme';
 import {commonPalette, darkPalette, lightPalette} from './constants';
 
 import IBMPlexRegular from '@/assets/font/IBM_Plex_Sans/IBMPlexSans-Regular.ttf';
+import NunitoRegular from '@/assets/font/nunito/NunitoSans_10pt-Regular.ttf';
+import AlfaSlabOneRegular from '@/assets/font/Alfa Slab One/AlfaSlabOne-Regular.ttf';
 
 export let theme = createTheme({});
 const getTheme = (mode: 'light' | 'dark') =>
@@ -114,7 +116,15 @@ const getTheme = (mode: 'light' | 'dark') =>
         @font-face {
           font-family: 'IBM Plex';
           src: local('IBMPlex'), url(${IBMPlexRegular}) format('truetype');
-        }
+        };
+        @font-face {
+          font-family: 'Nunito Sans';
+          src: local('Nunito Sans'), url(${NunitoRegular}) format('truetype');
+        };
+          @font-face {
+          font-family: 'Alfa Slab One';
+          src: local('Alfa Slab One'), url(${AlfaSlabOneRegular}) format('truetype');
+        };
       `,
       },
     },

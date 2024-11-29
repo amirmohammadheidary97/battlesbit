@@ -39,7 +39,9 @@ const CircularAchievement = ({isFullWidth, isSelected, title}: Props) => {
         src={AchieveCup}
       />
       <Typography
-        variant={'h6'}
+        // variant={isFullWidth ? 'h6' : undefined}
+        fontWeight={400}
+        lineHeight={isFullWidth ? '24.64px': '13.69px'}
         fontSize={isFullWidth ? '18px' : '10px'}
         fontFamily={'Alfa Slab One'}>
         {title}
