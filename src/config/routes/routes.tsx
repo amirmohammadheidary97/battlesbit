@@ -1,5 +1,6 @@
-import type {RouteObject} from 'react-router';
-import {createBrowserRouter} from 'react-router-dom';
+import { Suspense } from 'react';
+import type { RouteObject } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 
 import {
   AchievementPage,
@@ -13,9 +14,11 @@ import {
   StorePage,
   WalletPage,
 } from './lazy-pages';
-import {PrivateOutlet} from './PrivateOutlet';
+import { PrivateOutlet } from './PrivateOutlet';
 
-import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
+import { WithBottomLNavbarLayout } from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
+// templates
+import { AchievementsTemplate } from '@/components/templates/Achievement';
 
 const routeObjects: RouteObject[] = [
   {
@@ -56,7 +59,7 @@ const routeObjects: RouteObject[] = [
           },
           {
             path: '/achievements',
-            element: <AchievementPage />,
+            element: <Suspense fallback={<AchievementsTemplate />}><AchievementPage /></Suspense>,
           },
         ],
       },

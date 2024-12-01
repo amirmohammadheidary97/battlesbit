@@ -24,7 +24,7 @@ import {
   InProgressAchievementSkeleton,
   RectangularAchievesSkeleton,
   AchievementInfoSkeleton,
-} from "../../templates/Achievement";
+} from "../../templates/Achievement/LoadingStages";
 
 const Achievements = () => {
   const {
@@ -70,11 +70,11 @@ const Achievements = () => {
     <Grid
       container
       size={12}
-      gap={"12px"}
-      mb={"1rem"}
+      gap={1.75}
+      mb={2}
       sx={{
         alignItems: "start",
-        p: "1rem",
+        p: 2,
       }}
     >
       {/*  */}
