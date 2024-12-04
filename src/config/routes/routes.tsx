@@ -1,3 +1,4 @@
+import {Suspense} from 'react';
 import type {RouteObject} from 'react-router';
 import {createBrowserRouter} from 'react-router-dom';
 
@@ -16,6 +17,7 @@ import {
 import {PrivateOutlet} from './PrivateOutlet';
 
 import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
+import {StoreTemplate} from '@/components/templates/Store';
 
 const routeObjects: RouteObject[] = [
   {
@@ -52,7 +54,11 @@ const routeObjects: RouteObject[] = [
           },
           {
             path: '/store',
-            element: <StorePage />,
+            element: (
+              <Suspense fallback={<StoreTemplate />}>
+                <StorePage />
+              </Suspense>
+            ),
           },
           {
             path: '/achievements',

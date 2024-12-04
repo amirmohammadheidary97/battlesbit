@@ -6,6 +6,7 @@ import FullPageDrawerContainer from '../../components/organisms/DrawerContainer/
 import {LeverageDetail} from '../../components/organisms/LeverageDetail';
 import {NewAvatarDetail} from '../../components/organisms/NewAvatarDetail';
 
+import {DrawerTemplate} from '@/components/templates/Store/DrawerTemplate';
 import type {
   ChargeWalletItemType,
   LeverageItemType,
@@ -49,15 +50,24 @@ const InfoStoreDrawer = ({
       handleCloseDrawer={handleCloseInfoStoreDrawer}
       PageTitle={getNameTitle()}>
       <Grid size={12}>
-        {type == 'ChargeWallet' && chargeWalletInfo && (
-          <ChargeWalletDetail chargeWalletInfo={chargeWalletInfo} />
-        )}
-        {type == 'Leverage' && leverageInfo && (
-          <LeverageDetail leverageInfo={leverageInfo} />
-        )}
-        {type == 'NewAvatar' && newAvatarInfo && (
-          <NewAvatarDetail newAvatarInfo={newAvatarInfo} />
-        )}
+        {type == 'ChargeWallet' &&
+          (chargeWalletInfo ? (
+            <ChargeWalletDetail chargeWalletInfo={chargeWalletInfo} />
+          ) : (
+            <DrawerTemplate />
+          ))}
+        {type == 'Leverage' &&
+          (leverageInfo ? (
+            <LeverageDetail leverageInfo={leverageInfo} />
+          ) : (
+            <DrawerTemplate />
+          ))}
+        {type == 'NewAvatar' &&
+          (newAvatarInfo ? (
+            <NewAvatarDetail newAvatarInfo={newAvatarInfo} />
+          ) : (
+            <DrawerTemplate />
+          ))}
       </Grid>
     </FullPageDrawerContainer>
   );

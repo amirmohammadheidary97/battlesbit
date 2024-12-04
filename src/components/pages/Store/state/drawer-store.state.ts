@@ -23,6 +23,7 @@ const state = create<State & Action>(set => ({
   openLeverage: false,
   openNewAvatar: false,
   openAllLeverage: false,
+  chargeWalletItemsList: [],
   openAllAvatars: false,
   setOpenLeverage: bool => set(() => ({openLeverage: bool})),
   setOpenChargeWallet: bool => set(() => ({openChargeWallet: bool})),

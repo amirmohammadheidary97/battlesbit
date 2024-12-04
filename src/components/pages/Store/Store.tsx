@@ -8,11 +8,13 @@ import AllAvatarsDrawerDrawer from './drawer/AllAvatarsDrawer/AllAvatarsDrawer';
 import AllLeverageDrawerDrawer from './drawer/AllLeverageDrawer/AllLeverageDrawer';
 import InfoStoreDrawer from './drawer/InfoStoreDrawer/InfoStoreDrawer';
 import {useMyStore} from './hooks/useStore';
+
 import {
-  chargeWalletItemsList,
-  getNewAvatarsList,
-  leverageList,
-} from './utils/fakeData';
+  AvatarsSkeleton,
+  ChangeWalletSkeleton,
+  LeverageSkeleton,
+  TitleSectionSkeleton,
+} from '@/components/templates/Store/LoadingSections';
 
 const Store = () => {
   ///
@@ -25,6 +27,9 @@ const Store = () => {
     openChargeWallet,
     openLeverage,
     openNewAvatar,
+    chargeWalletItemsList,
+    leverageList,
+    getNewAvatarsList,
   } = useMyStore();
 
   return (
@@ -57,44 +62,71 @@ const Store = () => {
           marginTop: '10px',
         }}
         size={12}>
-        <ChargeWallet
-          chargeWalletItems={chargeWalletItemsList}
-          description="lorem lorem lorem lorem lorem lorem ...."
-          title="charge your wallet"
-        />
+        {chargeWalletItemsList.length != 0 ? (
+          <ChargeWallet
+            chargeWalletItems={chargeWalletItemsList}
+            description="lorem lorem lorem lorem lorem lorem ...."
+            title="charge your wallet"
+          />
+        ) : (
+          <>
+            <TitleSectionSkeleton />
+            <ChangeWalletSkeleton />
+          </>
+        )}
       </Grid>
-      <Grid
-        sx={{
-          backgroundColor: 'transparent',
-          borderRadius: '10px',
-          position: 'relative',
-          marginTop: '10px',
-        }}
-        size={12}>
-        <Leverage
-          leverageItems={leverageList.slice(0, 6)}
-          description="You can change your avatar and nickname ...."
-          title="Leverage"
-        />
-      </Grid>
-      <Grid
-        sx={{
-          backgroundColor: 'transparent',
-          borderRadius: '10px',
-          position: 'relative',
-          marginTop: '10px',
-        }}
-        size={12}>
-        <GetNewAvatars
-          getNewAvatars={getNewAvatarsList.slice(0, 6)}
-          description="You can change your avatar and nickname"
-          title="Get new Avatars"
-        />
-      </Grid>
+
+      {leverageList.length !== 0 ? (
+        <Grid
+          sx={{
+            backgroundColor: 'transparent',
+            borderRadius: '10px',
+            position: 'relative',
+            marginTop: '10px',
+          }}
+          size={12}>
+          <Leverage
+            leverageItems={leverageList.slice(0, 6)}
+            description="You can change your avatar and nickname ...."
+            title="Leverage"
+          />
+        </Grid>
+      ) : (
+        <>
+          <Grid>
+            <TitleSectionSkeleton />
+            <LeverageSkeleton />
+          </Grid>
+        </>
+      )}
+      {getNewAvatarsList?.length !== 0 ? (
+        <Grid
+          sx={{
+            backgroundColor: 'transparent',
+            borderRadius: '10px',
+            position: 'relative',
+            marginTop: '10px',
+          }}
+          size={12}>
+          <GetNewAvatars
+            getNewAvatars={getNewAvatarsList.slice(0, 6)}
+            description="You can change your avatar and nickname"
+            title="Get new Avatars"
+          />
+        </Grid>
+      ) : (
+        <>
+          <Grid>
+            <TitleSectionSkeleton />
+            <AvatarsSkeleton />
+          </Grid>
+        </>
+      )}
       <InfoStoreDrawer
         isInfoStoreopen={openChargeWallet}
         chargeWalletInfo={chargeWalletInfo}
       />
+
       <InfoStoreDrawer
         isInfoStoreopen={openLeverage}
         leverageInfo={leverageInfo}
