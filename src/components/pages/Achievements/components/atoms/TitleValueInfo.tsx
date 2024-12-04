@@ -23,7 +23,7 @@ const TitleValueInfo = ({img, title, value, subValue}: Props) => (
         {title}
       </Typography>
     </Box>
-    <Box>
+    <Box sx={{display: 'flex', alignItems: 'center'}}>
       <Typography marginInlineStart={'4px'} component={'span'} variant="h6">
         {value}
       </Typography>
