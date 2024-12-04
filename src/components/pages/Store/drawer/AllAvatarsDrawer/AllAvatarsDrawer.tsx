@@ -19,7 +19,7 @@ const AllAvatarsDrawerDrawer = ({
   title,
 }: Props) => (
   <FullPageDrawerContainer
-    isFixedBackWard={true}
+    isFixedBackWard={false}
     isOpen={isAllAvatarsDraweropen}
     handleCloseDrawer={handleCloseAllAvatarsDrawerDrawer}
     PageTitle={'Avatars'}>

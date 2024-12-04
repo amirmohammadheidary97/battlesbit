@@ -8,7 +8,7 @@ type State = {
 };
 
 type Action = {
-  setLeverageInfo: (leverageInfo: LeverageItemType) => void;
+  setLeverageInfo: (leverageInfo?: LeverageItemType) => void;
 };
 
 const state = create<State & Action>(set => ({

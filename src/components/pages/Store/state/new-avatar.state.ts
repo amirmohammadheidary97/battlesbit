@@ -8,7 +8,7 @@ type State = {
 };
 
 type Action = {
-  setNewAvatarInfo: (newAvatarInfo: NewAvatarsType) => void;
+  setNewAvatarInfo: (newAvatarInfo?: NewAvatarsType) => void;
 };
 
 const state = create<State & Action>(set => ({

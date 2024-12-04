@@ -1,5 +1,3 @@
-import {useEffect} from 'react';
-import {useSearchParams} from 'react-router-dom';
 import Grid from '@mui/material/Grid2';
 
 import {ChargeWallet} from './components/organisms/ChargeWallet';
@@ -9,74 +7,31 @@ import {Leverage} from './components/organisms/Leverage';
 import AllAvatarsDrawerDrawer from './drawer/AllAvatarsDrawer/AllAvatarsDrawer';
 import AllLeverageDrawerDrawer from './drawer/AllLeverageDrawer/AllLeverageDrawer';
 import InfoStoreDrawer from './drawer/InfoStoreDrawer/InfoStoreDrawer';
-import {chargeWalletState} from './state/charge-wallet.state';
-import {drawerStoreState} from './state/drawer-store.state';
-import {leverageState} from './state/leverage.state';
-import {newAvatarState} from './state/new-avatar.state';
+import {useMyStore} from './hooks/useStore';
+
 import {
-  chargeWalletItemsList,
-  getNewAvatarsList,
-  leverageList,
-} from './utils/fakeData';
+  AvatarsSkeleton,
+  ChangeWalletSkeleton,
+  LeverageSkeleton,
+  TitleSectionSkeleton,
+} from '@/components/templates/Store/LoadingSections';
 
 const Store = () => {
   ///
-  const state = useSearchParams()[0].get('state');
-  const value = useSearchParams()[0].get('value');
-  ///
   const {
-    openChargeWallet,
-    setOpenChargeWallet,
-    openLeverage,
-    setOpenLeverage,
-    openNewAvatar,
-    setOpenNewAvatar,
-    openAllLeverage,
-    setOpenAllLeverage,
+    chargeWalletInfo,
+    leverageInfo,
+    newAvatarInfo,
     openAllAvatars,
-    setOpenAllAvatars,
-  } = drawerStoreState();
-  const {chargeWalletInfo, setChargeWalletInfo} = chargeWalletState();
-  const {leverageInfo, setLeverageInfo} = leverageState();
-  const {newAvatarInfo, setNewAvatarInfo} = newAvatarState();
+    openAllLeverage,
+    openChargeWallet,
+    openLeverage,
+    openNewAvatar,
+    chargeWalletItemsList,
+    leverageList,
+    getNewAvatarsList,
+  } = useMyStore();
 
-  ///
-  useEffect(() => {
-    if (state !== null && state == 'chargewallet') setOpenChargeWallet(true);
-    else setOpenChargeWallet(false);
-    if (state !== null && state == 'leverage') setOpenLeverage(true);
-    else setOpenLeverage(false);
-    if (state !== null && state == 'newavatar') setOpenNewAvatar(true);
-    else setOpenNewAvatar(false);
-    if (state !== null && state == 'all-leverage') setOpenAllLeverage(true);
-    else setOpenAllLeverage(false);
-    if (state !== null && state == 'all-avatars') setOpenAllAvatars(true);
-    else setOpenAllAvatars(false);
-  }, [state]);
-
-  useEffect(() => {
-    if (value) {
-      const findDetialChargeWallet = chargeWalletItemsList.find(
-        item => item.id == Number(value),
-      );
-      if (findDetialChargeWallet) {
-        setChargeWalletInfo(findDetialChargeWallet);
-      }
-      const findDetialLeverage = leverageList.find(
-        item => item.id == Number(value),
-      );
-      if (findDetialLeverage) {
-        setLeverageInfo(findDetialLeverage);
-      }
-      const findDetialNewAvatar = getNewAvatarsList.find(
-        item => item.id == Number(value),
-      );
-      if (findDetialNewAvatar) {
-        setNewAvatarInfo(findDetialNewAvatar);
-      }
-    }
-  }, [value]);
-  ////
   return (
     <Grid
       container
@@ -107,44 +62,71 @@ const Store = () => {
           marginTop: '10px',
         }}
         size={12}>
-        <ChargeWallet
-          chargeWalletItems={chargeWalletItemsList}
-          description="lorem lorem lorem lorem lorem lorem ...."
-          title="charge your wallet"
-        />
+        {chargeWalletItemsList.length != 0 ? (
+          <ChargeWallet
+            chargeWalletItems={chargeWalletItemsList}
+            description="lorem lorem lorem lorem lorem lorem ...."
+            title="charge your wallet"
+          />
+        ) : (
+          <>
+            <TitleSectionSkeleton />
+            <ChangeWalletSkeleton />
+          </>
+        )}
       </Grid>
-      <Grid
-        sx={{
-          backgroundColor: 'transparent',
-          borderRadius: '10px',
-          position: 'relative',
-          marginTop: '10px',
-        }}
-        size={12}>
-        <Leverage
-          leverageItems={leverageList.slice(0, 6)}
-          description="You can change your avatar and nickname ...."
-          title="Leverage"
-        />
-      </Grid>
-      <Grid
-        sx={{
-          backgroundColor: 'transparent',
-          borderRadius: '10px',
-          position: 'relative',
-          marginTop: '10px',
-        }}
-        size={12}>
-        <GetNewAvatars
-          getNewAvatars={getNewAvatarsList.slice(0, 6)}
-          description="You can change your avatar and nickname"
-          title="Get new Avatars"
-        />
-      </Grid>
+
+      {leverageList.length !== 0 ? (
+        <Grid
+          sx={{
+            backgroundColor: 'transparent',
+            borderRadius: '10px',
+            position: 'relative',
+            marginTop: '10px',
+          }}
+          size={12}>
+          <Leverage
+            leverageItems={leverageList.slice(0, 6)}
+            description="You can change your avatar and nickname ...."
+            title="Leverage"
+          />
+        </Grid>
+      ) : (
+        <>
+          <Grid>
+            <TitleSectionSkeleton />
+            <LeverageSkeleton />
+          </Grid>
+        </>
+      )}
+      {getNewAvatarsList?.length !== 0 ? (
+        <Grid
+          sx={{
+            backgroundColor: 'transparent',
+            borderRadius: '10px',
+            position: 'relative',
+            marginTop: '10px',
+          }}
+          size={12}>
+          <GetNewAvatars
+            getNewAvatars={getNewAvatarsList.slice(0, 6)}
+            description="You can change your avatar and nickname"
+            title="Get new Avatars"
+          />
+        </Grid>
+      ) : (
+        <>
+          <Grid>
+            <TitleSectionSkeleton />
+            <AvatarsSkeleton />
+          </Grid>
+        </>
+      )}
       <InfoStoreDrawer
         isInfoStoreopen={openChargeWallet}
         chargeWalletInfo={chargeWalletInfo}
       />
+
       <InfoStoreDrawer
         isInfoStoreopen={openLeverage}
         leverageInfo={leverageInfo}

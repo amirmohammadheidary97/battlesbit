@@ -2,7 +2,6 @@ import type {ReactElement} from 'react';
 import {Drawer} from '@mui/material';
 
 import {BackwardTitle} from '@/components/molecules/BackwardTitle';
-import {BackwardTitleFixed} from '@/components/molecules/BackwardTitleFixed';
 
 type DrawerProps = {
   isOpen: boolean;
@@ -28,14 +27,17 @@ const FullPageDrawerContainer = ({
       '& .MuiDrawer-paper': {
         width: '100%',
         height: '100vh',
+        paddingBottom: '10px',
         backgroundColor: 'background.default',
+        overflowY: 'auto',
+        scrollbarWidth: 'none',
+        '-ms-overflow-style': 'none',
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
       },
     }}>
-    {isFixedBackWard ? (
-      <BackwardTitle title={PageTitle} />
-    ) : (
-      <BackwardTitleFixed title={PageTitle} />
-    )}
+    <BackwardTitle isFixedBackWard={isFixedBackWard} title={PageTitle} />
     {children}
   </Drawer>
 );

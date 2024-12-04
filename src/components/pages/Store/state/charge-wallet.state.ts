@@ -8,7 +8,7 @@ type State = {
 };
 
 type Action = {
-  setChargeWalletInfo: (chargeWalletInfo: ChargeWalletItemType) => void;
+  setChargeWalletInfo: (chargeWalletInfo?: ChargeWalletItemType) => void;
 };
 
 const state = create<State & Action>(set => ({

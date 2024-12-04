@@ -1,9 +1,9 @@
-import {useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import {styled, useTheme} from '@mui/material/styles';
 
 import ConfirmationDrawer from '../../../drawer/ConfirmationDrawer/ConfirmationDrawer';
+import {useMyStore} from '../../../hooks/useStore';
 import {DetailAvatarItem} from '../../molecules/DetailAvatar';
 import {FundsMessageItem} from '../../molecules/FundsMessage';
 
@@ -26,8 +26,8 @@ export const ChargeWalletDetail: React.FC<ChargeWalletProps> = ({
   const theme = useTheme();
 
   ///
-  const [isFunds, setIsfunds] = useState<boolean>(false);
-  const [showBuyDrawer, setShowBuyDrawer] = useState<boolean>(false);
+  const {setIsfunds, isFunds, setShowBuyDrawer, showBuyDrawer} = useMyStore();
+
   return (
     <ChargeWalletWrapper>
       <Grid container spacing={2} display="flex">
