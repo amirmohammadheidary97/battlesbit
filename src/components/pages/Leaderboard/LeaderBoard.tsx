@@ -40,6 +40,7 @@ const LeaderBoard = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        backgroundColor: theme.palette.background.default,
       }}>
       <Grid sx={{p: 1}}>
         <BackwardTitle title={'Leaderboard'} />
