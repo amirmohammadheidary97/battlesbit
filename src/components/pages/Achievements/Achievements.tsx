@@ -25,6 +25,8 @@ import {
   RectangularAchievesSkeleton,
   AchievementInfoSkeleton,
 } from "../../templates/Achievement/LoadingStages";
+import LevelSection from "./components/molecules/LevelSection";
+import LeaderBoardHero from "./components/atoms/LeaderBoardHero";
 
 const Achievements = () => {
   const {
@@ -77,6 +79,7 @@ const Achievements = () => {
         p: 2,
       }}
     >
+      <LevelSection />
       {/*  */}
       {myAchievements.length === 0 ? (
         <SelectedAchievementsSkeleton />
@@ -89,6 +92,7 @@ const Achievements = () => {
       ) : (
         <HighlightedAchieves />
       )}
+      <LeaderBoardHero />
       {/*  */}
       {allAchievements.length === 0 ? (
         <RectangularAchievesSkeleton isMyAchievement={false} />

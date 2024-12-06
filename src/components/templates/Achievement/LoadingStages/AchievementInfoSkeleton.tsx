@@ -13,8 +13,8 @@ const AchievementInfoSkeleton = () => {
         <Typography
           sx={{
             fontFamily: "Alfa Slab One",
-            fontSize: "25px",
-            lineHeight: "34.23px",
+            fontSize: "1.5625rem",
+            lineHeight: "2.139rem",
             fontWeight: "400",
             width: "70%",
           }}
@@ -25,12 +25,9 @@ const AchievementInfoSkeleton = () => {
 
       <Grid size={12} sx={{ ...flex().column().acenter().jcenter().result }}>
         <Typography
+        variant="body1"
           sx={{
             fontFamily: "Nunito Sans",
-            fontSize: "1rem",
-            lineHeight: "21.82px",
-            letterSpacing: "0.004em",
-            fontWeight: "400",
             width: "80%",
           }}
         >
