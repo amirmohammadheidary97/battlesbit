@@ -27,7 +27,7 @@ const SelectedAchievements = () => {
       <Grid size={12}>
         <Typography variant="h5">Achievements</Typography>
       </Grid>
-      <Grid size={12} mr={'-1rem'} sx={{...flex().jbetween().acenter().result}}>
+      <Grid size={12} sx={{...flex().jbetween().acenter().result}}>
         {achievementsCount > 0 &&
           achievementsCount < 4 &&
           selectedAchieves.map(ach => (

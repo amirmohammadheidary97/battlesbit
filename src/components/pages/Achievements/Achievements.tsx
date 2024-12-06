@@ -1,65 +1,135 @@
-import {useEffect, useState} from 'react';
-import {useLocation} from 'react-router';
-import {Dialog} from '@mui/material';
-import Grid from '@mui/material/Grid2';
+import { Suspense, useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { Dialog } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
-import AchievementInfo from './components/molecules/AchievementInfo';
-import AllAchievementDrawer from './components/molecules/AllAchievementDrawer';
-import HighlightedAchieves from './components/molecules/HighlightedAchieves';
-import HighlightedWithLLocked from './components/molecules/HighlightedWithLLocked';
-import InProggressAchievement from './components/molecules/InProggressAchievement';
-import MyAchievements from './components/molecules/MyAchievemts';
-import SelectedAchievements from './components/molecules/SelectedAchievements';
-import type {TAchieve} from './fakeData/fake';
+import AchievementInfo from "./components/molecules/AchievementInfo";
+import AllAchievementDrawer from "./components/molecules/AllAchievementDrawer";
+import HighlightedAchieves from "./components/molecules/HighlightedAchieves";
+import HighlightedWithLLocked from "./components/molecules/HighlightedWithLLocked";
+import InProggressAchievements from "./components/molecules/InProggressAchievements";
+import MyAchievements from "./components/molecules/MyAchievemts";
+import SelectedAchievements from "./components/molecules/SelectedAchievements";
+import {
+  AllAchievements,
+  MyAchievements as MyAchieves,
+  InProggressAchievement,
+  type TAchieve,
+} from "./fakeData/fake";
+import FullPageSkeleton from "@/components/atoms/Skeleton/FullPageSkeleton";
+import { useAchievementState } from "./state/achievement.state";
+import {
+  SelectedAchievementsSkeleton,
+  HighlightedAchievesSkeleton,
+  InProgressAchievementSkeleton,
+  RectangularAchievesSkeleton,
+  AchievementInfoSkeleton,
+} from "../../templates/Achievement/LoadingStages";
 
 const Achievements = () => {
+  const {
+    setAllAchievements,
+    setMyAcheivements,
+    setInProgressAchieves,
+    myAchievements,
+    allAchievements,
+    inProressAchieves,
+  } = useAchievementState();
+  ///
   const location = useLocation();
-  const isOpen = location.search.includes('show');
+  const isOpen = location.search.includes("show");
   //
   const [isReadable, setIsReadable] = useState<boolean>(true);
   const [selectedItem, setSelectedItem] = useState<TAchieve | undefined>();
+  const [loadingModal, setLoadingModal] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (selectedItem) {
+      setLoadingModal(true);
+      setTimeout(() => {
+        setLoadingModal(false);
+      }, 1000);
+    }
+  }, [selectedItem]);
   //
   useEffect(() => {
-    if (location.search.includes('all')) setIsReadable(true);
-    else if (location.search.includes('highlighted') || location.search === '')
+    if (location.search.includes("all")) setIsReadable(true);
+    else if (location.search.includes("highlighted") || location.search === "")
       setIsReadable(false);
   }, [location.search]);
+  ///
+  useEffect(() => {
+    setTimeout(() => {
+      setAllAchievements(AllAchievements);
+      setMyAcheivements(MyAchieves);
+      setInProgressAchieves(InProggressAchievement);
+    }, 1000);
+  }, []);
+  ///
   return (
     <Grid
       container
       size={12}
-      gap={'12px'}
-      mb={'1rem'}
+      gap={1.75}
+      mb={2}
       sx={{
-        alignItems: 'start',
-        p: '1rem',
-      }}>
+        alignItems: "start",
+        p: 2,
+      }}
+    >
       {/*  */}
-      <SelectedAchievements />
+      {myAchievements.length === 0 ? (
+        <SelectedAchievementsSkeleton />
+      ) : (
+        <SelectedAchievements />
+      )}
       {/*  */}
-      <HighlightedAchieves />
+      {myAchievements.length === 0 ? (
+        <HighlightedAchievesSkeleton />
+      ) : (
+        <HighlightedAchieves />
+      )}
       {/*  */}
-      <HighlightedWithLLocked setSelectedItem={setSelectedItem} />
+      {allAchievements.length === 0 ? (
+        <RectangularAchievesSkeleton isMyAchievement={false} />
+      ) : (
+        <HighlightedWithLLocked setSelectedItem={setSelectedItem} />
+      )}
       {/*  */}
-      <InProggressAchievement />
+      {inProressAchieves.length === 0 ? (
+        <InProgressAchievementSkeleton />
+      ) : (
+        <InProggressAchievements />
+      )}
       {/*  */}
-      <MyAchievements setSelectedItem={setSelectedItem} />
+      {myAchievements.length === 0 ? (
+        <RectangularAchievesSkeleton isMyAchievement />
+      ) : (
+        <MyAchievements setSelectedItem={setSelectedItem} />
+      )}
       {/*  */}
-      <AllAchievementDrawer
-        setSelectedItem={setSelectedItem}
-        isReadable={isReadable}
-        isOpen={isOpen}
-      />
+      <Suspense fallback={<FullPageSkeleton />}>
+        <AllAchievementDrawer
+          setSelectedItem={setSelectedItem}
+          isReadable={isReadable}
+          isOpen={isOpen}
+        />
+      </Suspense>
+
       <Dialog
-        maxWidth={'md'}
+        maxWidth={"md"}
         fullWidth
         keepMounted={false}
-        sx={{borderRadius: theme => theme.shape.borderRadius}}
+        sx={{ borderRadius: (theme) => theme.shape.borderRadius }}
         open={selectedItem !== undefined}
-        onClose={() => setSelectedItem(undefined)}>
+        onClose={() => setSelectedItem(undefined)}
+      >
         {/*  */}
-        {selectedItem && <AchievementInfo achieve={selectedItem} />}
+        {selectedItem && !loadingModal ? (
+          <AchievementInfo achieve={selectedItem} />
+        ) : (
+          selectedItem && loadingModal && <AchievementInfoSkeleton />
+        )}
         {/*  */}
       </Dialog>
     </Grid>

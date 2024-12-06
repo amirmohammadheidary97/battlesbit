@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 
-import type {TAchieve} from '../fakeData/fake';
+import type {TAchieve, TInProgressAchieves} from '../fakeData/fake';
 import {AllAchievements, MyAchievements} from '../fakeData/fake';
 
 import {createSelectors} from '@/config/zustand/selectorGenerator';
@@ -9,20 +9,24 @@ type State = {
   myAchievements: TAchieve[];
   allAchievements: TAchieve[];
   selectedAchieves: TAchieve[];
+  inProressAchieves: TInProgressAchieves[];
 };
 
 type Action = {
   setAllAchievements: (items: TAchieve[]) => void;
   setMyAcheivements: (items: TAchieve[]) => void;
   setSelectedAchieves: (item: TAchieve) => void;
+  setInProgressAchieves: (items: TInProgressAchieves[]) => void;
 };
 
 const state = create<State & Action>(set => ({
   selectedAchieves: MyAchievements.filter(ach => ach.isSelected === true) ?? [],
-  allAchievements: AllAchievements,
-  myAchievements: MyAchievements,
+  allAchievements: [],
+  myAchievements: [],
+  inProressAchieves: [],
   setAllAchievements: achieves => set(() => ({allAchievements: achieves})),
   setMyAcheivements: achieves => set(() => ({myAchievements: achieves})),
+  setInProgressAchieves: achieves => set(()=> ({inProressAchieves: achieves})),
   setSelectedAchieves: achieve =>
     set(state => {
       const myAch = [...state.myAchievements];
