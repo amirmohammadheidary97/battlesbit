@@ -1,113 +1,113 @@
-import { type Interpolation, type Theme } from "@mui/material";
-import createTheme from "@mui/material/styles/createTheme";
+import {type Interpolation, type Theme} from '@mui/material';
+import createTheme from '@mui/material/styles/createTheme';
 
-import { commonPalette, darkPalette, lightPalette } from "./constants";
+import {commonPalette, darkPalette, lightPalette} from './constants';
 
-import IBMPlexRegular from "@/assets/font/IBM_Plex_Sans/IBMPlexSans-Regular.ttf";
-import NunitoRegular from "@/assets/font/nunito/NunitoSans_10pt-Regular.ttf";
-import AlfaSlabOne from "@/assets/font/AlfaSlabOne/AlfaSlabOne-Regular.ttf";
+import AlfaSlabOne from '@/assets/font/AlfaSlabOne/AlfaSlabOne-Regular.ttf';
+import IBMPlexRegular from '@/assets/font/IBM_Plex_Sans/IBMPlexSans-Regular.ttf';
+import NunitoRegular from '@/assets/font/nunito/NunitoSans_10pt-Regular.ttf';
 
 export let theme = createTheme({});
-const getTheme = (mode: "light" | "dark") =>
+const getTheme = (mode: 'light' | 'dark') =>
   createTheme({
-    direction: "ltr",
+    direction: 'ltr',
     palette: {
       mode: mode,
       ...commonPalette,
-      ...(mode === "dark" ? darkPalette : lightPalette),
+      ...(mode === 'dark' ? darkPalette : lightPalette),
       grey1: theme.palette.augmentColor({
         color: {
-          main: "#25272f",
-          contrastText: "#fff",
+          main: '#25272f',
+          contrastText: '#fff',
         },
-        name: "grey1",
+        name: 'grey1',
       }),
       black: theme.palette.augmentColor({
         color: {
-          main: darkPalette.background?.default ?? "#000",
+          main: darkPalette.background?.default ?? '#000',
           contrastText: darkPalette.text?.secondary,
         },
-        name: "black",
+        name: 'black',
       }),
     },
-    shape: { borderRadius: 3.47 },
+    shape: {borderRadius: 3.47},
     typography: {
-      fontFamily: "Nunito Sans",
+      fontFamily: 'Nunito Sans',
       htmlFontSize: 16,
       h1: {
-        fontSize: "6.125rem",
+        fontSize: '6.125rem',
       },
       h2: {
-        fontSize: "3.75rem",
+        fontSize: '3.75rem',
       },
       h3: {
-        fontSize: "3rem",
+        fontSize: '3rem',
       },
       h4: {
-        lineHeight: "46.38px",
+        lineHeight: '46.38px',
         fontWeight: 700,
-        fontSize: "2.125rem",
+        fontSize: '2.125rem',
       },
       h5: {
-        fontSize: "1.5rem",
-        fontWeight: "bold",
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
       },
       h6: {
-        fontSize: "1.25rem",
+        fontSize: '1.25rem',
         fontWeight: 600,
-        lineHeight: "24.55px",
+        lineHeight: '24.55px',
       },
       subtitle1: {
-        fontSize: "1rem",
+        fontSize: '1rem',
       },
       subtitle2: {
-        fontSize: "0.875rem",
+        fontSize: '0.875rem',
       },
       body1: {
-        fontSize: "1rem",
-        lineHeight: "21.82px",
+        fontSize: '1rem',
+        lineHeight: '21.82px',
         fontWeight: 400,
       },
       body2: {
-        fontSize: "0.875rem",
+        fontSize: '0.875rem',
       },
       button: {
-        fontSize: "0.9375rem",
+        fontSize: '0.9375rem',
         fontWeight: 600,
-        lineHeightStep: "20.46px",
+        lineHeightStep: '20.46px',
       },
       caption: {
-        fontSize: "0.75rem",
-        lineHeight: "16.37px",
+        fontSize: '0.75rem',
+        lineHeight: '16.37px',
         fontWeight: 400,
       },
       overline: {
-        fontSize: "0.625rem",
-        fontWeight: "bold",
-        lineHeight: "11px",
+        fontSize: '0.625rem',
+        fontWeight: 'bold',
+        lineHeight: '11px',
       },
     },
     components: {
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundImage: "none !important",
+            backgroundImage: 'none !important',
           },
         },
       },
       MuiInputBase: {
         styleOverrides: {
           root: {
-            border: "none",
-            outline: "none",
-            "&::after , &::before , &:hover:before": {
-              border: "none !important",
-              outline: "none",
+            border: 'none',
+            outline: 'none',
+            '&::after , &::before , &:hover:before': {
+              border: 'none !important',
+              outline: 'none',
             },
           },
           input: {
-            border: "none",
-            outline: "none",
+            border: 'none',
+            outline: 'none',
           },
         },
       },
@@ -130,36 +130,36 @@ const getTheme = (mode: "light" | "dark") =>
     },
   });
 
-theme = getTheme("dark");
+theme = getTheme('dark');
 //
 export const globalStyles: Interpolation<Theme> = {
   html: {
-    backgroundColor: theme.palette.secondary.light + " !important",
-    overflowX: "hidden",
-    scrollbarWidth: "none",
-    "&::-webkit-scrollbar": {
-      display: "none",
+    backgroundColor: theme.palette.secondary.light + ' !important',
+    overflowX: 'hidden',
+    scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none',
     },
   },
   body: {
-    margin: "0 auto" + " !important",
+    margin: '0 auto' + ' !important',
     padding: 0,
-    maxWidth: "768px",
-    minHeight: "100vh",
-    overflowX: "hidden",
+    maxWidth: '768px',
+    minHeight: '100vh',
+    overflowX: 'hidden',
     background:
-      "radial-gradient(92.77% 33.98% at 49.11% 1.76%, #181A20 16.5%, #202229 100%)",
+      'radial-gradient(92.77% 33.98% at 49.11% 1.76%, #181A20 16.5%, #202229 100%)',
   },
-  "div#root": {
-    height: "100%",
+  'div#root': {
+    height: '100%',
   },
-  ".hide-scrollbar": {
-    scrollbarWidth: "none",
-    "&::-webkit-scrollbar": {
-      display: "none",
+  '.hide-scrollbar': {
+    scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none',
     },
   },
-  "*": {
+  '*': {
     borderRadius: theme.shape.borderRadius,
   },
 };
