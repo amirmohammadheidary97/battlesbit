@@ -4,6 +4,7 @@ import ChargeWalletItemImg2 from '@/assets/img/icons/store/charge-item-2.png';
 import ChargeWalletItemImg3 from '@/assets/img/icons/store/charge-item-3.png';
 import ChargeWalletItemImg4 from '@/assets/img/icons/store/charge-item-4.png';
 import leverageImg1 from '@/assets/img/icons/store/leverage 1.png';
+import PackageItemImg1 from '@/assets/img/icons/store/packagesimg.png';
 
 export const chargeWalletItemsList = [
   {
@@ -60,4 +61,15 @@ export const getNewAvatarsList = Array.from({length: 32}, (_, index) => ({
   currency: 'VSD',
   iconUrl: MonkeyCircleImg1,
   funds: 0,
+}));
+
+export const getPackagesList = Array.from({length: 10}, (_, index) => ({
+  id: index + 1,
+  amount: 10,
+  currency: 'VSD',
+  img: PackageItemImg1,
+  character: '3',
+  leverage: '8X',
+  status: 'PREMIUM',
+  title: 'Crazy box',
 }));

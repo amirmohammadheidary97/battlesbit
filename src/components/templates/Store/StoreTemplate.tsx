@@ -5,6 +5,7 @@ import {
   ChangeWalletSkeleton,
   HeaderSkeleton,
   LeverageSkeleton,
+  PackagesSkeleton,
   TitleSectionSkeleton,
 } from './LoadingSections';
 
@@ -32,9 +33,14 @@ export const StoreTemplate = () => (
         <TitleSectionSkeleton />
         <ChangeWalletSkeleton />
       </Grid2>
+      {/* Packages Section */}
+      <Grid2 mt={2}>
+        <TitleSectionSkeleton />
+        <PackagesSkeleton />
+      </Grid2>
 
       {/* Leverage Section */}
-      <Grid2 mt={2}>
+      <Grid2 mt={5}>
         <TitleSectionSkeleton />
         <LeverageSkeleton />
       </Grid2>

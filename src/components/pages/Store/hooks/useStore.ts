@@ -9,6 +9,7 @@ import {newAvatarState} from '../state/new-avatar.state';
 import {
   chargeWalletItemsList as chargeWalletList,
   getNewAvatarsList as getNewAvatarsListFakeData,
+  getPackagesList as packagesListFakeData,
   leverageList as leverageListFakeData,
 } from '../utils/fakeData';
 
@@ -16,6 +17,7 @@ import type {
   ChargeWalletItemType,
   LeverageItemType,
   NewAvatarsType,
+  PackagesType,
 } from '@/types/models/store';
 
 export const useMyStore = () => {
@@ -47,6 +49,7 @@ export const useMyStore = () => {
   const [getNewAvatarsList, setGetNewAvatarsList] = useState<NewAvatarsType[]>(
     [],
   );
+  const [packagesList, setPackagesList] = useState<PackagesType[]>([]);
   ///
   useEffect(() => {
     if (state !== null && state == 'chargewallet') setOpenChargeWallet(true);
@@ -111,6 +114,7 @@ export const useMyStore = () => {
       setChargeWalletItemsList(chargeWalletList);
       setLeverageList(leverageListFakeData);
       setGetNewAvatarsList(getNewAvatarsListFakeData);
+      setPackagesList(packagesListFakeData);
     }, 1500);
   }, []);
   ////
@@ -130,5 +134,6 @@ export const useMyStore = () => {
     chargeWalletItemsList,
     leverageList,
     getNewAvatarsList,
+    packagesList,
   };
 };
