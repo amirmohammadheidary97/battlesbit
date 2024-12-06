@@ -14,6 +14,7 @@ const HighlightedWithLLocked = ({
 }) => {
   const {allAchievements} = useAchievementState();
   return (
+    <Grid size={12} container px={2}>
     <Grid container size={12} rowSpacing={'0.5rem'}>
       <Grid size={12}>
         <Typography variant="subtitle1">Highlighted Achievements</Typography>
@@ -35,6 +36,7 @@ const HighlightedWithLLocked = ({
               />
             ))}
       </Grid>
+    </Grid>
     </Grid>
   );
 };

@@ -13,35 +13,38 @@ type Props = {
   isOpen: boolean;
   isReadable: boolean;
   setSelectedItem: React.Dispatch<React.SetStateAction<TAchieve | undefined>>;
+  isAllAchieves: boolean;
 };
 
-const AllAchievementDrawer = ({isOpen, isReadable, setSelectedItem}: Props) => {
-  const {myAchievements, setSelectedAchieves, selectedAchieves} =
+const AllAchievementDrawer = ({isOpen, isReadable, setSelectedItem , isAllAchieves}: Props) => {
+  const {myAchievements, setSelectedAchieves, allAchievements} =
     useAchievementState();
   return (
     <FullPageDrawerContainer
       isOpen={isOpen}
       handleCloseDrawer={() => setSelectedItem(undefined)}
-      PageTitle="My Achievements">
+      PageTitle={isAllAchieves ? "All Achievements" : "My Achievements"}>
       <Grid
         container
         p={'1rem'}
         height={'calc(100vh - 40px)'}
         sx={{...flex().column().acenter().result}}
         size={12}>
-        <Grid  gap={'8px'} size={12} container>
-          {myAchievements && myAchievements.length > 0 && myAchievements.map((achieve, i) => (
+        <Grid  spacing={1} container size={12} >
+          {(isAllAchieves ? allAchievements : myAchievements).map((achieve, i) => (
+            <Grid size={4}>
             <RectangularAchievement
               key={i}
               desc={achieve.desc}
               title={achieve.title}
-              isLocked={false}
+              isLocked={achieve.isLocked}
               isSelected={!isReadable ? achieve.isSelected : false}
               isReadable={isReadable}
               achieve={achieve}
               setSelectedItem={setSelectedItem}
               setHighlighted={!isReadable ? setSelectedAchieves : undefined}
             />
+            </Grid>
           ))}
           {myAchievements.length === 0 && 
             <Typography variant='caption'>

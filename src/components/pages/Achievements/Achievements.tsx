@@ -8,7 +8,7 @@ import AllAchievementDrawer from "./components/molecules/AllAchievementDrawer";
 import HighlightedAchieves from "./components/molecules/HighlightedAchieves";
 import HighlightedWithLLocked from "./components/molecules/HighlightedWithLLocked";
 import InProggressAchievements from "./components/molecules/InProggressAchievements";
-import MyAchievements from "./components/molecules/MyAchievemts";
+import AchievementsSection from "./components/molecules/AchievementsSection";
 import SelectedAchievements from "./components/molecules/SelectedAchievements";
 import {
   AllAchievements,
@@ -27,6 +27,7 @@ import {
 } from "../../templates/Achievement/LoadingStages";
 import LevelSection from "./components/molecules/LevelSection";
 import LeaderBoardHero from "./components/atoms/LeaderBoardHero";
+import ChallengesCarousel from "./components/molecules/ChallengesCarousel";
 
 const Achievements = () => {
   const {
@@ -55,7 +56,7 @@ const Achievements = () => {
   }, [selectedItem]);
   //
   useEffect(() => {
-    if (location.search.includes("all")) setIsReadable(true);
+    if (location.search.includes("mine") || location.search.includes("all")) setIsReadable(true);
     else if (location.search.includes("highlighted") || location.search === "")
       setIsReadable(false);
   }, [location.search]);
@@ -76,7 +77,8 @@ const Achievements = () => {
       mb={2}
       sx={{
         alignItems: "start",
-        p: 2,
+        // p: 2,
+        py: 2,
       }}
     >
       <LevelSection />
@@ -105,18 +107,33 @@ const Achievements = () => {
       ) : (
         <InProggressAchievements />
       )}
+      <ChallengesCarousel />
       {/*  */}
       {myAchievements.length === 0 ? (
         <RectangularAchievesSkeleton isMyAchievement />
       ) : (
-        <MyAchievements setSelectedItem={setSelectedItem} />
+        <AchievementsSection
+          title="My Achievements"
+          setSelectedItem={setSelectedItem}
+          isAllAchieves={false}
+        />
       )}
       {/*  */}
+      {allAchievements.length === 0 ? (
+        <RectangularAchievesSkeleton isMyAchievement />
+      ) : (
+        <AchievementsSection
+          title="All Achievements"
+          setSelectedItem={setSelectedItem}
+          isAllAchieves
+        />
+      )}
       <Suspense fallback={<FullPageSkeleton />}>
         <AllAchievementDrawer
           setSelectedItem={setSelectedItem}
           isReadable={isReadable}
           isOpen={isOpen}
+          isAllAchieves={location.search.includes('all')}
         />
       </Suspense>
 
