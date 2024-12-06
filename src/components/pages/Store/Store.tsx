@@ -47,7 +47,7 @@ const Store = () => {
         pb: '5.5rem',
         height: '100%',
       }}>
-      <Grid size={12} padding="0 10px" container spacing={3}>
+      <Grid size={12} container spacing={3}>
         <HomeHeader
           current={123}
           total={200}

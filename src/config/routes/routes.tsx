@@ -1,4 +1,3 @@
-
 import {Suspense} from 'react';
 import type {RouteObject} from 'react-router';
 import {createBrowserRouter} from 'react-router-dom';
@@ -7,6 +6,7 @@ import {
   AchievementPage,
   ChallengesPage,
   HomePage,
+  LeaderboardPage,
   LiveChallengePage,
   LoginPage,
   MakeMatchPage,
@@ -15,11 +15,11 @@ import {
   StorePage,
   WalletPage,
 } from './lazy-pages';
-
 import {PrivateOutlet} from './PrivateOutlet';
+
 import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
-import {StoreTemplate} from '@/components/templates/Store';
 import {AchievementsTemplate} from '@/components/templates/Achievement';
+import {StoreTemplate} from '@/components/templates/Store';
 
 const routeObjects: RouteObject[] = [
   {
@@ -55,18 +55,26 @@ const routeObjects: RouteObject[] = [
             element: <WalletPage />,
           },
           {
-            path: '/store',
+            path: '/achievements',
             element: (
-              <Suspense fallback={<StoreTemplate />}>
-                <StorePage />
+              <Suspense fallback={<AchievementsTemplate />}>
+                <AchievementPage />
               </Suspense>
             ),
           },
-          {
-            path: '/achievements',
-            element: <Suspense fallback={<AchievementsTemplate />}><AchievementPage /></Suspense>,
-          },
         ],
+      },
+      {
+        path: '/leader-board',
+        element: <LeaderboardPage />,
+      },
+      {
+        path: '/store',
+        element: (
+          <Suspense fallback={<StoreTemplate />}>
+            <StorePage />
+          </Suspense>
+        ),
       },
       {
         path: '/makematch',
