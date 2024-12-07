@@ -7,6 +7,8 @@ import {
   AchievementInfoSkeleton,
   HighlightedAchievesSkeleton,
   InProgressAchievementSkeleton,
+  LeaderboardSectionSkeleton,
+  LevelSectionSkeleton,
   RectangularAchievesSkeleton,
   SelectedAchievementsSkeleton,
 } from '../../templates/Achievement/LoadingStages';
@@ -47,6 +49,8 @@ const Achievements = () => {
   const [isReadable, setIsReadable] = useState<boolean>(true);
   const [selectedItem, setSelectedItem] = useState<TAchieve | undefined>();
   const [loadingModal, setLoadingModal] = useState<boolean>(false);
+  const [levelLoading, setLevelLoading] = useState<boolean>(true);
+  const [leaderLoading, setLeaderoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (selectedItem) {
@@ -69,7 +73,10 @@ const Achievements = () => {
       setAllAchievements(AllAchievements);
       setMyAcheivements(MyAchieves);
       setInProgressAchieves(InProggressAchievement);
+      setLevelLoading(false);
+      setLeaderoading(false);
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   ///
   return (
@@ -80,10 +87,9 @@ const Achievements = () => {
       mb={2}
       sx={{
         alignItems: 'start',
-        // p: 2,
         py: 2,
       }}>
-      <LevelSection />
+      {levelLoading ? <LevelSectionSkeleton /> : <LevelSection />}
       {/*  */}
       {myAchievements.length === 0 ? (
         <SelectedAchievementsSkeleton />
@@ -96,7 +102,7 @@ const Achievements = () => {
       ) : (
         <HighlightedAchieves />
       )}
-      <LeaderBoardHero />
+      {leaderLoading ? <LeaderboardSectionSkeleton /> : <LeaderBoardHero />}
       {/*  */}
       {allAchievements.length === 0 ? (
         <RectangularAchievesSkeleton isMyAchievement={false} />

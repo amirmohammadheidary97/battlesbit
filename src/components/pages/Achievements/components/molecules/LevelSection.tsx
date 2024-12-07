@@ -40,9 +40,24 @@ const LevelSection = () => (
         <Box sx={{...flex().column().gap('0.375rem').result, width: 1}}>
           <Typography variant="caption">Next Level Rewards:</Typography>
           <Box sx={{...flex().acenter().jstart().gap('0.375rem').result}}>
-            <TitleValueInfo img={Coin} title="+24.00" fs="14px" ml="0.125rem" />
-            <TitleValueInfo img={Coin} title="+24.00" fs="14px" ml="0.125rem" />
-            <TitleValueInfo img={Xp} title="+24.00" fs="14px" ml="0.125rem" />
+            <TitleValueInfo
+              img={Coin}
+              title="+24.00"
+              fs="0.875rem"
+              ml="0.125rem"
+            />
+            <TitleValueInfo
+              img={Coin}
+              title="+24.00"
+              fs="0.875rem"
+              ml="0.125rem"
+            />
+            <TitleValueInfo
+              img={Xp}
+              title="+24.00"
+              fs="0.875rem"
+              ml="0.125rem"
+            />
           </Box>
         </Box>
       </Grid>

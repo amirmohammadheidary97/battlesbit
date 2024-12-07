@@ -24,7 +24,7 @@ const HighlightedAchieves = () => {
         <Box
           width={1}
           pr={'1rem'}
-          sx={{...flex().acenter().jbetween().gap('4px').result}}>
+          sx={{...flex().acenter().jbetween().gap('0.25rem').result}}>
           {myAchievements &&
             myAchievements
               .slice(0, 6)
