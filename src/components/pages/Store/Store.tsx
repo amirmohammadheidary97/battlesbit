@@ -4,6 +4,7 @@ import {ChargeWallet} from './components/organisms/ChargeWallet';
 import {GetNewAvatars} from './components/organisms/GetNewAvatars';
 import {HomeHeader} from './components/organisms/HomeHeader';
 import {Leverage} from './components/organisms/Leverage';
+import {Packages} from './components/organisms/Packages';
 import AllAvatarsDrawerDrawer from './drawer/AllAvatarsDrawer/AllAvatarsDrawer';
 import AllLeverageDrawerDrawer from './drawer/AllLeverageDrawer/AllLeverageDrawer';
 import InfoStoreDrawer from './drawer/InfoStoreDrawer/InfoStoreDrawer';
@@ -13,6 +14,7 @@ import {
   AvatarsSkeleton,
   ChangeWalletSkeleton,
   LeverageSkeleton,
+  PackagesSkeleton,
   TitleSectionSkeleton,
 } from '@/components/templates/Store/LoadingSections';
 
@@ -30,6 +32,7 @@ const Store = () => {
     chargeWalletItemsList,
     leverageList,
     getNewAvatarsList,
+    packagesList,
   } = useMyStore();
 
   return (
@@ -44,7 +47,7 @@ const Store = () => {
         pb: '5.5rem',
         height: '100%',
       }}>
-      <Grid size={12} padding="0 10px" container spacing={3}>
+      <Grid size={12} container spacing={3}>
         <HomeHeader
           current={123}
           total={200}
@@ -75,6 +78,28 @@ const Store = () => {
           </>
         )}
       </Grid>
+
+      {packagesList?.length != 0 ? (
+        <Grid
+          sx={{
+            backgroundColor: 'transparent',
+            borderRadius: '10px',
+            position: 'relative',
+            marginTop: '10px',
+          }}
+          size={12}>
+          <Packages
+            packagesListItems={packagesList}
+            description="You can change your avatar and nickname ...."
+            title="Packages"
+          />
+        </Grid>
+      ) : (
+        <Grid sx={{width: '100%'}}>
+          <TitleSectionSkeleton />
+          <PackagesSkeleton />
+        </Grid>
+      )}
 
       {leverageList.length !== 0 ? (
         <Grid

@@ -25,3 +25,14 @@ export type NewAvatarsType = {
   currency: string;
   funds: number;
 };
+
+export type PackagesType = {
+  id: number;
+  img: string;
+  title: string;
+  leverage: string;
+  character: string;
+  amount: number;
+  currency: string;
+  status: string;
+};

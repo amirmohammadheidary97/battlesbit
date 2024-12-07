@@ -11,17 +11,21 @@ const LiveChallengePage = lazy(
 const MatchLoadingPage = lazy(() => import('@/components/pages/MatchLoading'));
 const WalletPage = lazy(() => import('@/components/pages/Wallet'));
 const StorePage = lazy(() => import('@/components/pages/Store'));
+const LeaderboardPage = lazy(() => import('@/components/pages/Leaderboard'));
 const AchievementPage = lazy(() => import('@/components/pages/Achievements'));
+const UserDetailsPage = lazy(() => import('@/components/pages/UserDetails'));
 
 export {
   AchievementPage,
   ChallengesPage,
   HomePage,
+  LeaderboardPage,
   LiveChallengePage,
   LoginPage,
   MakeMatchPage,
   MatchLoadingPage,
   OtpPage,
   StorePage,
+  UserDetailsPage,
   WalletPage,
 };
