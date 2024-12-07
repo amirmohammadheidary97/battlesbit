@@ -1,12 +1,16 @@
-import Grid from "@mui/material/Grid2";
-import ChallengesCarouselCard from "./ChallengesCarouselCard";
-import { Typography } from "@mui/material";
-import { SwiperSlide, Swiper } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import { flex } from "@/utils/flexHelper";
-import { ChallengesCards } from "../../fakeData/fake";
-import AchieveCup from "@/assets/img/icons/general/achieveCup.svg?react";
-import "swiper/css";
+import {Typography} from '@mui/material';
+import Grid from '@mui/material/Grid2';
+import {Pagination} from 'swiper/modules';
+import {Swiper, SwiperSlide} from 'swiper/react';
+
+import 'swiper/css';
+
+import {ChallengesCards} from '../../fakeData/fake';
+
+import ChallengesCarouselCard from './ChallengesCarouselCard';
+
+import AchieveCup from '@/assets/img/icons/general/achieveCup.svg?react';
+import {flex} from '@/utils/flexHelper';
 
 const ChallengesCarousel = () => (
   <Grid
@@ -14,23 +18,22 @@ const ChallengesCarousel = () => (
     size={12}
     spacing={'0.5rem'}
     sx={{
-      ".swiper": {
+      '.swiper': {
         width: 1,
         height: 1,
-        overflow: "visible",
+        overflow: 'visible',
       },
-      ".swiper-slide": {
+      '.swiper-slide': {
         ...flex().jcenter().acenter().result,
-        width: "90vw",
+        width: '90vw',
       },
-    }}
-  >
+    }}>
     <Typography variant="subtitle1" px={2}>
-      {" "}
+      {' '}
       challenges
     </Typography>
     <Swiper
-      slidesPerView={"auto"}
+      slidesPerView={'auto'}
       centeredSlides={true}
       spaceBetween={10}
       loop
@@ -38,12 +41,10 @@ const ChallengesCarousel = () => (
         clickable: true,
       }}
       modules={[Pagination]}
-      className="mySwiper"
-    >
+      className="mySwiper">
       {ChallengesCards.map((ch, i) => (
-        <SwiperSlide>
+        <SwiperSlide key={i}>
           <ChallengesCarouselCard
-            key={i}
             caption={ch.caption}
             desc={ch.desc}
             icon={AchieveCup}

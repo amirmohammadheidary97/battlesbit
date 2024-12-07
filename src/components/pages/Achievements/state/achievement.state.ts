@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 
 import type {TAchieve, TInProgressAchieves} from '../fakeData/fake';
-import {AllAchievements, MyAchievements} from '../fakeData/fake';
+import {MyAchievements} from '../fakeData/fake';
 
 import {createSelectors} from '@/config/zustand/selectorGenerator';
 
@@ -26,7 +26,7 @@ const state = create<State & Action>(set => ({
   inProressAchieves: [],
   setAllAchievements: achieves => set(() => ({allAchievements: achieves})),
   setMyAcheivements: achieves => set(() => ({myAchievements: achieves})),
-  setInProgressAchieves: achieves => set(()=> ({inProressAchieves: achieves})),
+  setInProgressAchieves: achieves => set(() => ({inProressAchieves: achieves})),
   setSelectedAchieves: achieve =>
     set(state => {
       const myAch = [...state.myAchievements];
