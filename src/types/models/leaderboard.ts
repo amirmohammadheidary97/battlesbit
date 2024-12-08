@@ -6,3 +6,9 @@ export type UserItemType = {
   amount: number;
   currency: string;
 };
+
+export type TopPlayer = {
+  numberOne: UserItemType;
+  numberTwo: UserItemType;
+  numberThree: UserItemType;
+};

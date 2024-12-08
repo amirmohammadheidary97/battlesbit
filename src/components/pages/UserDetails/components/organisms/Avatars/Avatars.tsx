@@ -10,7 +10,7 @@ type Props = {
   title: string;
   selectAvatar: number;
   avatars: UserAvatars[];
-  setSelectAvatar: React.Dispatch<React.SetStateAction<number>>;
+  setSelectAvatar: React.Dispatch<React.SetStateAction<number | undefined>>;
 };
 const Avatars: React.FC<Props> = ({
   title,

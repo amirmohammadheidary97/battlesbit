@@ -20,7 +20,9 @@ import {PrivateOutlet} from './PrivateOutlet';
 
 import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
 import {AchievementsTemplate} from '@/components/templates/Achievement';
+import {LeaderBoardTemplate} from '@/components/templates/LeaderBoard/LeaderBoardTemplate';
 import {StoreTemplate} from '@/components/templates/Store';
+import {UserDetailsSkeleton} from '@/components/templates/UserDetails';
 
 const routeObjects: RouteObject[] = [
   {
@@ -67,11 +69,19 @@ const routeObjects: RouteObject[] = [
       },
       {
         path: '/leader-board',
-        element: <LeaderboardPage />,
+        element: (
+          <Suspense fallback={<LeaderBoardTemplate />}>
+            <LeaderboardPage />
+          </Suspense>
+        ),
       },
       {
         path: '/user-details',
-        element: <UserDetailsPage />,
+        element: (
+          <Suspense fallback={<UserDetailsSkeleton />}>
+            <UserDetailsPage />
+          </Suspense>
+        ),
       },
       {
         path: '/store',

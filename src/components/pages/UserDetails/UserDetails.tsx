@@ -8,13 +8,14 @@ import {useUserDetail} from './hooks/useUserDetail';
 import {allAvatarsFakeData} from './utils/fakeData';
 
 import {BackwardTitle} from '@/components/molecules/BackwardTitle';
+import {UserDetailsSkeleton} from '@/components/templates/UserDetails';
 
 const UserDetails = () => {
   const theme = useTheme();
   ///
   const {selectAvatar, setSelectAvatar} = useUserDetail();
 
-  return (
+  return selectAvatar ? (
     <Grid
       container
       spacing={3}
@@ -56,6 +57,12 @@ const UserDetails = () => {
           </Button>
         </Grid>
       </Grid>
+    </Grid>
+  ) : (
+    <Grid spacing={3} p={1}>
+      <BackwardTitle title={'User details'} />
+
+      <UserDetailsSkeleton />
     </Grid>
   );
 };

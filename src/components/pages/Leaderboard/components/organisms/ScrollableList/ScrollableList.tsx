@@ -2,14 +2,16 @@ import {List} from '@mui/material';
 import type {Grid2Props} from '@mui/material/Grid2';
 import Grid from '@mui/material/Grid2';
 
-import {getLeaderBoardUsersList} from '../../../utils/fakeData';
 import {UserItem} from '../../molecules/UserItem';
+
+import type {UserItemType} from '@/types/models/leaderboard';
 
 type Props = {
   containerProps?: Grid2Props;
+  leaderBoardList: UserItemType[];
 };
 
-const ScrollableList = ({containerProps}: Props) => (
+const ScrollableList = ({containerProps, leaderBoardList}: Props) => (
   <Grid
     container
     sx={{
@@ -41,9 +43,8 @@ const ScrollableList = ({containerProps}: Props) => (
       overflow={'auto'}
       size={12}>
       <List>
-        {getLeaderBoardUsersList.map(item => (
-          <UserItem {...item} key={item?.id} />
-        ))}
+        {leaderBoardList &&
+          leaderBoardList.map(item => <UserItem {...item} key={item?.id} />)}
       </List>
     </Grid>
   </Grid>
