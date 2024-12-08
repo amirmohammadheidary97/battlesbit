@@ -1,33 +1,32 @@
-import { Box, Stack, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import {Box, Stack, Typography} from '@mui/material';
+import Grid from '@mui/material/Grid2';
 
-import NavigateButton from "../atoms/NavigateButtons";
-import { navButton, selectBalanceOptions } from "../fakeData/data";
-import SelectionComponent from "../molecules/BalanceTypeSelection";
-import WalletBalanceAmount from "../molecules/moneyAmount";
+import NavigateButton from '../atoms/NavigateButtons';
+import {navButton, selectBalanceOptions} from '../fakeData/data';
+import SelectionComponent from '../molecules/BalanceTypeSelection';
+import WalletBalanceAmount from '../molecules/moneyAmount';
 
-import { flex } from "@/utils/flexHelper";
-import { numberWithCommas } from "@/utils/money-number-fromatter";
+import {flex} from '@/utils/flexHelper';
+import {numberWithCommas} from '@/utils/money-number-fromatter';
 
 const WalletInfo = () => (
   <Stack
     useFlexGap
-    gap={"4px"}
+    gap={'0.25rem'}
     sx={{
       width: 1,
-      position: "relative",
-      zIndex: "3 !important",
-    }}
-  >
-    <Box sx={{ ...flex().jcenter().acenter().result, width: 1 }}>
+      position: 'relative',
+      zIndex: '3 !important',
+    }}>
+    <Box sx={{...flex().jcenter().acenter().result, width: 1}}>
       <SelectionComponent
         options={selectBalanceOptions}
-        formControlProps={{ sx: { width: "50%" } }}
+        formControlProps={{sx: {width: '50%'}}}
         withPicture={false}
       />
     </Box>
     <WalletBalanceAmount floatSize="28px" integerSize="48px" amount={12500} />
-    <Grid container alignItems={"center"} size={12}>
+    <Grid container alignItems={'center'} size={12}>
       <Grid size={7}>
         <Typography variant="caption">
           VSD balance: $ {`${numberWithCommas(12500)}`}
@@ -35,22 +34,21 @@ const WalletInfo = () => (
       </Grid>
       <Grid
         sx={{
-          display: "flex",
-          justifyContent: "end",
-          alignItems: "center",
+          display: 'flex',
+          justifyContent: 'end',
+          alignItems: 'center',
         }}
-        size={5}
-      >
+        size={5}>
         <Typography variant="caption">
-          Pnl:{" "}
-          <Typography variant="caption" sx={{ color: "success.main" }}>
+          Pnl:{' '}
+          <Typography variant="caption" sx={{color: 'success.main'}}>
             +{numberWithCommas(200.6)}
           </Typography>
         </Typography>
       </Grid>
     </Grid>
-    <Box sx={{ ...flex().acenter().jbetween().result, width: 1, gap: "8px" }}>
-      {navButton.map((item) => (
+    <Box sx={{...flex().acenter().jbetween().result, width: 1, gap: '8px'}}>
+      {navButton.map(item => (
         <NavigateButton icon={item.icon} title={item.title} key={item.title} />
       ))}
     </Box>

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {lazy, Suspense, useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router';
 import {Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
@@ -6,13 +6,19 @@ import Grid from '@mui/material/Grid2';
 import DepositItem from '../../molecules/DepositItem';
 import FullPageDrawerContainer from '../../organism/DrawerContainer';
 
-import BitcoinGenerateLinkDrawer from './BitcoinGenerateLinkDrawer';
+// import BitcoinGenerateLinkDrawer from './BitcoinGenerateLinkDrawer';
 import NetworkSelectionDrawer from './NetworkSelectionDrawer';
-import PaypalDrawer from './PaypalDrawer';
 
+// import PaypalDrawer from './PaypalDrawer';
+import BitcoinGenerateLinkDrawerSkeleton from '@/components/templates/Wallet/LoadingStages/BitcoinGenerateSkeleton';
+import PaypalDrawerSkeleton from '@/components/templates/Wallet/LoadingStages/PaypalDrawerSkeleton';
 import {theme} from '@/config/theme';
 import {flex} from '@/utils/flexHelper';
 
+const PaypalDrawer = lazy(() => import('./PaypalDrawer'));
+const BitcoinGenerateLinkDrawer = lazy(
+  () => import('./BitcoinGenerateLinkDrawer'),
+);
 type Props = {
   isDepositopen: boolean;
   handleCloseDepositDrawer?: () => void;
@@ -92,9 +98,14 @@ const DepositDrawer = ({handleCloseDepositDrawer, isDepositopen}: Props) => {
               setOpenNetworkOptionDrawer={setOpenNetworkOptionDrawer}
             />
             {/*  */}
-            <BitcoinGenerateLinkDrawer isOpen={isBitcoinNetworkSelected} />
+
+            <Suspense fallback={<BitcoinGenerateLinkDrawerSkeleton isOpen />}>
+              <BitcoinGenerateLinkDrawer isOpen={isBitcoinNetworkSelected} />
+            </Suspense>
             {/*  */}
-            <PaypalDrawer isOpen={isPaypalSelected} />
+            <Suspense fallback={<PaypalDrawerSkeleton isOpen />}>
+              <PaypalDrawer isOpen={isPaypalSelected} />
+            </Suspense>
             {/*  */}
           </Grid>
         </Grid>
