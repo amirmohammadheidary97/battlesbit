@@ -1,11 +1,9 @@
-import {Typography} from '@mui/material';
+import {Skeleton, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import {Pagination} from 'swiper/modules';
-import {Swiper, SwiperSlide} from 'swiper/react';
 
 import 'swiper/css';
 
-import ChallengesCarouselCardSkeleton from './ChallengesCarouselCard';
+import ChallengesCarouselCardSkeleton from './ChallengesCarouselCardSkeleton';
 
 import {flex} from '@/utils/flexHelper';
 
@@ -14,6 +12,7 @@ const ChallengesCarouselSkeleton = () => (
     container
     size={12}
     spacing={'0.5rem'}
+    px={2}
     sx={{
       '.swiper': {
         width: 1,
@@ -25,11 +24,12 @@ const ChallengesCarouselSkeleton = () => (
         width: '90vw',
       },
     }}>
-    <Typography variant="subtitle1" px={2}>
+    <Typography variant="subtitle1">
       {' '}
-      challenges
+      <Skeleton width={80} />
     </Typography>
-    <Swiper
+    <ChallengesCarouselCardSkeleton />
+    {/* <Swiper
       slidesPerView={'auto'}
       centeredSlides={true}
       spaceBetween={10}
@@ -49,7 +49,7 @@ const ChallengesCarouselSkeleton = () => (
           </SwiperSlide>
         ),
       )}
-    </Swiper>
+    </Swiper> */}
   </Grid>
 );
 

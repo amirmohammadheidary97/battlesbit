@@ -1,7 +1,7 @@
 import {Grid2} from '@mui/material';
 
 import {
-  ChallengesCarouselCard,
+  ChallengesCarouselSkeleton,
   HighlightedAchievesSkeleton,
   InProgressAchievementSkeleton,
   LeaderboardSectionSkeleton,
@@ -29,7 +29,9 @@ export const AchievementsTemplate = () => (
     {/*  */}
     <InProgressAchievementSkeleton />
     {/*  */}
-    <ChallengesCarouselCard />
+    <ChallengesCarouselSkeleton />
+    {/*  */}
+    <RectangularAchievesSkeleton isMyAchievement />
     {/*  */}
     <RectangularAchievesSkeleton isMyAchievement />
   </Grid2>

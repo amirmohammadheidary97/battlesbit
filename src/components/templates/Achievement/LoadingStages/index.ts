@@ -1,5 +1,5 @@
 import AchievementInfoSkeleton from './AchievementInfoSkeleton';
-import ChallengesCarouselCard from './ChallengesCarouselCard';
+import ChallengesCarouselCard from './ChallengesCarouselCardSkeleton';
 import ChallengesCarouselSkeleton from './ChallengesCarouselSkeleton';
 import HighlightedAchievesSkeleton from './HighlightedAchievesSkeleton';
 import InProgressAchievementSkeleton from './InProgressAchievesSkeleton';

@@ -25,21 +25,13 @@ const ChallengesCarouselCardSkeleton = () => (
       </Box>
     </Grid>
     <Grid size={12}>
-      <Typography variant="caption">
-        <Skeleton width="5rem" />
+      <Typography width={1} variant="caption">
+        <Skeleton width="100%" height={'calc(21.4px * 3 )'} />
       </Typography>
     </Grid>
     <Grid size={12}>
-      <Typography
-        variant="h5"
-        sx={{span: {color: 'primary'}, ...flex().jcenter().gap(0.5).result}}>
-        <Box>
-          <Skeleton width="3rem" height="1rem" />
-          <Skeleton width="2rem" height="1rem" />
-        </Box>
-        <Typography variant="inherit" component={'span'}>
-          <Skeleton width="4rem" />
-        </Typography>
+      <Typography variant="h5" sx={{...flex().jcenter().gap(0.5).result}}>
+        <Skeleton width={180} />
       </Typography>
     </Grid>
     <Grid size={12}>

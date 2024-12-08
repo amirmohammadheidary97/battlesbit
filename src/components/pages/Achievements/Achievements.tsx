@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid2';
 
 import {
   AchievementInfoSkeleton,
+  ChallengesCarouselSkeleton,
   HighlightedAchievesSkeleton,
   InProgressAchievementSkeleton,
   LeaderboardSectionSkeleton,
@@ -51,6 +52,7 @@ const Achievements = () => {
   const [loadingModal, setLoadingModal] = useState<boolean>(false);
   const [levelLoading, setLevelLoading] = useState<boolean>(true);
   const [leaderLoading, setLeaderoading] = useState<boolean>(true);
+  const [carouselLoading, setCarouselLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (selectedItem) {
@@ -75,6 +77,7 @@ const Achievements = () => {
       setInProgressAchieves(InProggressAchievement);
       setLevelLoading(false);
       setLeaderoading(false);
+      setCarouselLoading(false);
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -115,7 +118,11 @@ const Achievements = () => {
       ) : (
         <InProggressAchievements />
       )}
-      <ChallengesCarousel />
+      {carouselLoading ? (
+        <ChallengesCarouselSkeleton />
+      ) : (
+        <ChallengesCarousel />
+      )}
       {/*  */}
       {myAchievements.length === 0 ? (
         <RectangularAchievesSkeleton isMyAchievement />
