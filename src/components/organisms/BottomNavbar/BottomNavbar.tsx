@@ -17,7 +17,8 @@ const navigationItems = [
   },
   {
     icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/0abae68e375a0d4e44721cf728d2dc38eb398c693a6be713c608b4cc1aa990a8?apiKey=305c4308d1064f65b99840ae6fe4e523&',
-    label: 'Settings',
+    label: 'Profile',
+    path: '/profile',
   },
   {
     icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/e139d8baff6cacd5e07c4cb81f74e51f32915e1c24ba37df2f9af79c82dbf5ac?apiKey=305c4308d1064f65b99840ae6fe4e523&',

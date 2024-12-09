@@ -12,6 +12,7 @@ import {
   MakeMatchPage,
   MatchLoadingPage,
   OtpPage,
+  ProfilePage,
   StorePage,
   UserDetailsPage,
   WalletPage,
@@ -21,6 +22,7 @@ import {PrivateOutlet} from './PrivateOutlet';
 import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
 import {AchievementsTemplate} from '@/components/templates/Achievement';
 import {LeaderBoardTemplate} from '@/components/templates/LeaderBoard/LeaderBoardTemplate';
+import ProfileSkeleton from '@/components/templates/Profile/ProfileSkeleton';
 import {StoreTemplate} from '@/components/templates/Store';
 import {UserDetailsSkeleton} from '@/components/templates/UserDetails';
 
@@ -56,6 +58,14 @@ const routeObjects: RouteObject[] = [
           {
             path: '/wallet',
             element: <WalletPage />,
+          },
+          {
+            path: '/profile',
+            element: (
+              <Suspense fallback={<ProfileSkeleton />}>
+                <ProfilePage />
+              </Suspense>
+            ),
           },
           {
             path: '/achievements',
