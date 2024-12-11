@@ -16,7 +16,7 @@ const InfoBox = ({info}: {info: Info}) => (
       </Box>
     </Box>
     <Typography
-      sx={{font: '12px nunito sans', letterSpacing: '0.4%'}}
+      sx={{font: '12px Nunito Sans', letterSpacing: '0.4%'}}
       variant="caption">
       {info.victoryRate}% victory rate
     </Typography>
@@ -29,12 +29,11 @@ const InfoBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center
-  gap: 4px;
-  width: 86px;
+  gap: 0.25rem;
 `;
 
 const Name = styled.span`
-  font: 28px Nunito Sans sans-serif;
+  font: 1.75rem Nunito Sans sans-serif;
   font-weight: 400;
   text-transform: capitalize;
 `;
@@ -45,7 +44,7 @@ const LevelNumber = styled.span`
 `;
 
 const LevelText = styled.span`
-  font: 8px Nunito Sans sans-serif;
+  font: 0.5rem Nunito Sans sans-serif;
   font-weight: 400;
   margin-left: 2px;
 `;

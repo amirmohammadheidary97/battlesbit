@@ -23,26 +23,27 @@ const InfoAboutPlayer = ({
   isSmashAnimationEnded: Boolean;
 }) => (
   <Grid
-    width={'100%'}
-    height={'60px'}
+    size={12}
+    height={'3.75rem'}
     bgcolor={'#181A2080'}
     container
     sx={{
-      backdropFilter: 'blur(4px)',
+      backdropFilter: 'blur(0.25rem)',
       position: 'absolute',
       transition: '0.4s',
       opacity: isSmashAnimationEnded ? 1 : 0,
       bottom: 0,
-      borderBottomLeftRadius: '8px',
-      borderBottomLRightRadius: '8px',
+      borderBottomLeftRadius: '0.5rem',
+      borderBottomLRightRadius: '0.5rem',
       ...flex().jcenter().acenter().result,
     }}>
-    <Grid size={8} sx={{...flex().acenter().jbetween().result}}>
+    <Grid size={10.5} sx={{...flex().acenter().jbetween().result, ml: 3}}>
       <InfoBox info={challengersInfo.yours} />
       <Typography
         sx={{
-          font: '30px Alfa Slab One',
+          font: '1.875rem Alfa Slab One',
           color: theme.palette.primary.main,
+          lineHeight: '2.56rem',
         }}>
         Vs
       </Typography>

@@ -78,7 +78,11 @@ const routeObjects: RouteObject[] = [
       },
       {
         path: '/matchloading',
-        element: <MatchLoadingPage />,
+        element: (
+          <Suspense fallback={<></>}>
+            <MatchLoadingPage />
+          </Suspense>
+        ),
       },
     ],
   },
