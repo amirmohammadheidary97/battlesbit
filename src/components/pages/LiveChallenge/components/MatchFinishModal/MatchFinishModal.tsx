@@ -1,11 +1,11 @@
-import { lazy, Suspense } from 'react';
-import { useWindowSize } from 'react-use';
-import { Modal } from '@mui/material';
+import {lazy, Suspense} from 'react';
+import {useWindowSize} from 'react-use';
+import {Modal} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import { useMatchState } from '../../state/match.state';
+import {useMatchState} from '../../state/match.state';
 
-import { looseAnimation, winAnimation } from './animations';
+import {looseAnimation, winAnimation} from './animations';
 
 const WinCard = lazy(() => import('./Cards/Win'));
 const LooseCard = lazy(() => import('./Cards/Loose'));
@@ -21,9 +21,9 @@ type Props = {
   matchFinishModalType: matchFinishModalType;
 };
 
-export const MatchFinishModal = ({ matchFinishModalType }: Props) => {
-  const { stage } = useMatchState();
-  const { width } = useWindowSize();
+export const MatchFinishModal = ({matchFinishModalType}: Props) => {
+  const {stage} = useMatchState();
+  const {width} = useWindowSize();
   const isOpen = () => {
     if (matchFinishModalType === 'win' && stage === 'win') return true;
     if (matchFinishModalType === 'loose' && stage === 'loose') return true;
@@ -34,7 +34,7 @@ export const MatchFinishModal = ({ matchFinishModalType }: Props) => {
   };
 
   return (
-    <Modal open={isOpen()} onClose={() => { }}>
+    <Modal open={isOpen()} onClose={() => {}}>
       <Grid
         container
         size={12}

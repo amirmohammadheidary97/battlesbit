@@ -10,10 +10,9 @@ export type TAchieve = {
 export type TInProgressAchieves = {
   title: string;
   desc: string;
-  progress:number;
+  progress: number;
   total: number;
-
-}
+};
 
 export const MyAchievements: TAchieve[] = [
   {
@@ -138,7 +137,7 @@ export const AllAchievements: TAchieve[] = [
   {id: 13, title: 'Predator13', desc: 'win 20 games in row', isLocked: true},
 ];
 
-export const InProggressAchievement : TInProgressAchieves[] = [
-  {title: "Predator" , progress : 4 , total: 20, desc: "win 20 games in a row" },
-  {title: "Predator" , progress : 4 , total: 15, desc: "win 20 games in a row" },
-]
+export const InProggressAchievement: TInProgressAchieves[] = [
+  {title: 'Predator', progress: 4, total: 20, desc: 'win 20 games in a row'},
+  {title: 'Predator', progress: 4, total: 15, desc: 'win 20 games in a row'},
+];

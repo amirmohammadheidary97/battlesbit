@@ -1,13 +1,13 @@
-import SelectedAchievementsSkeleton from "./SelectedAchievementsSkeleton";
-import HighlightedAchievesSkeleton from "./HighlightedAchievesSkeleton";
-import InProgressAchievementSkeleton from "./InProgressAchievesSkeleton";
-import RectangularAchievesSkeleton from "./RectangularAchievesSkeleton";
-import AchievementInfoSkeleton from "./AchievementInfoSkeleton";
+import AchievementInfoSkeleton from './AchievementInfoSkeleton';
+import HighlightedAchievesSkeleton from './HighlightedAchievesSkeleton';
+import InProgressAchievementSkeleton from './InProgressAchievesSkeleton';
+import RectangularAchievesSkeleton from './RectangularAchievesSkeleton';
+import SelectedAchievementsSkeleton from './SelectedAchievementsSkeleton';
 
 export {
-  SelectedAchievementsSkeleton,
+  AchievementInfoSkeleton,
   HighlightedAchievesSkeleton,
   InProgressAchievementSkeleton,
   RectangularAchievesSkeleton,
-  AchievementInfoSkeleton,
+  SelectedAchievementsSkeleton,
 };

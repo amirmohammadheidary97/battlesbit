@@ -1,13 +1,12 @@
-import { Button, Typography } from '@mui/material';
+import {Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import LooserPanda from '@/assets/img/bg/looser-panda.png';
 import LooserPandaBg from '@/assets/img/bg/looser-panda-bg.png';
 import MD from '@/assets/img/bg/middle-finger.png';
-import { theme } from '@/config/theme';
+import {theme} from '@/config/theme';
 
-const LooseCard = () => {
-  return <>
+const LooseCard = () => (
+  <>
     {/* Image */}
     <Grid
       size={11}
@@ -48,11 +47,7 @@ const LooseCard = () => {
         zIndex: 2,
       }}>
       <Grid size={12}>
-        <Typography
-          variant="h5"
-          align="center"
-          gutterBottom
-          color="primary">
+        <Typography variant="h5" align="center" gutterBottom color="primary">
           {/* Great Job! */}
           Fuckin Looser!
         </Typography>
@@ -68,12 +63,12 @@ const LooseCard = () => {
           variant="contained"
           color="primary"
           fullWidth
-          sx={{ height: '3rem' }}>
+          sx={{height: '3rem'}}>
           Next
         </Button>
       </Grid>
     </Grid>
   </>
-}
+);
 
 export default LooseCard;

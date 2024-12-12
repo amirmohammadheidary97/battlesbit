@@ -1,8 +1,8 @@
-import { Share } from '@mui/icons-material';
-import { Box, Button, Icon, Typography } from '@mui/material';
+import {Share} from '@mui/icons-material';
+import {Box, Button, Icon, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import type { TAchieve } from '../../fakeData/fake';
+import type {TAchieve} from '../../fakeData/fake';
 import CustomLinearProgress from '../atoms/CustomLinearProgress';
 import TitleValueInfo from '../atoms/TitleValueInfo';
 
@@ -14,12 +14,12 @@ import Timer from '@/assets/img/icons/general/timer.svg?react';
 type Props = {
   achieve: TAchieve;
 };
-const AchievementInfo = ({ achieve }: Props) => {
+const AchievementInfo = ({achieve}: Props) => {
   const time = '35:59:08';
   return (
     <Grid size={12} p={'1rem'} gap={'0.5rem'} container>
       <Grid position={'relative'} size={12} textAlign={'center'}>
-        <Icon component={AchieveCup} sx={{ fontSize: '141px' }} />
+        <Icon component={AchieveCup} sx={{fontSize: '141px'}} />
         {achieve.isLocked && (
           <>
             <Box
@@ -49,7 +49,7 @@ const AchievementInfo = ({ achieve }: Props) => {
       </Grid>
       <Grid size={12} textAlign={'center'}>
         {achieve.isLocked && (
-          <Typography variant="h5" sx={{ span: { color: 'primary' } }}>
+          <Typography variant="h5" sx={{span: {color: 'primary'}}}>
             {time.split(':').map((t, index, arr) => (
               <Box component={'span'} key={index}>
                 {t}
@@ -104,7 +104,7 @@ const AchievementInfo = ({ achieve }: Props) => {
           fullWidth
           color="primary"
           startIcon={<Share />}
-          sx={{ borderRadius: theme => theme.shape.borderRadius }}>
+          sx={{borderRadius: theme => theme.shape.borderRadius}}>
           share
         </Button>
       </Grid>
