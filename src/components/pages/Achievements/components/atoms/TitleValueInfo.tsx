@@ -8,25 +8,32 @@ type Props = {
     }
   >;
   title: string;
-  value: string;
+  value?: string;
   subValue?: string;
+  ml?: string;
+  fs?: string;
 };
-const TitleValueInfo = ({img, title, value, subValue}: Props) => (
-  <Grid sx={{display: 'flex', alignItems: 'center'}} size={12}>
+const TitleValueInfo = ({img, title, value, subValue, ml, fs}: Props) => (
+  <Grid sx={{display: 'flex', alignItems: 'center', p: 0}} size={'auto'}>
     <Box sx={{display: 'flex', alignItems: 'center'}}>
-      <Icon component={img} sx={{fontSize: '15px'}} />
+      <Icon component={img} sx={{fontSize: fs ?? undefined}} />
       <Typography
         variant="caption"
         component={'span'}
-        ml={'0.5rem'}
+        ml={ml ?? undefined}
         color="primary">
         {title}
       </Typography>
     </Box>
     <Box sx={{display: 'flex', alignItems: 'center'}}>
-      <Typography marginInlineStart={'4px'} component={'span'} variant="h6">
-        {value}
-      </Typography>
+      {value && (
+        <Typography
+          marginInlineStart={'0.25rem'}
+          component={'span'}
+          variant="h6">
+          {value}
+        </Typography>
+      )}
       {subValue && (
         <Typography
           variant="h6"

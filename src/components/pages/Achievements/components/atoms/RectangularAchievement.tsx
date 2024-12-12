@@ -33,7 +33,6 @@ const RectangularAchievement = ({
   };
   return (
     <Box
-      width={'109px'}
       p={'0.625rem'}
       sx={{
         borderRadius: theme => theme.shape.borderRadius,

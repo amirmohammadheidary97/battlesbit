@@ -5,18 +5,24 @@ import Grid from '@mui/material/Grid2';
 
 import {
   AchievementInfoSkeleton,
+  ChallengesCarouselSkeleton,
   HighlightedAchievesSkeleton,
   InProgressAchievementSkeleton,
+  LeaderboardSectionSkeleton,
+  LevelSectionSkeleton,
   RectangularAchievesSkeleton,
   SelectedAchievementsSkeleton,
 } from '../../templates/Achievement/LoadingStages';
 
+import LeaderBoardHero from './components/atoms/LeaderBoardHero';
 import AchievementInfo from './components/molecules/AchievementInfo';
+import AchievementsSection from './components/molecules/AchievementsSection';
 import AllAchievementDrawer from './components/molecules/AllAchievementDrawer';
+import ChallengesCarousel from './components/molecules/ChallengesCarousel';
 import HighlightedAchieves from './components/molecules/HighlightedAchieves';
 import HighlightedWithLLocked from './components/molecules/HighlightedWithLLocked';
 import InProggressAchievements from './components/molecules/InProggressAchievements';
-import MyAchievements from './components/molecules/MyAchievemts';
+import LevelSection from './components/molecules/LevelSection';
 import SelectedAchievements from './components/molecules/SelectedAchievements';
 import {
   AllAchievements,
@@ -44,6 +50,9 @@ const Achievements = () => {
   const [isReadable, setIsReadable] = useState<boolean>(true);
   const [selectedItem, setSelectedItem] = useState<TAchieve | undefined>();
   const [loadingModal, setLoadingModal] = useState<boolean>(false);
+  const [levelLoading, setLevelLoading] = useState<boolean>(true);
+  const [leaderLoading, setLeaderoading] = useState<boolean>(true);
+  const [carouselLoading, setCarouselLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (selectedItem) {
@@ -55,7 +64,8 @@ const Achievements = () => {
   }, [selectedItem]);
   //
   useEffect(() => {
-    if (location.search.includes('all')) setIsReadable(true);
+    if (location.search.includes('mine') || location.search.includes('all'))
+      setIsReadable(true);
     else if (location.search.includes('highlighted') || location.search === '')
       setIsReadable(false);
   }, [location.search]);
@@ -65,6 +75,9 @@ const Achievements = () => {
       setAllAchievements(AllAchievements);
       setMyAcheivements(MyAchieves);
       setInProgressAchieves(InProggressAchievement);
+      setLevelLoading(false);
+      setLeaderoading(false);
+      setCarouselLoading(false);
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -77,8 +90,9 @@ const Achievements = () => {
       mb={2}
       sx={{
         alignItems: 'start',
-        p: 2,
+        py: 2,
       }}>
+      {levelLoading ? <LevelSectionSkeleton /> : <LevelSection />}
       {/*  */}
       {myAchievements.length === 0 ? (
         <SelectedAchievementsSkeleton />
@@ -91,6 +105,7 @@ const Achievements = () => {
       ) : (
         <HighlightedAchieves />
       )}
+      {leaderLoading ? <LeaderboardSectionSkeleton /> : <LeaderBoardHero />}
       {/*  */}
       {allAchievements.length === 0 ? (
         <RectangularAchievesSkeleton isMyAchievement={false} />
@@ -103,18 +118,37 @@ const Achievements = () => {
       ) : (
         <InProggressAchievements />
       )}
+      {carouselLoading ? (
+        <ChallengesCarouselSkeleton />
+      ) : (
+        <ChallengesCarousel />
+      )}
       {/*  */}
       {myAchievements.length === 0 ? (
         <RectangularAchievesSkeleton isMyAchievement />
       ) : (
-        <MyAchievements setSelectedItem={setSelectedItem} />
+        <AchievementsSection
+          title="My Achievements"
+          setSelectedItem={setSelectedItem}
+          isAllAchieves={false}
+        />
       )}
       {/*  */}
+      {allAchievements.length === 0 ? (
+        <RectangularAchievesSkeleton isMyAchievement />
+      ) : (
+        <AchievementsSection
+          title="All Achievements"
+          setSelectedItem={setSelectedItem}
+          isAllAchieves
+        />
+      )}
       <Suspense fallback={<FullPageSkeleton />}>
         <AllAchievementDrawer
           setSelectedItem={setSelectedItem}
           isReadable={isReadable}
           isOpen={isOpen}
+          isAllAchieves={location.search.includes('all')}
         />
       </Suspense>
 

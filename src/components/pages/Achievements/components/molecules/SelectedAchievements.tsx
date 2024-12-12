@@ -15,34 +15,36 @@ const SelectedAchievements = () => {
   const achievementsCount = selectedAchieves ? selectedAchieves.length : 0;
 
   return (
-    <Grid
-      container
-      size={12}
-      rowSpacing={'1rem'}
-      sx={{
-        p: '1rem',
-        bgcolor: 'background.paper',
-        borderRadius: theme => theme.shape.borderRadius,
-      }}>
-      <Grid size={12}>
-        <Typography variant="h5">Achievements</Typography>
-      </Grid>
-      <Grid size={12} sx={{...flex().jbetween().acenter().result}}>
-        {achievementsCount > 0 &&
-          achievementsCount < 4 &&
-          selectedAchieves.map(ach => (
-            <CircularAchievement
-              key={ach.id}
-              isFullWidth
-              isSelected
-              title={ach.title}
-            />
-          ))}
-        {achievementsCount === 3
-          ? null
-          : Array(3 - achievementsCount)
-              .fill(null)
-              .map((_, index) => <EmptyPlaceholder key={index} />)}
+    <Grid size={12} container px={2}>
+      <Grid
+        container
+        size={12}
+        rowSpacing={'1rem'}
+        sx={{
+          p: '1rem',
+          bgcolor: 'background.paper',
+          borderRadius: theme => theme.shape.borderRadius,
+        }}>
+        <Grid size={12}>
+          <Typography variant="h5">Achievements</Typography>
+        </Grid>
+        <Grid size={12} sx={{...flex().jbetween().acenter().result}}>
+          {achievementsCount > 0 &&
+            achievementsCount < 4 &&
+            selectedAchieves.map(ach => (
+              <CircularAchievement
+                key={ach.id}
+                isFullWidth
+                isSelected
+                title={ach.title}
+              />
+            ))}
+          {achievementsCount === 3
+            ? null
+            : Array(3 - achievementsCount)
+                .fill(null)
+                .map((_, index) => <EmptyPlaceholder key={index} />)}
+        </Grid>
       </Grid>
     </Grid>
   );

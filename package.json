@@ -56,6 +56,7 @@
     "react-toastify": "^10.0.5",
     "react-use": "^17.5.1",
     "subscriptions-transport-ws": "^0.11.0",
+    "swiper": "^11.1.15",
     "urql": "^4.1.0",
     "zustand": "^4.5.2"
   },

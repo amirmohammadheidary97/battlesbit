@@ -1,21 +1,33 @@
-import {Suspense, useEffect, useState} from 'react';
+import {lazy, Suspense, useEffect, useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import Grid from '@mui/material/Grid2';
 
 import {AnimatedBackgroundImgs} from './components/atoms/AnimatedShapes';
-import DepositDrawer from './components/drawers/depositDrawer/DepositDrawer';
-import TransferDrawer from './components/drawers/TransferDrawer/TransferDrawer';
 import ScrollableList from './components/organism/ScrollableList';
 import WalletInfo from './components/organism/WalletInfo';
 
+import {
+  DepositDrawerSkeleton,
+  ScrollableListSkeleton,
+  WalletInfoSkeleton,
+} from '@/components/templates/Wallet/LoadingStages';
+import TransferDrawerSkeleton from '@/components/templates/Wallet/LoadingStages/TransferDrawerSkeleton';
 import {flex} from '@/utils/flexHelper';
 
+const TransferDrawer = lazy(
+  () => import('./components/drawers/TransferDrawer/TransferDrawer'),
+);
+const DepositDrawer = lazy(
+  () => import('./components/drawers/depositDrawer/DepositDrawer'),
+);
 const Wallet = () => {
   ///
   const state = useSearchParams()[0].get('state');
   ///
   const [openDeposit, setOpenDeposit] = useState<boolean>(false);
   const [openTransfer, setOpenTransfer] = useState<boolean>(false);
+  const [infoLoading, setInfoLoading] = useState<boolean>(true);
+  const [transactionLoading, setTransactionLoading] = useState<boolean>(true);
   ///
   useEffect(() => {
     if (state !== null && state === 'deposit') setOpenDeposit(true);
@@ -25,6 +37,13 @@ const Wallet = () => {
       setOpenTransfer(false);
     }
   }, [state]);
+  //
+  useEffect(() => {
+    setTimeout(() => {
+      setInfoLoading(false);
+      setTransactionLoading(false);
+    }, 1000);
+  }, []);
   ////
   return (
     <Grid
@@ -44,19 +63,24 @@ const Wallet = () => {
           gap: 0,
           zIndex: 5,
         }}>
-        <WalletInfo />
+        {infoLoading ? <WalletInfoSkeleton /> : <WalletInfo />}
       </Grid>
-      <Suspense fallback={<></>}>
+      {transactionLoading ? (
+        <ScrollableListSkeleton
+          containerProps={{bgcolor: 'background.default'}}
+          isTransaction
+        />
+      ) : (
         <ScrollableList
           containerProps={{bgcolor: 'background.default'}}
           isTransaction
           title="Transactions"
         />
-      </Suspense>
-      <Suspense fallback={<></>}>
+      )}
+      <Suspense fallback={<DepositDrawerSkeleton isDepositopen />}>
         <DepositDrawer isDepositopen={openDeposit} />
       </Suspense>
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<TransferDrawerSkeleton isTransferOpen />}>
         <TransferDrawer isTransferOpen={openTransfer} />
       </Suspense>
       <AnimatedBackgroundImgs />

@@ -12,7 +12,7 @@ import {numberWithCommas} from '@/utils/money-number-fromatter';
 const WalletInfo = () => (
   <Stack
     useFlexGap
-    gap={'4px'}
+    gap={'0.25rem'}
     sx={{
       width: 1,
       position: 'relative',

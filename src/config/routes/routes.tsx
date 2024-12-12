@@ -19,7 +19,9 @@ import {
 import {PrivateOutlet} from './PrivateOutlet';
 
 import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
+// templates
 import {AchievementsTemplate} from '@/components/templates/Achievement';
+import WalletTemplate from '@/components/templates/Wallet/WalletTemplate';
 import {StoreTemplate} from '@/components/templates/Store';
 
 const routeObjects: RouteObject[] = [
@@ -53,7 +55,11 @@ const routeObjects: RouteObject[] = [
           },
           {
             path: '/wallet',
-            element: <WalletPage />,
+            element: (
+              <Suspense fallback={<WalletTemplate />}>
+                <WalletPage />
+              </Suspense>
+            ),
           },
           {
             path: '/achievements',

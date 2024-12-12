@@ -90,11 +90,20 @@ const AchievementInfo = ({achieve}: Props) => {
           <CustomLinearProgress linearHeight="15px" progress={10} total={20} />
         </Grid>
       )}
-      <TitleValueInfo img={Gift} title="prize: " value="22" subValue="VSD" />
+      <TitleValueInfo
+        img={Gift}
+        title="prize: "
+        value="22"
+        subValue="VSD"
+        ml="0.25rem"
+        fs="0.9375px"
+      />
       <TitleValueInfo
         img={Timer}
         title="earned time: "
         value="semptember 2022"
+        ml="0.25rem"
+        fs="0.9375px"
       />
 
       <Grid size={12}>

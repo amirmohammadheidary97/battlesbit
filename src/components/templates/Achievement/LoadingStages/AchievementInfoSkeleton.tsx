@@ -4,17 +4,17 @@ import Grid from '@mui/material/Grid2';
 import {flex} from '@/utils/flexHelper';
 
 const AchievementInfoSkeleton = () => (
-  <Grid container size={12} p={'1rem'} gap={'0.5rem'}>
+  <Grid container size={12} p="1rem" spacing="0.5rem">
     <Grid size={12} sx={{...flex().column().acenter().jcenter().result}}>
-      <Skeleton variant="circular" width={141} height={141} />
+      <Skeleton variant="circular" width="8.8125rem" height="8.8125rem" />
     </Grid>
 
     <Grid size={12} sx={{...flex().column().acenter().jcenter().result}}>
       <Typography
         sx={{
           fontFamily: 'Alfa Slab One',
-          fontSize: '25px',
-          lineHeight: '34.23px',
+          fontSize: '1.5625rem',
+          lineHeight: '2.139rem',
           fontWeight: '400',
           width: '70%',
         }}>
@@ -24,12 +24,9 @@ const AchievementInfoSkeleton = () => (
 
     <Grid size={12} sx={{...flex().column().acenter().jcenter().result}}>
       <Typography
+        variant="body1"
         sx={{
           fontFamily: 'Nunito Sans',
-          fontSize: '1rem',
-          lineHeight: '21.82px',
-          letterSpacing: '0.004em',
-          fontWeight: '400',
           width: '80%',
         }}>
         <Skeleton variant="text" width="100%" />
@@ -52,7 +49,7 @@ const AchievementInfoSkeleton = () => (
       <Skeleton
         variant="rectangular"
         sx={{borderRadius: theme => theme.shape.borderRadius}}
-        height={40}
+        height="2.5rem"
         width="100%"
       />
     </Grid>
