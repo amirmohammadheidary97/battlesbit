@@ -1,8 +1,8 @@
+import {useNavigate} from 'react-router';
 import {Avatar, Box, Typography} from '@mui/material';
 
 import AchieveCup from '@/assets/img/icons/general/achieveCup.svg';
 import {flex} from '@/utils/flexHelper';
-import {useNavigate} from 'react-router';
 
 type Props = {
   isFullWidth: boolean;
@@ -40,7 +40,7 @@ const CircularAchievement = ({isFullWidth, isSelected, title}: Props) => {
       />
       <Typography
         fontWeight={400}
-        lineHeight={isFullWidth ? '24.64px': '13.69px'}
+        lineHeight={isFullWidth ? '24.64px' : '13.69px'}
         fontSize={isFullWidth ? '18px' : '10px'}
         fontFamily={'Alfa Slab One'}>
         {title}

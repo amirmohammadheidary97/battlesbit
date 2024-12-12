@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 
 import {createSelectors} from '@/config/zustand/selectorGenerator';
-import {Achievement} from '@/gql-codegen/generated';
+import type {Achievement} from '@/gql-codegen/generated';
 
 type matchStage = 'running' | 'win' | 'loose' | 'disable';
 

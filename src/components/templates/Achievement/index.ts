@@ -1,1 +1,1 @@
-export * from "./AchievementsTemplate";
+export * from './AchievementsTemplate';

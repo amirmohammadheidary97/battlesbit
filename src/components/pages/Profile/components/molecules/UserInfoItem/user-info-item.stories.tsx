@@ -14,7 +14,7 @@ type Story = StoryObj<typeof UserInfoItem>;
 export const UserInfoItemStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
-      <UserInfoItem iconUrl="" title="" />
+      {/* <UserInfoItem  /> */}
     </Box>
   ),
 };

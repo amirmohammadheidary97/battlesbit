@@ -1,30 +1,32 @@
-import { Suspense, useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import { Dialog } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import {Suspense, useEffect, useState} from 'react';
+import {useLocation} from 'react-router';
+import {Dialog} from '@mui/material';
+import Grid from '@mui/material/Grid2';
 
-import AchievementInfo from "./components/molecules/AchievementInfo";
-import AllAchievementDrawer from "./components/molecules/AllAchievementDrawer";
-import HighlightedAchieves from "./components/molecules/HighlightedAchieves";
-import HighlightedWithLLocked from "./components/molecules/HighlightedWithLLocked";
-import InProggressAchievements from "./components/molecules/InProggressAchievements";
-import MyAchievements from "./components/molecules/MyAchievemts";
-import SelectedAchievements from "./components/molecules/SelectedAchievements";
 import {
-  AllAchievements,
-  MyAchievements as MyAchieves,
-  InProggressAchievement,
-  type TAchieve,
-} from "./fakeData/fake";
-import FullPageSkeleton from "@/components/atoms/Skeleton/FullPageSkeleton";
-import { useAchievementState } from "./state/achievement.state";
-import {
-  SelectedAchievementsSkeleton,
+  AchievementInfoSkeleton,
   HighlightedAchievesSkeleton,
   InProgressAchievementSkeleton,
   RectangularAchievesSkeleton,
-  AchievementInfoSkeleton,
-} from "../../templates/Achievement/LoadingStages";
+  SelectedAchievementsSkeleton,
+} from '../../templates/Achievement/LoadingStages';
+
+import AchievementInfo from './components/molecules/AchievementInfo';
+import AllAchievementDrawer from './components/molecules/AllAchievementDrawer';
+import HighlightedAchieves from './components/molecules/HighlightedAchieves';
+import HighlightedWithLLocked from './components/molecules/HighlightedWithLLocked';
+import InProggressAchievements from './components/molecules/InProggressAchievements';
+import MyAchievements from './components/molecules/MyAchievemts';
+import SelectedAchievements from './components/molecules/SelectedAchievements';
+import {
+  AllAchievements,
+  InProggressAchievement,
+  MyAchievements as MyAchieves,
+  type TAchieve,
+} from './fakeData/fake';
+import {useAchievementState} from './state/achievement.state';
+
+import FullPageSkeleton from '@/components/atoms/Skeleton/FullPageSkeleton';
 
 const Achievements = () => {
   const {
@@ -37,7 +39,7 @@ const Achievements = () => {
   } = useAchievementState();
   ///
   const location = useLocation();
-  const isOpen = location.search.includes("show");
+  const isOpen = location.search.includes('show');
   //
   const [isReadable, setIsReadable] = useState<boolean>(true);
   const [selectedItem, setSelectedItem] = useState<TAchieve | undefined>();
@@ -53,8 +55,8 @@ const Achievements = () => {
   }, [selectedItem]);
   //
   useEffect(() => {
-    if (location.search.includes("all")) setIsReadable(true);
-    else if (location.search.includes("highlighted") || location.search === "")
+    if (location.search.includes('all')) setIsReadable(true);
+    else if (location.search.includes('highlighted') || location.search === '')
       setIsReadable(false);
   }, [location.search]);
   ///
@@ -64,6 +66,7 @@ const Achievements = () => {
       setMyAcheivements(MyAchieves);
       setInProgressAchieves(InProggressAchievement);
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   ///
   return (
@@ -73,10 +76,9 @@ const Achievements = () => {
       gap={1.75}
       mb={2}
       sx={{
-        alignItems: "start",
+        alignItems: 'start',
         p: 2,
-      }}
-    >
+      }}>
       {/*  */}
       {myAchievements.length === 0 ? (
         <SelectedAchievementsSkeleton />
@@ -117,13 +119,12 @@ const Achievements = () => {
       </Suspense>
 
       <Dialog
-        maxWidth={"md"}
+        maxWidth={'md'}
         fullWidth
         keepMounted={false}
-        sx={{ borderRadius: (theme) => theme.shape.borderRadius }}
+        sx={{borderRadius: theme => theme.shape.borderRadius}}
         open={selectedItem !== undefined}
-        onClose={() => setSelectedItem(undefined)}
-      >
+        onClose={() => setSelectedItem(undefined)}>
         {/*  */}
         {selectedItem && !loadingModal ? (
           <AchievementInfo achieve={selectedItem} />

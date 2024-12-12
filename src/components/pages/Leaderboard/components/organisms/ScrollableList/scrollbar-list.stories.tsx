@@ -14,7 +14,7 @@ type Story = StoryObj<typeof ScrollableList>;
 export const ScrollableListStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
-      <ScrollableList containerProps={{bgcolor: 'background.paper'}} />
+      {/* <ScrollableList containerProps={{bgcolor: 'background.paper'}} /> */}
     </Box>
   ),
 };
