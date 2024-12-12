@@ -1,25 +1,27 @@
-import { lazy, Suspense } from 'react';
-import { Typography, useTheme } from '@mui/material';
+import {lazy, Suspense} from 'react';
+import {Typography, useTheme} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import { BalanceProfit } from './components/BalanceProfit';
-import { AssetsChart } from './components/Chart';
-import { ClosePositionDrawer } from './components/ClosePositionDrawer';
-import { OrderForm } from './components/OrderForm/OrderForm';
+import {BalanceProfit} from './components/BalanceProfit';
+import {AssetsChart} from './components/Chart';
+import {ClosePositionDrawer} from './components/ClosePositionDrawer';
+import {OrderForm} from './components/OrderForm/OrderForm';
 
-import { BackwardTitle } from '@/components/molecules/BackwardTitle';
-import { CustomCircularProgress } from '@/components/molecules/CustomCircularProgress';
-import { MatchStatusSlider } from '@/components/molecules/MatchStatusSlider';
-import { useElementRect } from '@/hooks/custom/useElementRect';
+import {BackwardTitle} from '@/components/molecules/BackwardTitle';
+import {CustomCircularProgress} from '@/components/molecules/CustomCircularProgress';
+import {MatchStatusSlider} from '@/components/molecules/MatchStatusSlider';
+import {useElementRect} from '@/hooks/custom/useElementRect';
 
-const CancelAndReverseWarningDialog = lazy(() => import("./components/CancelAndReverseWarningDialog"))
-const PositionsTabs = lazy(() => import("./components/PositionsTabs"))
-const TpslDrawer = lazy(() => import("./components/TpslDrawer"))
+const CancelAndReverseWarningDialog = lazy(
+  () => import('./components/CancelAndReverseWarningDialog'),
+);
+const PositionsTabs = lazy(() => import('./components/PositionsTabs'));
+const TpslDrawer = lazy(() => import('./components/TpslDrawer'));
 
 const LiveChallenge = () => {
   //
   const theme = useTheme();
-  const { containerRef, rect } = useElementRect({});
+  const {containerRef, rect} = useElementRect({});
   //
   return (
     <Grid container spacing={2} p={2}>

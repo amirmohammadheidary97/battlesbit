@@ -1,6 +1,6 @@
-import { usePositionsState } from '../../state/positions.state';
+import {usePositionsState} from '../../state/positions.state';
 
-import { WarningDialog } from '@/components/organisms/WarningDialog';
+import {WarningDialog} from '@/components/organisms/WarningDialog';
 
 const CancelAndReverseWarningDialog = () => {
   //
@@ -25,7 +25,7 @@ const CancelAndReverseWarningDialog = () => {
     <WarningDialog
       open={open}
       onClose={onClose}
-      onConfirm={() => { }}
+      onConfirm={() => {}}
       description={
         selectedPositionToCancel
           ? 'Are You Sure To Cancel This Position ?'

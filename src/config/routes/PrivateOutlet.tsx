@@ -13,6 +13,7 @@ export const PrivateOutlet = () => {
   }
   //
   return <Outlet />;
+  // eslint-disable-next-line no-unreachable
   return (
     <>{accessToken && !isExpired ? <Outlet /> : <Navigate to={'login'} />}</>
   );

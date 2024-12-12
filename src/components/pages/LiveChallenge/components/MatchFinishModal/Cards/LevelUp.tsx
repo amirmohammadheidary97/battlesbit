@@ -1,33 +1,34 @@
-import { PlayerLevel } from "@/components/atoms/PlayerLevel";
-import { flex } from "@/utils/flexHelper";
-import { Box, Button, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import ReactConfetti from 'react-confetti';
+import {useTimeout, useWindowSize} from 'react-use';
+import {Box, Button, Typography} from '@mui/material';
+import Grid from '@mui/material/Grid2';
 
-import btc from "@/assets/img/icons/general/star2.svg";
-import vp from "@/assets/img/icons/general/vp.png";
-import { useElementRect } from "@/hooks/custom/useElementRect";
-import ReactConfetti from "react-confetti";
-import { useTimeout, useWindowSize } from "react-use";
-import { theme } from "@/config/theme";
-import { numberWithCommas } from "@/utils/money-number-fromatter";
+import btc from '@/assets/img/icons/general/star2.svg';
+import vp from '@/assets/img/icons/general/vp.png';
+import {PlayerLevel} from '@/components/atoms/PlayerLevel';
+import {theme} from '@/config/theme';
+import {useElementRect} from '@/hooks/custom/useElementRect';
+import {flex} from '@/utils/flexHelper';
+import {numberWithCommas} from '@/utils/money-number-fromatter';
 
 type Props = {
   level: number;
-}
+};
 
 const getSize = (width: number) => {
   let size: number = 100;
   if (width <= 768) {
-    size = (width - 32) / 2
+    size = (width - 32) / 2;
+  } else {
+    size = (768 - 32) / 2;
   }
-  else { size = (768 - 32) / 2 }
-  return size > 180 ? 180 : size
-}
+  return size > 180 ? 180 : size;
+};
 
-const LevelUp = ({ level }: Props) => {
-  const { width, height } = useWindowSize();
+const LevelUp = ({level}: Props) => {
+  const {width, height} = useWindowSize();
   const [isConfettiOpen] = useTimeout(5000);
-  const { containerRef, rect } = useElementRect({})
+  const {containerRef} = useElementRect({});
   return (
     <Grid
       ref={containerRef}
@@ -38,7 +39,7 @@ const LevelUp = ({ level }: Props) => {
         backgroundColor: theme.palette.background.paper,
         borderRadius: theme.shape.borderRadius,
         p: 2,
-        pt: 0
+        pt: 0,
       }}>
       <ReactConfetti
         width={width}
@@ -52,21 +53,24 @@ const LevelUp = ({ level }: Props) => {
         justifyContent={'center'}
         sx={{
           height: getSize(width) / 2,
-          position: 'relative'
+          position: 'relative',
         }}>
-        <Grid sx={{
-          position: 'absolute',
-          width: 1,
-          bottom: 0,
-          left: 0,
-          display: 'flex',
-          justifyContent: 'center'
-        }}>
+        <Grid
+          sx={{
+            position: 'absolute',
+            width: 1,
+            bottom: 0,
+            left: 0,
+            display: 'flex',
+            justifyContent: 'center',
+          }}>
           <PlayerLevel level={level} size={getSize(width)} />
         </Grid>
       </Grid>
       <Grid size={12} justifyContent={'center'}>
-        <Typography variant="h4" textAlign={'center'}>LEVEL UP!</Typography>
+        <Typography variant="h4" textAlign={'center'}>
+          LEVEL UP!
+        </Typography>
       </Grid>
       <Grid size={12} container justifyContent={'space-between'}>
         <Grid>
@@ -81,36 +85,36 @@ const LevelUp = ({ level }: Props) => {
           fullWidth
           variant="contained"
           sx={{
-            height: '3rem'
-          }}
-        >
+            height: '3rem',
+          }}>
           Next
         </Button>
       </Grid>
-    </Grid>);
-}
+    </Grid>
+  );
+};
 
 type AchievmentEarnProps = {
   img: string;
   amount: number;
-  name: string
-}
-const AchievmentEarn = ({ amount, img, name }: AchievmentEarnProps) => {
-  return (
-    <Box sx={{
+  name: string;
+};
+const AchievmentEarn = ({amount, img, name}: AchievmentEarnProps) => (
+  <Box
+    sx={{
       ...flex().column().acenter().gap(0).result,
     }}>
-      <Box sx={{
+    <Box
+      sx={{
         img: {
-          width: '2.5rem'
-        }
+          width: '2.5rem',
+        },
       }}>
-        <img src={img} />
-      </Box>
-      <Typography variant="button">{numberWithCommas(amount)}</Typography>
-      <Typography variant="caption">{name} earned</Typography>
+      <img src={img} />
     </Box>
-  )
-}
+    <Typography variant="button">{numberWithCommas(amount)}</Typography>
+    <Typography variant="caption">{name} earned</Typography>
+  </Box>
+);
 
 export default LevelUp;
