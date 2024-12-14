@@ -5,13 +5,17 @@ import btcIcon from '@/assets/img/icons/general/bitcoin.png';
 import type {Asset} from '@/gql-codegen/generated';
 import {GameMatchPositionSide} from '@/gql-codegen/generated';
 
-type Props = {
+export type PositionResultProps = {
   asset: Asset;
   side: GameMatchPositionSide;
   pnlAmount: number;
 };
 
-export const PositionResult = ({asset, pnlAmount, side}: Props) => (
+export const PositionResult = ({
+  asset,
+  pnlAmount,
+  side,
+}: PositionResultProps) => (
   <Grid
     container
     size={12}

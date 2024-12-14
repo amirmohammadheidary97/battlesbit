@@ -46,7 +46,7 @@ export const AmountSlider = ({marks = [], value, ...rest}: Props) => {
               top: 'calc(50% - 10px)',
               left: `calc( ${(mark.value * 100) / rest.max + '%'} - 7px)`,
               border: `1px solid ${theme.palette.background.default}`,
-              backgroundColor: theme.palette.background.default,
+              backgroundColor: theme.palette.background.paper,
               ...flex().acenter().jcenter().result,
             }}>
             <Box

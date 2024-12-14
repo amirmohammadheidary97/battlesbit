@@ -21,7 +21,7 @@ const ScrollableList = ({containerProps}: Props) => (
       position: 'relative',
       zIndex: 2,
       scrollbarWidth: 'none',
-      '-ms-overflow-style': 'none',
+      msOverflowStyle: 'none',
       '&::-webkit-scrollbar': {
         display: 'none',
       },
@@ -33,7 +33,7 @@ const ScrollableList = ({containerProps}: Props) => (
       sx={{
         px: 1,
         scrollbarWidth: 'none',
-        '-ms-overflow-style': 'none',
+        msOverflowStyle: 'none',
         '&::-webkit-scrollbar': {
           display: 'none',
         },

@@ -1,5 +1,12 @@
 import {useEffect, useRef, useState} from 'react';
-import {ColorType, createChart} from 'lightweight-charts';
+import type {IChartApi} from 'lightweight-charts';
+import {
+  ColorType,
+  createChart,
+  LastPriceAnimationMode,
+  LineStyle,
+  LineType,
+} from 'lightweight-charts';
 
 import {useUpdateData} from './useUpdateData';
 
@@ -7,10 +14,10 @@ import {theme} from '@/config/theme';
 
 const colors = {
   backgroundColor: theme.palette.background.paper,
-  lineColor: '#2962FF',
+  lineColor: theme.palette.primary.main,
   textColor: '#fff',
-  areaTopColor: '#2962FF',
-  areaBottomColor: 'rgba(41, 98, 255, 0.28)',
+  areaTopColor: theme.palette.primary.main,
+  areaBottomColor: 'rgba(255,220,96,0.5046393557422969)',
 };
 
 const {areaBottomColor, areaTopColor, backgroundColor, lineColor, textColor} =
@@ -54,8 +61,12 @@ export const ChartComponent = ({chartType, prevoisChartType}: any) => {
           visible: false,
         },
       },
+      timeScale: {
+        rightOffset: 0,
+        fixRightEdge: true,
+      },
     });
-    chart.current.timeScale().fitContent();
+    (chart.current as IChartApi).timeScale().fitContent();
 
     window.addEventListener('resize', handleResize);
 
@@ -87,6 +98,7 @@ export const ChartComponent = ({chartType, prevoisChartType}: any) => {
     candleSeries,
     chartType,
     seriesCleared,
+    chart: chart?.current,
   });
 
   useEffect(() => {
@@ -98,10 +110,14 @@ export const ChartComponent = ({chartType, prevoisChartType}: any) => {
     ) {
       console.log('add area');
       setSeriesCleared(false);
-      areaSeries.current = chart.current.addAreaSeries({
+      areaSeries.current = (chart.current as IChartApi).addAreaSeries({
         lineColor,
         topColor: areaTopColor,
         bottomColor: areaBottomColor,
+        lineType: LineType.Curved,
+        // lastPriceAnimationMode: LastPriceAnimationMode.Continuous,
+        lastPriceAnimation: LastPriceAnimationMode.Continuous,
+        lineStyle: LineStyle.Solid,
       });
       areaSeries.current.setData(areaHistory);
     }

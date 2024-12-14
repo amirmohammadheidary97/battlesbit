@@ -29,6 +29,9 @@ export const LeverageDrawerStories: Story = {
             onClose: onToggle,
             open: isOpen,
             setLeverage,
+            onConfirm: lvg => {
+              setLeverage(lvg);
+            },
           }}
         />
       </Box>

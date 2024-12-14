@@ -139,19 +139,24 @@ export const PositionItem = ({
         )}
       </Grid>
       {/* Other Props */}
-      <Grid size={12} container>
+      <Grid size={12} container mb={2}>
         {otherProps.map((p, idx) => (
           <Grid
             key={p.title}
-            {...(idx % 2 !== 0
+            {...((type !== 'position' && idx % 2 !== 0) ||
+            (type === 'position' && (idx === 2 || idx === 5))
               ? {display: 'flex', justifyContent: 'flex-end'}
               : {})}
-            size={6}>
+            size={type === 'position' ? 4 : 6}>
             <PositionTitleValue
               title={p.title}
               type="other"
               value={p.value}
-              alignItems={idx % 2 !== 0 ? 'flex-end' : 'flex-start'}
+              alignItems={
+                (type !== 'position' ? idx % 2 !== 0 : idx === 2 || idx === 5)
+                  ? 'flex-end'
+                  : 'flex-start'
+              }
               valueVariant="overline"
             />
           </Grid>

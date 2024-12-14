@@ -7,7 +7,7 @@ import {
   styled,
 } from '@mui/material';
 
-import WalletBalanceAmount from './moneyAmount';
+import WalletBalanceAmount from './MoneyAmount';
 
 import Paypal from '@/assets/img/icons/general/paypal.svg';
 import SOL from '@/assets/img/icons/general/SOL.svg';

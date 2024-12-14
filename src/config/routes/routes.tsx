@@ -1,6 +1,6 @@
-import {Suspense} from 'react';
-import type {RouteObject} from 'react-router';
-import {createBrowserRouter} from 'react-router-dom';
+import { Suspense } from 'react';
+import type { RouteObject } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 
 import {
   AchievementPage,
@@ -16,13 +16,11 @@ import {
   UserDetailsPage,
   WalletPage,
 } from './lazy-pages';
-import {PrivateOutlet} from './PrivateOutlet';
+import { PrivateOutlet } from './PrivateOutlet';
 
-import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
-// templates
-import {AchievementsTemplate} from '@/components/templates/Achievement';
-import WalletTemplate from '@/components/templates/Wallet/WalletTemplate';
-import {StoreTemplate} from '@/components/templates/Store';
+import { WithBottomLNavbarLayout } from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
+import { AchievementsTemplate } from '@/components/templates/Achievement';
+import { StoreTemplate } from '@/components/templates/Store';
 
 const routeObjects: RouteObject[] = [
   {
@@ -55,9 +53,21 @@ const routeObjects: RouteObject[] = [
           },
           {
             path: '/wallet',
+            element: <WalletPage />,
+          },
+          {
+            path: '/leader-board',
+            element: <LeaderboardPage />,
+          },
+          {
+            path: '/user-details',
+            element: <UserDetailsPage />,
+          },
+          {
+            path: '/store',
             element: (
-              <Suspense fallback={<WalletTemplate />}>
-                <WalletPage />
+              <Suspense fallback={<StoreTemplate />}>
+                <StorePage />
               </Suspense>
             ),
           },
@@ -70,22 +80,6 @@ const routeObjects: RouteObject[] = [
             ),
           },
         ],
-      },
-      {
-        path: '/leader-board',
-        element: <LeaderboardPage />,
-      },
-      {
-        path: '/user-details',
-        element: <UserDetailsPage />,
-      },
-      {
-        path: '/store',
-        element: (
-          <Suspense fallback={<StoreTemplate />}>
-            <StorePage />
-          </Suspense>
-        ),
       },
       {
         path: '/makematch',

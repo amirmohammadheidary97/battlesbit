@@ -116,11 +116,11 @@ const getTheme = (mode: 'light' | 'dark') =>
         @font-face {
           font-family: 'IBM Plex';
           src: local('IBMPlex'), url(${IBMPlexRegular}) format('truetype');
-        };
+        }
         @font-face {
           font-family: 'Nunito Sans';
           src: local('NunitoSans'), url(${NunitoRegular}) format('truetype');
-        };
+        }
         @font-face {
           font-family: 'Alfa Slab One';
           src: local('AlfaSlabOne'), url(${AlfaSlabOne}) format('truetype');

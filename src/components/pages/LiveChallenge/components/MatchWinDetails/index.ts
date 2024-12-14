@@ -1,1 +1,1 @@
-export {default} from './MatchWinDetails';
+export * from './MatchWinDetails';

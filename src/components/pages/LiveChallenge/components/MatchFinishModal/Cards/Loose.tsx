@@ -1,6 +1,7 @@
 import {Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
+// import LooserPanda from '@/assets/img/bg/looser-panda.png';
 import LooserPandaBg from '@/assets/img/bg/looser-panda-bg.png';
 import MD from '@/assets/img/bg/middle-finger.png';
 import {theme} from '@/config/theme';

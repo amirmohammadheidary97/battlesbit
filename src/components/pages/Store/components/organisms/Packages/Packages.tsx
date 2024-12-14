@@ -71,7 +71,7 @@ export const Packages: React.FC<PackagesProps> = ({
           width: '100%',
           marginTop: '7px',
           scrollbarWidth: 'none',
-          '-ms-overflow-style': 'none',
+          msOverflowStyle: 'none',
           '&::-webkit-scrollbar': {
             display: 'none',
           },

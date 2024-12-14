@@ -31,7 +31,7 @@ const FullPageDrawerContainer = ({
         backgroundColor: 'background.default',
         overflowY: 'auto',
         scrollbarWidth: 'none',
-        '-ms-overflow-style': 'none',
+        msOverflowStyle: 'none',
         '&::-webkit-scrollbar': {
           display: 'none',
         },

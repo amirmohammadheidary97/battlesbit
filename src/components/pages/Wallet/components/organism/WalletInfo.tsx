@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid2';
 import NavigateButton from '../atoms/NavigateButtons';
 import {navButton, selectBalanceOptions} from '../fakeData/data';
 import SelectionComponent from '../molecules/BalanceTypeSelection';
-import WalletBalanceAmount from '../molecules/moneyAmount';
+import WalletBalanceAmount from '../molecules/MoneyAmount';
 
 import {flex} from '@/utils/flexHelper';
 import {numberWithCommas} from '@/utils/money-number-fromatter';

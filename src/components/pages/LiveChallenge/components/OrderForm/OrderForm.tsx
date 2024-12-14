@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CloseIcon from '@mui/icons-material/Close';
 import type {SelectChangeEvent} from '@mui/material';
@@ -16,55 +16,97 @@ import Grid from '@mui/material/Grid2';
 
 import {LeverageDrawer} from '../LeverageDrawer';
 
+import {AmountInput} from './components/AmountInput';
+import {ShowMargin} from './components/ShowMargin';
 import {Tpsl} from './components/Tpsl';
+import {useConnectedValues} from './hooks/useFormConnectedValues';
+import {miniSelectSlotProps} from './utils/miniSelectStyles';
 
 import {Center} from '@/components/atoms/Center';
 import {AmountSlider} from '@/components/molecules/AmountSlider';
 import {SelectControl} from '@/components/molecules/SelectControl';
-import {TitleValue} from '@/components/molecules/TitleValue';
 import {useDisclosure} from '@/hooks/custom/useDisclosure';
 import type {marginType, orderType} from '@/types/common';
 import {flex} from '@/utils/flexHelper';
+import {numberWithCommas} from '@/utils/money-number-fromatter.ts';
 
+export type amountMode = 'percent' | 'value';
+export type TPSL = {
+  enabled: boolean;
+  tp?: {
+    price?: number;
+    profit?: number;
+  };
+  sl?: {
+    price?: number;
+    loss?: number;
+  };
+};
 const orderTypes: orderType[] = ['limit', 'market', 'stoplimit'];
 const marginTypes: marginType[] = ['cross', 'isolate'];
-const amountTypes: string[] = ['BTC', 'USDT'];
+const availableMargin = 1250;
+const marketPrice = 50000;
 
 export const OrderForm = () => {
-  const max = 1000;
   const theme = useTheme();
-  const [value, setValue] = useState<number | number[]>(250);
-
+  const leverageInputRef: any = useRef(null);
+  const {
+    leverage,
+    setLeverage,
+    sliderValue,
+    setSliderValue,
+    defferedProfit,
+    // defferedUsedMargin,
+    usedMargin,
+    amountValue,
+    setAmountValue,
+    resetAmount,
+  } = useConnectedValues({availableMargin});
+  const [price, setPrice] = useState<number | undefined>(undefined);
+  const [limit, setLimit] = useState<number | undefined>(undefined);
+  const [tpsl, setTpsl] = useState<TPSL>({
+    enabled: false,
+  });
+  const [selectedAmountType, setSelectedAmountType] = useState<string>('USDT');
+  const [amountMode, setAmountMode] = useState<amountMode>('percent');
+  const [selectedOrderType, setSelectedOrderType] =
+    useState<orderType>('limit');
+  const [selectedMarginType, setSelectedMarginType] =
+    useState<marginType>('isolate');
   const {isOpen: isBuySellOpen, onToggle: onBuySellToggle} = useDisclosure();
-
   const {
     isOpen: isLeverageDrawerOpen,
     onClose: onLeverageDrawerClose,
     onOpen: onLeverageDrawerOpen,
   } = useDisclosure();
-  const [leverage, setLeverage] = useState<number>(1);
-
-  const [selectedOrderType, setSelectedOrderType] =
-    useState<orderType>('limit');
+  //
   const handleOrderTypeChange = (event: SelectChangeEvent) => {
-    setSelectedOrderType(event.target.value as orderType);
-  };
+    const value = event.target.value as orderType;
+    setSelectedOrderType(value);
 
-  const [selectedAmountType, setSelectedAmountType] = useState<string>('USDT');
-  const handleAmountTypeChange = (event: SelectChangeEvent) => {
-    setSelectedAmountType(event.target.value as string);
+    if (value === 'market') {
+      setPrice(undefined);
+    }
+    if (value !== 'stoplimit') {
+      setLimit(undefined);
+    }
   };
-
-  const [selectedMarginType, setSelectedMarginType] =
-    useState<marginType>('isolate');
-  const handleMarginTypeChange = (event: SelectChangeEvent) => {
+  const handleMarginTypeChange = (event: SelectChangeEvent) =>
     setSelectedMarginType(event.target.value as marginType);
-  };
 
   const handleBuySellBtnClick = () => {
-    if (!isBuySellOpen) {
-      onBuySellToggle();
-    }
+    if (!isBuySellOpen) onBuySellToggle();
+  };
+  const handleSliderValueChange = (e: any, v: any) => {
+    if (amountMode !== 'percent') setAmountMode('percent');
+    setSliderValue(v);
+    // ** immidiately change amount
+    setAmountValue((v / 100) * availableMargin * leverage);
+  };
+  const onLeverageChange = (v: number) => {
+    setLeverage(v);
+    // ** immidiately change amount
+    setAmountValue((sliderValue / 100) * availableMargin * v);
   };
   //
   return (
@@ -156,6 +198,7 @@ export const OrderForm = () => {
                   ),
                 },
               }}
+              value={price}
               variant="filled"
               type="number"
             />
@@ -188,47 +231,26 @@ export const OrderForm = () => {
                 }}
                 variant="filled"
                 type="number"
+                value={limit}
               />
             </Grid>
           )}
         </Grid>
         <Grid size={12}>
           {/* Input */}
-          <TextField
-            fullWidth
-            label={'Amount'}
-            id="filled-amount-start-adornment"
-            slotProps={{
-              input: {
-                endAdornment: (
-                  <InputAdornment
-                    position="end"
-                    sx={{
-                      'div.MuiInputBase-root.MuiFilledInput-root': {
-                        backgroundColor: 'transparent',
-                      },
-                    }}>
-                    <SelectControl
-                      selectedOption={{
-                        name: selectedAmountType,
-                        value: selectedAmountType,
-                      }}
-                      options={amountTypes.map(ot => ({name: ot, value: ot}))}
-                      onChange={handleAmountTypeChange}
-                      getValue={op => op.value}
-                      getLabel={op => op.name}
-                      slotProps={miniSelectSlotProps}
-                    />
-                  </InputAdornment>
-                ),
-              },
-            }}
-            InputLabelProps={{
-              shrink: value !== undefined,
-            }}
-            variant="filled"
-            type="number"
-            value={(value as number) * leverage}
+          <AmountInput
+            amountValue={amountValue}
+            setAmountValue={setAmountValue}
+            amountMode={amountMode}
+            availableMargin={availableMargin}
+            selectedAmountType={selectedAmountType}
+            setSelectedAmountType={setSelectedAmountType}
+            sliderValue={sliderValue}
+            setSliderValue={setSliderValue}
+            setAmountMode={setAmountMode}
+            leverage={leverage}
+            usedMargin={usedMargin}
+            resetAmount={resetAmount}
           />
           {/* Slider */}
           <Box
@@ -238,50 +260,38 @@ export const OrderForm = () => {
             }}>
             <AmountSlider
               marks={[
-                {value: 0 * max},
-                {value: 0.25 * max},
-                {value: 0.5 * max},
-                {value: 0.75 * max},
-                {value: 1 * max},
+                {value: 0 * 100},
+                {value: 0.25 * 100},
+                {value: 0.5 * 100},
+                {value: 0.75 * 100},
+                {value: 1 * 100},
               ]}
-              max={max}
+              max={100}
               min={0}
-              value={value as any}
-              onChange={(e, v) => setValue(v)}
+              step={0.01}
+              value={sliderValue as any}
+              onChange={handleSliderValueChange}
             />
           </Box>
-          {/* Free Margin */}
-          <TitleValue
-            title={
-              <Typography
-                variant="caption"
-                lineHeight={'16.37px'}
-                color={theme.palette.text.secondary}>
-                Free Margin
-              </Typography>
-            }
-            value={
-              <Typography
-                variant="caption"
-                lineHeight={'16.37px'}
-                color={theme.palette.text.secondary}>
-                1000 USDT
-              </Typography>
-            }
-            containerSX={{
-              ...flex().row().jbetween().abaseline().result,
-              justifyContent: 'space-between',
-              width: '100%',
-              marginTop: theme.spacing(-1),
-            }}
+          {/* margins */}
+          <ShowMargin
+            availableMargin={availableMargin}
+            usedMargin={usedMargin}
           />
         </Grid>
+        {/* TPSL */}
         <Grid
           size={12}
           sx={{
             marginTop: theme.spacing(-0.5),
           }}>
-          <Tpsl />
+          <Tpsl
+            {...tpsl}
+            basePrice={
+              selectedOrderType === 'market' ? marketPrice : (price ?? 0)
+            }
+            setTpsl={setTpsl}
+          />
         </Grid>
       </Grid>
       <Grid size={12} container>
@@ -295,8 +305,24 @@ export const OrderForm = () => {
               borderRadius: '0.75rem',
               height: '44px',
               color: theme.palette.text.primary,
+              ...flex().column().acenter().result,
             }}>
-            BUY / LONG
+            <Typography
+              variant={'button'}
+              sx={{
+                color: 'inherit',
+              }}>
+              BUY / LONG
+            </Typography>
+            {isBuySellOpen && (
+              <Typography
+                variant={'caption'}
+                sx={{
+                  color: 'inherit',
+                }}>
+                {numberWithCommas(defferedProfit)}
+              </Typography>
+            )}
           </Button>
         </Grid>
         <Grid size={6}>
@@ -308,59 +334,34 @@ export const OrderForm = () => {
             sx={{
               borderRadius: '0.75rem',
               height: '44px',
+              ...flex().column().acenter().result,
             }}>
-            SELL / SHORT
+            <Typography
+              variant={'button'}
+              sx={{
+                color: 'inherit',
+              }}>
+              SELL / SHORT
+            </Typography>
+            {isBuySellOpen && (
+              <Typography
+                variant={'caption'}
+                sx={{
+                  color: 'inherit',
+                }}>
+                {numberWithCommas(defferedProfit)}
+              </Typography>
+            )}
           </Button>
         </Grid>
       </Grid>
       {/* Drawers */}
       <LeverageDrawer
+        ref={leverageInputRef}
         open={isLeverageDrawerOpen}
         onClose={onLeverageDrawerClose}
-        leverage={leverage}
-        setLeverage={setLeverage}
+        onConfirm={onLeverageChange}
       />
     </Grid>
   );
-};
-const miniSelectSlotProps = {
-  formControlProps: {
-    sx: {
-      '.MuiInputBase-root': {
-        height: 'unset',
-        borderRadius: '0.2rem',
-      },
-      '.MuiSelect-select': {
-        paddingTop: '0.125rem',
-        paddingBottom: '0.125rem',
-        paddingRight: '1.5rem !important',
-        fontSize: '10px',
-        fontWeight: '700',
-      },
-      '.MuiList-root': {
-        '.MuiButtonBase-root': {
-          fontSize: '10px',
-        },
-      },
-      '.MuiSvgIcon-root': {
-        right: '0px',
-      },
-    },
-  },
-  selectProps: {
-    MenuProps: {
-      MenuListProps: {
-        sx: {
-          py: 0,
-          li: {
-            padding: 0.5,
-            fontSize: '10px',
-            lineHeight: '11px',
-            minHeight: 'unset !important',
-            height: '2rem !important',
-          },
-        },
-      },
-    },
-  },
 };

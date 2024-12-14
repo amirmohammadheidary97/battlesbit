@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {
@@ -10,13 +11,73 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import {useDisclosure} from '@/hooks/custom/useDisclosure';
+import type {TPSL} from '../OrderForm';
+
 import {flex} from '@/utils/flexHelper';
 
-export const Tpsl = () => {
+type Props = TPSL & {
+  setTpsl: React.Dispatch<React.SetStateAction<TPSL>>;
+  basePrice: number;
+};
+
+export const Tpsl = ({enabled, sl, tp, setTpsl}: Props) => {
   //
   const theme = useTheme();
-  const {isOpen, onToggle} = useDisclosure();
+  const isOpen = enabled;
+  const onToggle = () => {
+    // eslint-disable-next-line no-empty
+    if (enabled) {
+    } else setTpsl(state => ({...state, enabled: true}));
+  };
+  const onTpTriggerChange = (e: any) => {
+    const inputVal = e.target.value;
+    if (isNaN(inputVal)) return;
+    const val = Number(inputVal);
+
+    setTpsl(state => ({
+      ...state,
+      tp: {
+        ...(tp ?? {}),
+        price: val,
+      },
+    }));
+  };
+  const onProfitChange = (e: any) => {
+    const inputVal = e.target.value;
+    if (isNaN(inputVal)) return;
+    const val = Number(inputVal);
+    setTpsl(state => ({
+      ...state,
+      tp: {
+        ...(tp ?? {}),
+        profit: val,
+      },
+    }));
+  };
+  const onSLTriggerChange = (e: any) => {
+    const inputVal = e.target.value;
+    if (isNaN(inputVal)) return;
+    const val = Number(inputVal);
+    setTpsl(state => ({
+      ...state,
+      sl: {
+        ...(sl ?? {}),
+        price: val,
+      },
+    }));
+  };
+  const onLoss = (e: any) => {
+    const inputVal = e.target.value;
+    if (isNaN(inputVal)) return;
+    const val = Number(inputVal);
+    setTpsl(state => ({
+      ...state,
+      sl: {
+        ...(sl ?? {}),
+        loss: val,
+      },
+    }));
+  };
   //
   return (
     <Grid
@@ -100,10 +161,51 @@ export const Tpsl = () => {
               backgroundColor: theme.palette.background.paper,
               ...flex().jcenter().acenter().result,
             }}>
-            Profit
+            Stop Lost
           </Grid>
         </Grid>
       </Grid>
     </Grid>
   );
 };
+
+/*
+
+
+const handleTpTriggerPriceChange = (e) => {
+  const value = e.target.value;
+  setTpTriggerPrice(value);
+
+  if (basePrice) {
+    setProfit(value ? (parseFloat(value) - parseFloat(basePrice)).toFixed(2) : '');
+  }
+};
+
+const handleProfitChange = (e) => {
+  const value = e.target.value;
+  setProfit(value);
+
+  if (basePrice) {
+    setTpTriggerPrice(value ? (parseFloat(basePrice) + parseFloat(value)).toFixed(2) : '');
+  }
+};
+
+const handleSlTriggerPriceChange = (e) => {
+  const value = e.target.value;
+  setSlTriggerPrice(value);
+
+  if (basePrice) {
+    setSl(value ? (parseFloat(basePrice) - parseFloat(value)).toFixed(2) : '');
+  }
+};
+
+const handleSlChange = (e) => {
+  const value = e.target.value;
+  setSl(value);
+
+  if (basePrice) {
+    setSlTriggerPrice(value ? (parseFloat(basePrice) - parseFloat(value)).toFixed(2) : '');
+  }
+};
+
+*/

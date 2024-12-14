@@ -109,6 +109,18 @@ export const PositionsFakeData = [
         title: 'Margin Rate',
         value: '3.58%',
       },
+      {
+        title: 'Entry Price (USDT)',
+        value: 13000,
+      },
+      {
+        title: 'Mark Price (USDT)',
+        value: 13000,
+      },
+      {
+        title: 'Est. Liq. price (USDT)',
+        value: 13000,
+      },
     ],
     chips: {
       side: 'sell',

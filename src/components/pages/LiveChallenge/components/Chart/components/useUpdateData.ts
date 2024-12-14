@@ -1,4 +1,6 @@
 import {useEffect, useState} from 'react';
+// import gsap from 'gsap';
+import type {IChartApi, ISeriesApi} from 'lightweight-charts';
 
 import type {chartType} from '../Chart';
 
@@ -42,13 +44,54 @@ type Props = {
   areaSeries: any;
   candleSeries: any;
   seriesCleared: boolean;
+  chart?: IChartApi;
 };
+//#region
+// const animateUpdate = newData => {
+//   const totalSteps = 30; // Number of animation steps
+//   const interval = 16; // ~60fps
+//   let step = 0;
 
+//   const oldData = currentData;
+//   const interpolatedData = [];
+
+//   // Interpolate the data
+//   for (let i = 0; i < newData.length; i++) {
+//     const oldPoint = oldData[i] || {time: newData[i].time, value: 0};
+//     const newPoint = newData[i];
+//     const steps = [];
+
+//     for (let j = 1; j <= totalSteps; j++) {
+//       steps.push({
+//         time: newPoint.time,
+//         value:
+//           oldPoint.value + ((newPoint.value - oldPoint.value) * j) / totalSteps,
+//       });
+//     }
+
+//     interpolatedData.push(...steps);
+//   }
+
+//   const updateStep = (areaSeriesRef, interpolatedData) => {
+//     if (step < interpolatedData.length) {
+//       const currentStepData = interpolatedData.slice(0, step + 1);
+//       areaSeriesRef.current.setData(currentStepData);
+//       step++;
+//       setTimeout(updateStep, interval);
+//     } else {
+//       setCurrentData(newData);
+//     }
+//   };
+
+//   updateStep();
+// };
+//#endregion
 export const useUpdateData = ({
   chartType,
   areaSeries,
   candleSeries,
   seriesCleared,
+  // chart,
 }: Props) => {
   const [currentDate] = useState(
     new Date(areaInitialData[areaInitialData.length - 1].time),
@@ -65,13 +108,38 @@ export const useUpdateData = ({
     console.log('live area');
 
     intervalId = setInterval(() => {
+      // const d = new Date(currentDate.setDate(currentDate.getDate() + 1));
       const next = {
+        // time: {
+        //   year: d.getFullYear(),
+        //   month: d.getMonth(),
+        //   day: d.getDate(),
+        // },
         time: new Date(currentDate.setDate(currentDate.getDate() + 1))
           .toISOString()
           .slice(0, 10),
-        value: 53 - 2 * Math.random(),
+        value: 53 - 30 * Math.random(),
       };
-      areaSeries.current.update(next);
+      // requestAnimationFrame(() =>
+      (areaSeries.current as ISeriesApi<'Area'>).update(next);
+      // );
+
+      // const currentData = areaSeries.current.data();
+      // console.log(currentData);
+
+      // gsap.to(currentData, {
+      //   // 0.5 seconds animation duration
+      //   duration: 0.5,
+      //   data: [next], // Target the new data
+      //   onUpdate: dd => {
+      //     console.log(dd);
+
+      //     areaSeries.current.update(currentData); // Update the chart with intermediate values
+      //     // chart.timeScale().requestUpdate(); // Request redraw
+      //   },
+      //   ease: 'power1.inOut',
+      // });
+      // (chart as IChartApi).timeScale().requestUpdate();
     }, 1000);
 
     return () => clearInterval(intervalId);
