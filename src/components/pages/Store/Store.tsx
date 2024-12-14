@@ -52,6 +52,7 @@ const Store = () => {
     else setOpenAllLeverage(false);
     if (state !== null && state == 'all-avatars') setOpenAllAvatars(true);
     else setOpenAllAvatars(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   useEffect(() => {
@@ -75,6 +76,7 @@ const Store = () => {
         setNewAvatarInfo(findDetialNewAvatar);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
   ////
   return (
