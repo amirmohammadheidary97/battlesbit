@@ -40,10 +40,10 @@ const AllAvatarsDrawerDrawer = ({
       <Grid container rowSpacing={1} padding="5px 20px" columnSpacing={1}>
         {allAvatars.map((item, index) => (
           <GetNewAvatarItem
-            hieght="105px"
+            hieght="95px"
             size={3}
-            imageHeight="84px"
-            imageWidth="84px"
+            imageHeight="64px"
+            imageWidth="64px"
             key={index}
             {...item}
           />

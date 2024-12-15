@@ -14,6 +14,7 @@ const StorePage = lazy(() => import('@/components/pages/Store'));
 const LeaderboardPage = lazy(() => import('@/components/pages/Leaderboard'));
 const AchievementPage = lazy(() => import('@/components/pages/Achievements'));
 const UserDetailsPage = lazy(() => import('@/components/pages/UserDetails'));
+const ProfilePage = lazy(() => import('@/components/pages/Profile'));
 
 export {
   AchievementPage,
@@ -25,6 +26,7 @@ export {
   MakeMatchPage,
   MatchLoadingPage,
   OtpPage,
+  ProfilePage,
   StorePage,
   UserDetailsPage,
   WalletPage,
