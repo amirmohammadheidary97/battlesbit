@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid2';
 
 import BeforeBeginMatchStage from './components/CountDownStart/BeforeBeginMatchStage';
@@ -17,7 +17,7 @@ const MatchLoading = () => {
       alignContent={'center'}
       justifyContent={'center'}
       rowSpacing={!isChallengerFound ? '47px' : undefined}
-      sx={{height: '100vh'}}>
+      sx={{ height: '100vh' }}>
       <button onClick={() => setIsChallengerFound(prev => !prev)}>
         Challenger Found toggle
       </button>
