@@ -6,7 +6,7 @@ import {FriendsListDialog} from './components/FriendsListDialog';
 import {MatchConfig} from './components/MatchConfig';
 import {useMakeMatchState} from './state/make-match.state';
 
-import bg from '@/assets/img/bg/matchmake-bg.png';
+import bg from '@/assets/img/bg/makemach.svg';
 import {Center} from '@/components/atoms/Center';
 import {CustomIcon} from '@/components/atoms/icon';
 import {theme} from '@/config/theme';

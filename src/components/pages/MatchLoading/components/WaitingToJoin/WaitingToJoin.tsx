@@ -19,8 +19,8 @@ const WaitingToJoinStage = () => {
     navigate(-1);
   };
   return (
-    <>
-      <Grid size={12} rowSpacing={'47px'} container>
+    <Grid container p={'1rem'} spacing={'2.9375rem'}>
+      <Grid size={12} container>
         <Grid size={12}>
           <Typography
             color="primary"
@@ -59,7 +59,7 @@ const WaitingToJoinStage = () => {
           </Button>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 

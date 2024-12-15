@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {Avatar, Container} from '@mui/material';
 
-import WaintingPicture from '@/assets/img/loadingmatch.jpeg';
+import WaintingPicture from '@/assets/img/icons/avatars/loading.mp4';
 
 const MatchloadingPicture = () => (
   <Container
@@ -22,10 +22,10 @@ const MatchloadingPicture = () => (
         width: '10.5rem',
         height: '10.5rem',
         zIndex: 9,
-        img: {width: 1, height: 1},
-      }}
-      src={WaintingPicture}
-    />
+        video: {width: 1, height: 1, scale: 1.8},
+      }}>
+      <video src={WaintingPicture} autoPlay muted loop />
+    </Avatar>
   </Container>
 );
 export default MatchloadingPicture;
@@ -50,7 +50,7 @@ const LowestImageConatiner = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--primary-main, #f3c73b);
+  background-color: #ec6f081a;
   border-radius: 50%;
   opacity: 0.1;
   z-index: 1;
@@ -64,7 +64,7 @@ const MiddleImageConatiner = styled.div`
   left: 6%;
   width: 88%;
   height: 88%;
-  background-color: var(--primary-main, #f3c73b);
+  background-color: #ec6f0833;
   border-radius: 50%;
   opacity: 0.2;
   z-index: 2;
@@ -78,7 +78,7 @@ const HighestImageConatiner = styled.div`
   left: 14%;
   width: 72%;
   height: 72%;
-  background-color: var(--primary-main, #f3c73b);
+  background-color: #ec6f08;
   border-radius: 50%;
   display: flex;
   justify-content: center;

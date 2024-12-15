@@ -3,7 +3,8 @@ import {Box, keyframes} from '@mui/material';
 
 import InfoAboutPlayer from '../ChallengersDetails/components/infoAboutPlayer';
 
-import avatar from '@/assets/img/loadingmatch.jpeg';
+import avatar1 from '@/assets/img/icons/avatars/player1.png';
+import avatar2 from '@/assets/img/icons/avatars/player2.png';
 import {PlayerAvatar} from '@/components/atoms/PlayerAvatar';
 import {useMakeMatchState} from '@/components/pages/MakeMatch/state/make-match.state';
 import {flex} from '@/utils/flexHelper';
@@ -46,7 +47,7 @@ const PlayersPicturesBeforeMatch = () => {
         sx={{
           left: 0,
         }}>
-        <PlayerAvatar dir="ltr" img={avatar} />
+        <PlayerAvatar dir="ltr" img={avatar1} />
       </Box>
       <Box
         className="pictureContainer"
@@ -54,7 +55,7 @@ const PlayersPicturesBeforeMatch = () => {
           direction: 'rtl',
           right: 0,
         }}>
-        <PlayerAvatar dir="rtl" img={avatar} />
+        <PlayerAvatar dir="rtl" img={avatar2} />
       </Box>
       <InfoAboutPlayer
         challengersInfo={info}
