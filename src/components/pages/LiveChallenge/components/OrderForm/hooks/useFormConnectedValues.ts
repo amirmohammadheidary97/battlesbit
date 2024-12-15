@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const useConnectedValues = ({availableMargin}: Props) => {
-  const [amountValue, setAmountValue] = useState<number>(0);
+  const [amountValue, setAmountValue] = useState<string | undefined>('0');
   const [sliderValue, setSliderValue] = useState<number>(0);
   const [leverage, setLeverage] = useState<number>(1);
   //
@@ -19,7 +19,7 @@ export const useConnectedValues = ({availableMargin}: Props) => {
   const defferedProfit = useDeferredValue(profit);
   const resetAmount = () => {
     setSliderValue(0);
-    setAmountValue(0);
+    setAmountValue('0');
     setLeverage(1);
   };
   //

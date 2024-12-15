@@ -1,12 +1,17 @@
 // eslint-disable-next-line no-restricted-syntax
 import React from 'react';
+import {useNavigate} from 'react-router';
 import {Box, useTheme} from '@mui/material';
 
 export const CentralButton: React.FC = () => {
   const theme = useTheme();
-
+  const navigate = useNavigate();
+  const onClick = () => {
+    navigate('/challenges');
+  };
   return (
     <Box
+      onClick={onClick}
       component="button"
       aria-label="Central action"
       sx={{

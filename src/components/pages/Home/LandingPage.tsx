@@ -23,7 +23,7 @@ const LandingPage = () => {
         p: 2,
         pb: '5.5rem',
       }}>
-      <Grid size={12} container spacing={3}>
+      <Grid size={12} container spacing={3} flexWrap={'nowrap'}>
         <HomeHeader
           current={123}
           total={200}

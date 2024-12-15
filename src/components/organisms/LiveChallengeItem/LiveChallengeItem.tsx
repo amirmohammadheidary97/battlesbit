@@ -1,9 +1,8 @@
-import {Box, Typography, useTheme} from '@mui/material';
+import {Typography, useTheme} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import {BasicTimeUnits} from '@/components/atoms/TimeSpent';
 import {MatchStatusSlider} from '@/components/molecules/MatchStatusSlider';
-import {flex} from '@/utils/flexHelper';
 
 export const LiveChallengeItem = () => {
   //
@@ -13,6 +12,7 @@ export const LiveChallengeItem = () => {
     <Grid
       container
       columns={24}
+      spacing={2}
       sx={{
         background: theme.palette.background.paper,
         width: '100%',
@@ -47,25 +47,19 @@ export const LiveChallengeItem = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid size="grow">
-        <Box
-          sx={{
-            w: 'full',
-            ...flex().column().jcenter().astretch().result,
-          }}>
-          <MatchStatusSlider
-            player1={{
-              name: '',
-              progressPercent: 0,
-              income: undefined,
-            }}
-            player2={{
-              name: '',
-              progressPercent: 0,
-              income: undefined,
-            }}
-          />
-        </Box>
+      <Grid size="grow" container columns={12}>
+        <MatchStatusSlider
+          player1={{
+            name: '',
+            progressPercent: 10,
+            income: undefined,
+          }}
+          player2={{
+            name: '',
+            progressPercent: 50,
+            income: undefined,
+          }}
+        />
       </Grid>
     </Grid>
   );

@@ -1,6 +1,6 @@
-import { Suspense } from 'react';
-import type { RouteObject } from 'react-router';
-import { createBrowserRouter } from 'react-router-dom';
+import {Suspense} from 'react';
+import type {RouteObject} from 'react-router';
+import {createBrowserRouter} from 'react-router-dom';
 
 import {
   AchievementPage,
@@ -12,15 +12,19 @@ import {
   MakeMatchPage,
   MatchLoadingPage,
   OtpPage,
+  ProfilePage,
   StorePage,
   UserDetailsPage,
   WalletPage,
 } from './lazy-pages';
-import { PrivateOutlet } from './PrivateOutlet';
+import {PrivateOutlet} from './PrivateOutlet';
 
-import { WithBottomLNavbarLayout } from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
-import { AchievementsTemplate } from '@/components/templates/Achievement';
-import { StoreTemplate } from '@/components/templates/Store';
+import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
+import {AchievementsTemplate} from '@/components/templates/Achievement';
+import {LeaderBoardTemplate} from '@/components/templates/LeaderBoard/LeaderBoardTemplate';
+import ProfileSkeleton from '@/components/templates/Profile/ProfileSkeleton';
+import {StoreTemplate} from '@/components/templates/Store';
+import {UserDetailsSkeleton} from '@/components/templates/UserDetails';
 
 const routeObjects: RouteObject[] = [
   {
@@ -56,12 +60,28 @@ const routeObjects: RouteObject[] = [
             element: <WalletPage />,
           },
           {
+            path: '/profile',
+            element: (
+              <Suspense fallback={<ProfileSkeleton />}>
+                <ProfilePage />
+              </Suspense>
+            ),
+          },
+          {
             path: '/leader-board',
-            element: <LeaderboardPage />,
+            element: (
+              <Suspense fallback={<LeaderBoardTemplate />}>
+                <LeaderboardPage />
+              </Suspense>
+            ),
           },
           {
             path: '/user-details',
-            element: <UserDetailsPage />,
+            element: (
+              <Suspense fallback={<UserDetailsSkeleton />}>
+                <UserDetailsPage />
+              </Suspense>
+            ),
           },
           {
             path: '/store',

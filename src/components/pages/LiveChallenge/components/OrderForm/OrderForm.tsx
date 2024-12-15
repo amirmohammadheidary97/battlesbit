@@ -101,12 +101,14 @@ export const OrderForm = () => {
     if (amountMode !== 'percent') setAmountMode('percent');
     setSliderValue(v);
     // ** immidiately change amount
-    setAmountValue((v / 100) * availableMargin * leverage);
+    setAmountValue(String((v / 100) * availableMargin * leverage));
+    // amount = (sliderValue / 100) * availableMargin * leverage
+    // sliderValue = (amount * 100)/(availableMargin * leverage)
   };
   const onLeverageChange = (v: number) => {
     setLeverage(v);
     // ** immidiately change amount
-    setAmountValue((sliderValue / 100) * availableMargin * v);
+    setAmountValue(String((sliderValue / 100) * availableMargin * v));
   };
   //
   return (
@@ -146,7 +148,9 @@ export const OrderForm = () => {
               onChange={handleMarginTypeChange}
               getValue={op => op.value}
               getLabel={op => op.name}
-              slotProps={miniSelectSlotProps}
+              slotProps={{
+                ...miniSelectSlotProps,
+              }}
             />
           </Grid>
           <Grid>
@@ -177,7 +181,14 @@ export const OrderForm = () => {
             onChange={handleOrderTypeChange}
             getValue={op => op.value}
             getLabel={op => op.name}
-            slotProps={{formControlProps: {fullWidth: true}}}
+            slotProps={{
+              formControlProps: {fullWidth: true},
+              selectProps: {
+                MenuProps: {
+                  disableScrollLock: true,
+                },
+              },
+            }}
           />
         </Grid>
         <Grid container size={12}>

@@ -28,8 +28,14 @@ const LiveChallenge = () => {
       <Grid size={12}>
         <BackwardTitle title="Live Challenge" />
       </Grid>
-      <Grid size={12} container alignItems={'center'} spacing={1} columns={20}>
-        <Grid size={8}>
+      <Grid
+        size={12}
+        container
+        alignItems={'center'}
+        spacing={1}
+        columns={12}
+        flexWrap={'nowrap'}>
+        <Grid size={8} container>
           <BalanceProfit
             ref={containerRef}
             role="balance"
@@ -51,7 +57,7 @@ const LiveChallenge = () => {
             label={<Typography variant="subtitle1">30:28</Typography>}
           />
         </Grid>
-        <Grid size={8}>
+        <Grid size={8} container>
           <BalanceProfit role="profit" unit="USDT" value={2000} />
         </Grid>
       </Grid>

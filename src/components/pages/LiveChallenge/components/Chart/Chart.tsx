@@ -92,7 +92,10 @@ export const AssetsChart = () => {
               setPrevoisChartType(chartType);
               setChartType(p => (p == 'area' ? 'candlestick' : 'area'));
             }}
-            displayEmpty>
+            displayEmpty
+            MenuProps={{
+              disableScrollLock: true,
+            }}>
             <MenuItem value={'candlestick'}>Candle</MenuItem>
             <MenuItem value={'area'}>Tick</MenuItem>
           </Select>

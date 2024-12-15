@@ -24,6 +24,7 @@ export const miniSelectSlotProps = {
   },
   selectProps: {
     MenuProps: {
+      disableScrollLock: true,
       MenuListProps: {
         sx: {
           py: 0,

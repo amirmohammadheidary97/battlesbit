@@ -51,7 +51,7 @@ const ChallengerDetails = () => {
     <Grid
       container
       size={12}
-      height={'calc(100vh - 2rem)'}
+      height={'100vh'}
       pb={2}
       spacing={2}
       sx={{
@@ -60,7 +60,7 @@ const ChallengerDetails = () => {
       {/* rivals picture */}
       <Grid
         size={12}
-        height={'32vh'}
+        height={'35vh'}
         p={0}
         container
         flexWrap={'nowrap'}
