@@ -51,13 +51,8 @@ const LevelSectionSkeleton = () => (
           </Box>
         </Box>
       </Grid>
-      <Grid size={3} sx={{...flex().jcenter().astart().result}}>
-        <Skeleton
-          variant="rectangular"
-          width="9.6rem"
-          height="9.6rem"
-          sx={{mt: -3}}
-        />
+      <Grid size={3} sx={{...flex().jcenter().acenter().result}}>
+        <Skeleton variant="rectangular" width="9.6rem" height="8rem" />
       </Grid>
     </Grid>
   </Grid>

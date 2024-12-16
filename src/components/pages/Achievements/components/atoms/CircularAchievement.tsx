@@ -28,20 +28,21 @@ const CircularAchievement = ({isFullWidth, isSelected, title}: Props) => {
           border: isSelected
             ? theme => `1px solid ${theme.palette.primary.main}`
             : 'none',
-          width: isFullWidth ? '100px' : '50px',
-          height: isFullWidth ? '100px' : '50px',
+          width: 1,
+          height: 1,
+          aspectRatio: 1,
           p: isFullWidth ? '1rem' : '0.5rem',
           svg: {
-            width: isFullWidth ? '56px' : '30px',
-            height: isFullWidth ? '58px' : '30px',
+            width: isFullWidth ? '3.5rem' : '1.875rem',
+            height: isFullWidth ? '3.625rem' : '1.875rem',
           },
         }}
         src={AchieveCup}
       />
       <Typography
         fontWeight={400}
-        lineHeight={isFullWidth ? '24.64px' : '13.69px'}
-        fontSize={isFullWidth ? '18px' : '10px'}
+        lineHeight={isFullWidth ? '1.54rem' : '0.85rem'}
+        fontSize={isFullWidth ? '1rem' : '0.5rem'}
         fontFamily={'Alfa Slab One'}>
         {title}
       </Typography>

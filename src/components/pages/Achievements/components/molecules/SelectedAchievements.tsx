@@ -5,8 +5,6 @@ import {useAchievementState} from '../../state/achievement.state';
 import CircularAchievement from '../atoms/CircularAchievement';
 import EmptyPlaceholder from '../atoms/EmptyPlaceholder';
 
-import {flex} from '@/utils/flexHelper';
-
 const SelectedAchievements = () => {
   const {myAchievements} = useAchievementState();
   const selectedAchieves = myAchievements.filter(
@@ -28,16 +26,19 @@ const SelectedAchievements = () => {
         <Grid size={12}>
           <Typography variant="h5">Achievements</Typography>
         </Grid>
-        <Grid size={12} sx={{...flex().jbetween().acenter().result}}>
+        <Grid
+          size={12}
+          container
+          spacing={1.5}
+          justifyContent={'space-between'}
+          flexWrap={'nowrap'}
+          alignItems={'center'}>
           {achievementsCount > 0 &&
             achievementsCount < 4 &&
             selectedAchieves.map(ach => (
-              <CircularAchievement
-                key={ach.id}
-                isFullWidth
-                isSelected
-                title={ach.title}
-              />
+              <Grid key={ach.id} size={4}>
+                <CircularAchievement isFullWidth isSelected title={ach.title} />
+              </Grid>
             ))}
           {achievementsCount === 3
             ? null

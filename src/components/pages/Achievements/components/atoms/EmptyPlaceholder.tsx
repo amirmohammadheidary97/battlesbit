@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router';
-import {Box, Icon} from '@mui/material';
+import {Avatar, Box} from '@mui/material';
 
-import CupPlaceholder from '@/assets/img/icons/general/emptyCup.svg?react';
+import CupPlaceholder from '@/assets/img/icons/general/emptyCup.svg';
 import {flex} from '@/utils/flexHelper';
 
 const EmptyPlaceholder = () => {
@@ -10,14 +10,24 @@ const EmptyPlaceholder = () => {
     <Box
       onClick={() => navigate('?show=highlighted')}
       sx={{
-        ...flex().column().gap('0.5rem').acenter().result,
-        svg: {fontSize: '100px'},
+        ...flex().column().gap('0.5rem').acenter().jstart().result,
       }}>
-      <Icon component={CupPlaceholder} />
+      <Avatar
+        sx={{
+          width: 1,
+          height: 1,
+          aspectRatio: 1,
+          svg: {
+            width: '3.5rem',
+            height: '3.625rem',
+          },
+        }}
+        src={CupPlaceholder}
+      />
       <Box
         sx={{
-          width: '100px',
-          height: '25px',
+          width: '6.25rem',
+          height: '1.2rem',
           borderRadius: '0.25rem',
           bgcolor: 'background.default',
         }}
