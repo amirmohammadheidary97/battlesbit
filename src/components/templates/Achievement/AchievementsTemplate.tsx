@@ -10,13 +10,12 @@ import {
   SelectedAchievementsSkeleton,
 } from './LoadingStages';
 
+import {BackwardTitle} from '@/components/molecules/BackwardTitle';
+
 export const AchievementsTemplate = () => (
-  <Grid2
-    spacing={1.75}
-    container
-    sx={{
-      py: 2,
-    }}>
+  <Grid2 spacing={1.75} container>
+    <BackwardTitle title="Achievement" />
+    {/*  */}
     <LevelSectionSkeleton />
     {/*  */}
     <SelectedAchievementsSkeleton />

@@ -1,8 +1,6 @@
 import {Box, Skeleton, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import {flex} from '@/utils/flexHelper';
-
 const SelectedAchievementsSkeleton = () => (
   <Grid size={12} container px={2}>
     <Grid
@@ -19,25 +17,31 @@ const SelectedAchievementsSkeleton = () => (
           <Skeleton width="50%" />
         </Typography>
       </Grid>
-      <Grid size={12} sx={{...flex().jbetween().acenter().result}}>
+      <Grid
+        size={12}
+        container
+        spacing={2}
+        justifyContent={'space-between'}
+        alignItems={'center'}>
         {Array.from({length: 3}).map((_, index) => (
-          <Box
-            key={index}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
-            <Skeleton variant="circular" width="6.25rem" height="6.25rem" />
-            <Typography
-              fontSize="1.125rem"
-              width="100%"
-              lineHeight="1.54rem"
-              mt="0.5rem"
-              fontFamily="Alfa Slab One">
-              <Skeleton width="100%" />
-            </Typography>
-          </Box>
+          <Grid size={4} key={index}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}>
+              <Skeleton variant="circular" width="6.25rem" height="6.25rem" />
+              <Typography
+                fontSize="1.125rem"
+                width="100%"
+                lineHeight="1.54rem"
+                mt="0.5rem"
+                fontFamily="Alfa Slab One">
+                <Skeleton width="100%" />
+              </Typography>
+            </Box>
+          </Grid>
         ))}
       </Grid>
     </Grid>

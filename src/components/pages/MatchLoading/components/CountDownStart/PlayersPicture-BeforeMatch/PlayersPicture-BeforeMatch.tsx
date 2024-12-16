@@ -26,17 +26,14 @@ const PlayersPicturesBeforeMatch = () => {
       sx={{
         width: '100%',
         position: 'relative',
-        perspective: '1000px',
         ...flex().astretch().nowrap().result,
         '.pictureContainer': {
           width: '50%',
-          animation: `${smash} 0.6s cubic-bezier(0.55, 0, 1, 0.45) forwards`,
           '.player-avatar': {
             width: '104%',
             height: '100%',
             position: 'absolute',
             bottom: 0,
-            transform: 'translateZ(1500px)',
           },
         },
       }}>
@@ -46,6 +43,7 @@ const PlayersPicturesBeforeMatch = () => {
         onAnimationEnd={() => setSmashEnd(true)}
         sx={{
           left: 0,
+          animation: `${slideLeft} 0.6s cubic-bezier(0.55, 0, 1, 0.45) forwards`,
         }}>
         <PlayerAvatar dir="ltr" img={avatar1} />
       </Box>
@@ -54,6 +52,7 @@ const PlayersPicturesBeforeMatch = () => {
         sx={{
           direction: 'rtl',
           right: 0,
+          animation: `${slideRight} 0.6s cubic-bezier(0.55, 0, 1, 0.45) forwards`,
         }}>
         <PlayerAvatar dir="rtl" img={avatar2} />
       </Box>
@@ -67,31 +66,60 @@ const PlayersPicturesBeforeMatch = () => {
 
 export default PlayersPicturesBeforeMatch;
 
-const smash = keyframes`
+const slideRight = keyframes`
  
 	0% {
 		opacity: 0;
-		transform: translateZ(800px);
+		transform: translateX(800px);
 	}
 
 	38% {
 		opacity: 1;
-		transform: translateZ(0);
+		transform: translateX(0);
 	}
 
 	65% {
-		transform: translateZ(50px);
+		transform: translateX(50px);
 	}
 
 	72% {
-		transform: translateZ(0);
+		transform: translateX(0);
 	}
 
 	81% {
-		transform: translateZ(15px);
+		transform: translateX(15px);
 	}
 	100% {
-		transform: translateZ(0);
+		transform: translateX(0);
+	}
+
+`;
+
+const slideLeft = keyframes`
+ 
+	0% {
+		opacity: 0;
+		transform: translateX(-800px);
+	}
+
+	38% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	65% {
+		transform: translateX(-50px);
+	}
+
+	72% {
+		transform: translateX(0);
+	}
+
+	81% {
+		transform: translateX(-15px);
+	}
+	100% {
+		transform: translateX(0);
 	}
 
 `;

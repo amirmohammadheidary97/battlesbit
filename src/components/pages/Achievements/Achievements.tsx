@@ -33,6 +33,7 @@ import {
 import {useAchievementState} from './state/achievement.state';
 
 import FullPageSkeleton from '@/components/atoms/Skeleton/FullPageSkeleton';
+import {BackwardTitle} from '@/components/molecules/BackwardTitle';
 
 const Achievements = () => {
   const {
@@ -90,8 +91,8 @@ const Achievements = () => {
       mb={2}
       sx={{
         alignItems: 'start',
-        py: 2,
       }}>
+      <BackwardTitle title="Achievement" />
       {levelLoading ? <LevelSectionSkeleton /> : <LevelSection />}
       {/*  */}
       {myAchievements.length === 0 ? (
