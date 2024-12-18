@@ -1,10 +1,10 @@
-import {Suspense} from 'react';
-import {RouterProvider as LibRouterProvider} from 'react-router';
+import { Suspense } from 'react';
+import { RouterProvider as LibRouterProvider } from 'react-router';
 
-import {router} from '@/config/routes';
+import { router } from '@/config/routes';
 
 export const RouterProvider = () => (
-  <Suspense fallback={<>loading ...</>}>
+  <Suspense fallback={<></>}>
     <LibRouterProvider router={router} fallbackElement={<FallBackElement />} />
   </Suspense>
 );

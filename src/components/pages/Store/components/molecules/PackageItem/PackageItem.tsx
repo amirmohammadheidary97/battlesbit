@@ -132,7 +132,14 @@ export const PackageItem: React.FC<PackagesType> = ({
           variant="contained"
           color="primary"
           size="large"
-          sx={{width: '100%', borderRadius: '8px', marginTop: '5px'}}>
+          sx={{
+            width: '100%',
+            borderRadius: '8px',
+            marginTop: '5px',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+            },
+          }}>
           <Typography
             variant="caption"
             fontWeight={'600'}

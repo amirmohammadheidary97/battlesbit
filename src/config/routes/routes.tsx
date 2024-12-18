@@ -1,6 +1,6 @@
-import {Suspense} from 'react';
-import type {RouteObject} from 'react-router';
-import {createBrowserRouter} from 'react-router-dom';
+import { Suspense } from 'react';
+import type { RouteObject } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 
 import {
   AchievementPage,
@@ -17,14 +17,14 @@ import {
   UserDetailsPage,
   WalletPage,
 } from './lazy-pages';
-import {PrivateOutlet} from './PrivateOutlet';
+import { PrivateOutlet } from './PrivateOutlet';
 
-import {WithBottomLNavbarLayout} from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
-import {AchievementsTemplate} from '@/components/templates/Achievement';
-import {LeaderBoardTemplate} from '@/components/templates/LeaderBoard/LeaderBoardTemplate';
+import { WithBottomLNavbarLayout } from '@/components/organisms/layouts/WithBottomNavbarLayout/WithBottomNavbarLayout';
+import { AchievementsTemplate } from '@/components/templates/Achievement';
+import { LeaderBoardTemplate } from '@/components/templates/LeaderBoard/LeaderBoardTemplate';
 import ProfileSkeleton from '@/components/templates/Profile/ProfileSkeleton';
-import {StoreTemplate} from '@/components/templates/Store';
-import {UserDetailsSkeleton} from '@/components/templates/UserDetails';
+import { StoreTemplate } from '@/components/templates/Store';
+import { UserDetailsSkeleton } from '@/components/templates/UserDetails';
 
 const routeObjects: RouteObject[] = [
   {
@@ -77,9 +77,21 @@ const routeObjects: RouteObject[] = [
           },
           {
             path: '/user-details',
+            element: <UserDetailsPage />,
+          },
+          {
+            path: '/profile',
             element: (
-              <Suspense fallback={<UserDetailsSkeleton />}>
-                <UserDetailsPage />
+              <Suspense fallback={<ProfileSkeleton />}>
+                <ProfilePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/profile',
+            element: (
+              <Suspense fallback={<ProfileSkeleton />}>
+                <ProfilePage />
               </Suspense>
             ),
           },
