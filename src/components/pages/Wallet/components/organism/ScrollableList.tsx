@@ -56,7 +56,7 @@ const ScrollableList = ({
         </Typography>
       </Grid>
       <Grid height={'82%'} overflow={'auto'} size={12}>
-        <List sx={{p: '8px'}}>
+        <List sx={{m: '0.5rem'}}>
           {isTransaction && transactionList.length > 0
             ? transactionList.map(transaction => (
                 <TransactionItem

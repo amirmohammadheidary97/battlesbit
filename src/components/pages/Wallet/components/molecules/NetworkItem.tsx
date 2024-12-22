@@ -36,16 +36,22 @@ const NetworkSelectItem = ({
           ? 'rgba(244, 216, 87, 0.1)'
           : 'rgba(255, 255, 255, 0.1)',
         borderRadius: theme.shape.borderRadius,
-        my: '8px',
+        my: '0.5rem',
         height: '50px',
         gap: '0.5rem',
       }}
       disablePadding>
-      <ListItemButton>
+      <ListItemButton
+        onClick={handleToggle(value)}
+        sx={{p: 0, px: '0.5rem', borderRadius: theme.shape.borderRadius}}>
         <ListItemAvatar>
           <Avatar src={BitcoinIcon} alt="Bitcoin" />
         </ListItemAvatar>
-        <ListItemText id={String(value)} primary={title} />
+        <ListItemText
+          id={String(value)}
+          primary={title}
+          sx={{fontSize: '0.9rem !important'}}
+        />
       </ListItemButton>
     </ListItem>
   );
