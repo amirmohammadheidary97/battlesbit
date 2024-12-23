@@ -13,7 +13,8 @@ import {UserDetailsSkeleton} from '@/components/templates/UserDetails';
 const UserDetails = () => {
   const theme = useTheme();
   ///
-  const {selectAvatar, setSelectAvatar} = useUserDetail();
+  const {selectAvatar, setSelectAvatar, handleInputValue, inputValue} =
+    useUserDetail();
 
   return selectAvatar ? (
     <Grid
@@ -45,7 +46,10 @@ const UserDetails = () => {
           />
         </Grid>
         <Grid px={2} mt={3}>
-          <UserName />
+          <UserName
+            handleInputValue={handleInputValue}
+            inputValue={inputValue}
+          />
         </Grid>
         <Grid px={2} mt={10}>
           <Button

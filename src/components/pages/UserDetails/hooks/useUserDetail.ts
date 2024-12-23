@@ -4,7 +4,11 @@ import {useEffect, useState} from 'react';
 
 export const useUserDetail = () => {
   const [selectAvatar, setSelectAvatar] = useState<number>();
+  const [inputValue, setInputValue] = useState<string>('');
 
+  const handleInputValue = (value: string) => {
+    setInputValue(value);
+  };
   useEffect(() => {
     setTimeout(() => {
       setSelectAvatar(10);
@@ -13,5 +17,7 @@ export const useUserDetail = () => {
   return {
     selectAvatar,
     setSelectAvatar,
+    handleInputValue,
+    inputValue,
   };
 };

@@ -1,7 +1,12 @@
 import {TextField, Typography, useTheme} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-const UserName = () => {
+type TProps = {
+  handleInputValue: (value: string) => void;
+  inputValue: string;
+};
+
+const UserName: React.FC<TProps> = ({handleInputValue, inputValue}) => {
   const theme = useTheme();
   return (
     <Grid display={'flex'} flexDirection={'column'}>
@@ -16,9 +21,12 @@ const UserName = () => {
         Username
       </Typography>
       <TextField
+        onChange={e => {
+          handleInputValue(e.target.value);
+        }}
         variant="outlined"
         type="text"
-        value={'Mohammad'}
+        value={inputValue}
         fullWidth
         sx={{
           bgcolor: theme.palette.background.default,
