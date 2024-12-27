@@ -9,6 +9,7 @@ import {useMakeMatchState} from './state/make-match.state';
 import bg from '@/assets/img/bg/makemach.svg';
 import {Center} from '@/components/atoms/Center';
 import {CustomIcon} from '@/components/atoms/icon';
+import {BackwardTitle} from '@/components/molecules/BackwardTitle';
 import {theme} from '@/config/theme';
 
 const MakeMatch = () => {
@@ -24,6 +25,8 @@ const MakeMatch = () => {
       size={12}
       alignContent={'space-between'}
       sx={{height: '100vh', padding: 2}}>
+      {/* backward button */}
+      <BackwardTitle title="Make Match" />
       {/* BG */}
       <Grid size={12} sx={{height: '75vh', position: 'relative'}}>
         <Center

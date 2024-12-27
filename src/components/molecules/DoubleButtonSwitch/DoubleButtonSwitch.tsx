@@ -28,7 +28,7 @@ export const DoubleButtonSwitch = <T,>({
     <ButtonGroup
       disableElevation
       component={'div'}
-      variant="contained"
+      // variant="contained"
       sx={{
         height,
         width: 1,
