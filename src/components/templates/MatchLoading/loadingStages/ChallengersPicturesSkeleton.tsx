@@ -1,8 +1,5 @@
-// import {useState} from 'react';
-import {Box, keyframes, Skeleton} from '@mui/material';
+import {Box, Skeleton} from '@mui/material';
 
-// import {PlayerAvatar} from '@/components/atoms/PlayerAvatar';
-// import {useMakeMatchState} from '@/components/pages/MakeMatch/state/make-match.state';
 import {flex} from '@/utils/flexHelper';
 
 const PlayersPicturesSkeleton = () => (
@@ -11,87 +8,32 @@ const PlayersPicturesSkeleton = () => (
       width: '100%',
       height: '35vh',
       position: 'relative',
-      ...flex().astretch().nowrap().result,
+      ...flex().jstart().nowrap().result,
       '.pictureContainer': {
         width: '50%',
+        height: '55vh',
         position: 'relative',
+        top: '-11.3vh',
       },
     }}>
     {' '}
     <Skeleton
       className="pictureContainer"
       sx={{
-        left: 0,
-        animation: `${slideLeft} 0.6s cubic-bezier(0.55, 0, 1, 0.45) forwards`,
+        left: 5,
+        clipPath:
+          'polygon(0% 0%, 100% 0%, 88% 54%, 100% 54%, 90% 100%, 0% 100%)',
       }}
     />
     <Skeleton
       className="pictureContainer"
       sx={{
-        // direction: 'rtl',
-        right: 0,
-        animation: `${slideRight} 0.6s cubic-bezier(0.55, 0, 1, 0.45) forwards`,
+        clipPath:
+          'polygon(10% 0%, 0% 50%, 12% 50%, 0% 100%, 100% 100%, 100% 0%)',
+        right: 5,
       }}
     />
   </Box>
 );
 
 export default PlayersPicturesSkeleton;
-
-const slideRight = keyframes`
- 
-	0% {
-		opacity: 0;
-		transform: translateX(800px);
-	}
-
-	38% {
-		opacity: 1;
-		transform: translateX(0);
-	}
-
-	65% {
-		transform: translateX(50px);
-	}
-
-	72% {
-		transform: translateX(0);
-	}
-
-	81% {
-		transform: translateX(15px);
-	}
-	100% {
-		transform: translateX(0);
-	}
-
-`;
-
-const slideLeft = keyframes`
- 
-	0% {
-		opacity: 0;
-		transform: translateX(-800px);
-	}
-
-	38% {
-		opacity: 1;
-		transform: translateX(0);
-	}
-
-	65% {
-		transform: translateX(-50px);
-	}
-
-	72% {
-		transform: translateX(0);
-	}
-
-	81% {
-		transform: translateX(-15px);
-	}
-	100% {
-		transform: translateX(0);
-	}
-
-`;
