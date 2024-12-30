@@ -28,7 +28,7 @@ const MakeMatch = () => {
       {/* backward button */}
       <BackwardTitle title="Make Match" />
       {/* BG */}
-      <Grid size={12} sx={{height: '75vh', position: 'relative'}}>
+      <Grid size={12} sx={{height: '50vh', position: 'relative'}}>
         <Center
           fullSize
           containerProps={{
@@ -37,12 +37,14 @@ const MakeMatch = () => {
                 Height: '100%',
                 maxHeight: '100%',
                 maxWidth: '100%',
+                position: 'absolute',
+                top: -60,
               },
             },
           }}>
           <img src={bg} />
         </Center>
-        <Box sx={{position: 'absolute', bottom: 0, left: 0, width: '100%'}}>
+        <Box sx={{position: 'absolute', bottom: -60, left: 0, width: '100%'}}>
           <MatchConfig entryFee={20} prize={200} time={20} />
         </Box>
       </Grid>

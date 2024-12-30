@@ -26,7 +26,7 @@ const EmptyPlaceholder = () => {
       />
       <Box
         sx={{
-          width: '6.25rem',
+          width: '6rem',
           height: '1.2rem',
           borderRadius: '0.25rem',
           bgcolor: 'background.default',

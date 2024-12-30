@@ -1,16 +1,19 @@
 import {List, ListItem, ListItemText} from '@mui/material';
 
-import type {TBalanceType} from '../fakeData/data';
-import {selectBalanceOptions} from '../fakeData/data';
+import BitcoinIcon from '@/assets/img/icons/general/bitcoin.png';
 
 type Props = {
-  selectedBalanceType?: TBalanceType;
-  setSelectedBalanceType?: React.Dispatch<React.SetStateAction<TBalanceType>>;
+  options: string[];
+  selectedCurrency?: string;
+  setSelectedCurrency?: React.Dispatch<
+    React.SetStateAction<string | undefined>
+  >;
 };
 
-const SingleSelectionList = ({
-  selectedBalanceType,
-  setSelectedBalanceType,
+const PaypalCurrencySelection = ({
+  options,
+  setSelectedCurrency,
+  selectedCurrency,
 }: Props) => (
   <List
     sx={{
@@ -19,26 +22,27 @@ const SingleSelectionList = ({
       orderTopRightRadius: '24px',
       borderTopLeftRadius: '24px',
     }}>
-    {selectBalanceOptions.map(opt => (
+    {options.map(opt => (
       <ListItem
         key={opt}
         onClick={() => {
-          setSelectedBalanceType && setSelectedBalanceType(opt);
+          setSelectedCurrency && setSelectedCurrency(opt);
         }}
         sx={{
           bgcolor:
-            selectedBalanceType === opt ? 'rgba(244, 216, 87, 0.1)' : undefined,
+            selectedCurrency === opt ? 'rgba(244, 216, 87, 0.1)' : undefined,
           borderRadius: theme => theme.shape.borderRadius,
           my: '0.5rem',
-          gap: '0.5rem',
+          gap: '1.5rem',
           height: '4rem',
           px: 2,
         }}
         disablePadding>
+        <img src={BitcoinIcon} />
         <ListItemText primary={opt} sx={{fontSize: '0.9rem !important'}} />
       </ListItem>
     ))}
   </List>
 );
 
-export default SingleSelectionList;
+export default PaypalCurrencySelection;

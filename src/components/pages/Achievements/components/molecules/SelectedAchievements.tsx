@@ -30,7 +30,7 @@ const SelectedAchievements = () => {
           size={12}
           container
           spacing={1.5}
-          justifyContent={'space-between'}
+          // justifyContent={'space-between'}
           flexWrap={'nowrap'}
           alignItems={'center'}>
           {achievementsCount > 0 &&
@@ -44,7 +44,12 @@ const SelectedAchievements = () => {
             ? null
             : Array(3 - achievementsCount)
                 .fill(null)
-                .map((_, index) => <EmptyPlaceholder key={index} />)}
+                .map((_, index) => (
+                  <Grid key={index} size={4}>
+                    {' '}
+                    <EmptyPlaceholder key={index} />{' '}
+                  </Grid>
+                ))}
         </Grid>
       </Grid>
     </Grid>

@@ -5,8 +5,6 @@ import type {TAchieve} from '../../fakeData/fake';
 import {useAchievementState} from '../../state/achievement.state';
 import RectangularAchievement from '../atoms/RectangularAchievement';
 
-import {flex} from '@/utils/flexHelper';
-
 const HighlightedWithLLocked = ({
   setSelectedItem,
 }: {
@@ -19,14 +17,12 @@ const HighlightedWithLLocked = ({
         <Grid size={12}>
           <Typography variant="subtitle1">Highlighted Achievements</Typography>
         </Grid>
-        <Grid size={12} sx={{...flex().jbetween().acenter().result}}>
+        <Grid size={12} container alignItems={'center'} spacing={2}>
           {allAchievements &&
             allAchievements.length > 0 &&
-            allAchievements
-              .slice(6, 9)
-              .map(ach => (
+            allAchievements.slice(6, 9).map(ach => (
+              <Grid size={4} key={ach.id}>
                 <RectangularAchievement
-                  key={ach.id}
                   desc={ach.desc}
                   isLocked={ach?.isLocked}
                   title={ach.title}
@@ -34,7 +30,8 @@ const HighlightedWithLLocked = ({
                   achieve={ach}
                   setSelectedItem={setSelectedItem}
                 />
-              ))}
+              </Grid>
+            ))}
         </Grid>
       </Grid>
     </Grid>
