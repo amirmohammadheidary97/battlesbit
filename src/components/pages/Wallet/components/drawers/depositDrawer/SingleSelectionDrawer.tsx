@@ -59,6 +59,7 @@ const SingleSelectionDrawer = ({
       <SingleSelectionList
         selectedBalanceType={selectedBalanceType}
         setSelectedBalanceType={setSelectedBalanceType}
+        handleCloseDrawer={setOpenNetworkOptionDrawer}
       />
     )}
     {type === 'paypal' && options && (
@@ -66,6 +67,7 @@ const SingleSelectionDrawer = ({
         options={options}
         selectedCurrency={selectedCurrency}
         setSelectedCurrency={setSelectedCurrency}
+        handleCloseDrawer={setOpenNetworkOptionDrawer}
       />
     )}
   </Drawer>

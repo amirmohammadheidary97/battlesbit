@@ -1,4 +1,7 @@
+import {Check} from '@mui/icons-material';
 import {List, ListItem, ListItemText} from '@mui/material';
+
+import StickyHeader from '../atoms/StickyHeader';
 
 import BitcoinIcon from '@/assets/img/icons/general/bitcoin.png';
 
@@ -8,26 +11,41 @@ type Props = {
   setSelectedCurrency?: React.Dispatch<
     React.SetStateAction<string | undefined>
   >;
+  handleCloseDrawer: (value: React.SetStateAction<boolean>) => void;
 };
 
 const PaypalCurrencySelection = ({
   options,
   setSelectedCurrency,
   selectedCurrency,
+  handleCloseDrawer,
 }: Props) => (
   <List
     sx={{
-      m: '0.5rem',
+      mx: 1,
+      p: 0,
       bgcolor: 'background.paper',
       orderTopRightRadius: '24px',
       borderTopLeftRadius: '24px',
+      maxHeight: 300,
+      overflowY: 'auto',
+      position: 'relative',
     }}>
+    {/*  header  */}
+    <StickyHeader
+      header="Select Currency"
+      handleCloseDrawer={handleCloseDrawer}
+    />
+    {/*  */}
     {options.map(opt => (
       <ListItem
         key={opt}
         onClick={() => {
           setSelectedCurrency && setSelectedCurrency(opt);
         }}
+        secondaryAction={
+          selectedCurrency === opt ? <Check color="primary" /> : undefined
+        }
         sx={{
           bgcolor:
             selectedCurrency === opt ? 'rgba(244, 216, 87, 0.1)' : undefined,

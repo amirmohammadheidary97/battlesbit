@@ -1,5 +1,6 @@
 import {Suspense, useState} from 'react';
-import {Box, Icon, Stack, Typography} from '@mui/material';
+import {ArrowDropDown} from '@mui/icons-material';
+import {Box, Stack, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import NavigateButton from '../atoms/NavigateButtons';
@@ -8,7 +9,6 @@ import type {TBalanceType} from '../fakeData/data';
 import {navButton} from '../fakeData/data';
 import WalletBalanceAmount from '../molecules/MoneyAmount';
 
-import Arrow from '@/assets/img/icons/general/arrow-up.svg?react';
 import {flex} from '@/utils/flexHelper';
 import {numberWithCommas} from '@/utils/money-number-fromatter';
 
@@ -91,15 +91,14 @@ const WalletBalacnceContainer = ({
   <Box
     onClick={onClick}
     sx={{
-      ...flex().jcenter().gap(2).acenter().result,
+      ...flex().jcenter().gap(1).acenter().result,
       svg: {
-        transform: 'rotate(180deg)',
         color: '#fff',
       },
     }}>
     <Typography sx={{fontSize: '22px', lineHeight: '30.01px'}}>
       {selectedBalanceType}
     </Typography>
-    <Icon component={Arrow} fontSize={'small'} />
+    <ArrowDropDown fontSize="large" />
   </Box>
 );

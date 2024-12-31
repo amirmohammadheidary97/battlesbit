@@ -1,5 +1,6 @@
 import {Suspense, useState} from 'react';
-import {Box, Button, Icon, Typography} from '@mui/material';
+import {ArrowDropDown} from '@mui/icons-material';
+import {Box, Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import UsdInput from '../../atoms/UsdInput';
@@ -8,7 +9,6 @@ import FullPageDrawerContainer from '../../organism/DrawerContainer';
 
 import SingleSelectionDrawer from './SingleSelectionDrawer';
 
-import Arrow from '@/assets/img/icons/general/arrow-up.svg?react';
 import BitcoinImg from '@/assets/img/icons/general/bitcoin.png';
 import {flex} from '@/utils/flexHelper';
 
@@ -123,7 +123,6 @@ const CurrencyContainer = ({
       bgcolor: 'background.paper',
       borderRadius: theme => theme.shape.borderRadius,
       svg: {
-        transform: 'rotate(180deg)',
         color: '#fff',
       },
     }}>
@@ -138,6 +137,6 @@ const CurrencyContainer = ({
         {selectedCurrency ?? 'Select Currency'}
       </Typography>
     </Box>
-    <Icon component={Arrow} fontSize={'small'} />
+    <ArrowDropDown fontSize="large" />
   </Box>
 );

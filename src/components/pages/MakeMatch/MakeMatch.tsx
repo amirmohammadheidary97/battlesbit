@@ -11,6 +11,7 @@ import {Center} from '@/components/atoms/Center';
 import {CustomIcon} from '@/components/atoms/icon';
 import {BackwardTitle} from '@/components/molecules/BackwardTitle';
 import {theme} from '@/config/theme';
+import {flex} from '@/utils/flexHelper';
 
 const MakeMatch = () => {
   const {toggleOpenDialoge, setStartMatch} = useMakeMatchState();
@@ -24,11 +25,19 @@ const MakeMatch = () => {
       container
       size={12}
       alignContent={'space-between'}
-      sx={{height: '100vh', padding: 2}}>
+      sx={{height: '100vh', position: 'relative', pb: 5}}>
       {/* backward button */}
       <BackwardTitle title="Make Match" />
       {/* BG */}
-      <Grid size={12} sx={{height: '50vh', position: 'relative'}}>
+      {/* <Grid
+        size={12}
+        sx={{
+          height: '75vh',
+          position: 'relative',
+          bgcolor: 'red',
+          // top: 100,
+          left: 0,
+        }}>
         <Center
           fullSize
           containerProps={{
@@ -38,13 +47,40 @@ const MakeMatch = () => {
                 maxHeight: '100%',
                 maxWidth: '100%',
                 position: 'absolute',
-                top: -60,
+                top: '5vh',
+                border: '1px solid',
               },
             },
           }}>
           <img src={bg} />
         </Center>
-        <Box sx={{position: 'absolute', bottom: -60, left: 0, width: '100%'}}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50vh',
+            left: 0,
+            width: '100%',
+            border: '1px solid',
+          }}>
+          <MatchConfig entryFee={20} prize={200} time={20} />
+        </Box>
+      </Grid> */}
+      <Grid
+        size={12}
+        px={2}
+        sx={{...flex().column().jcenter().acenter().result}}>
+        <Box
+          sx={{
+            img: {position: 'relative', top: 20, zIndex: 1},
+          }}>
+          <img src={bg} />
+        </Box>
+        <Box
+          sx={{
+            width: '100%',
+            position: 'relative',
+            zIndex: 3,
+          }}>
           <MatchConfig entryFee={20} prize={200} time={20} />
         </Box>
       </Grid>
@@ -53,6 +89,7 @@ const MakeMatch = () => {
         size={12}
         container
         spacing={1.5}
+        px={2}
         //   alignItems={'stretch'}
         sx={{
           height: '52px',
