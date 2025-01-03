@@ -1,5 +1,6 @@
 import {useState} from 'react';
-import {Typography} from '@mui/material';
+import {AutoAwesome} from '@mui/icons-material';
+import {Chip, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import {DoubleButtonSwitch} from '@/components/molecules/DoubleButtonSwitch';
@@ -33,11 +34,34 @@ export const MatchConfig = ({entryFee, prize, time}: Props) => {
   const [selectedOption, setSelectedOption] = useState<Option>(options[0]);
   //
   return (
-    <Grid container size={12} spacing={2}>
+    <Grid container size={12} spacing={1}>
       <Grid size={12} container flexWrap={'nowrap'}>
         <MatchProp title="Entry fee" value={entryFee} unit="USDT" />
         <MatchProp title="Prize" value={prize} unit="USDT" />
         <MatchProp title="Time" value={time} unit="min" />
+      </Grid>
+      <Grid
+        size={12}
+        bgcolor={'background.paper'}
+        p={2}
+        container
+        spacing={'10px'}
+        sx={{borderRadius: theme => theme.shape.borderRadius}}>
+        <Grid size={1}>
+          <AutoAwesome color="primary" />
+        </Grid>
+        <Grid size={11}>
+          <Typography variant="body1">
+            You have free challenge bonus in your wallet if you want use it{' '}
+            <Typography
+              color="primary"
+              component={'a'}
+              href="./wallet"
+              sx={{textDecoration: 'underline'}}>
+              click here
+            </Typography>
+          </Typography>
+        </Grid>
       </Grid>
       <Grid
         container
@@ -53,6 +77,26 @@ export const MatchConfig = ({entryFee, prize, time}: Props) => {
           setSelectedOption={setSelectedOption}
           getLabel={op => op.label}
           getValue={op => op.value}
+        />
+      </Grid>
+      <Grid size={12} sx={{display: 'flex', gap: '10px'}}>
+        <Chip
+          variant="outlined"
+          color="default"
+          sx={{color: 'GrayText'}}
+          label="best game"
+        />
+        <Chip
+          variant="outlined"
+          color="default"
+          sx={{color: 'GrayText'}}
+          label="best game"
+        />
+        <Chip
+          variant="outlined"
+          color="default"
+          sx={{color: 'GrayText'}}
+          label="best game"
         />
       </Grid>
     </Grid>

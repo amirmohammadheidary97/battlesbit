@@ -32,18 +32,28 @@ const MakeMatch = () => {
       <Grid
         size={12}
         px={2}
+        height={'70vh'}
+        position={'relative'}
         sx={{...flex().column().jcenter().acenter().result}}>
         <Box
           sx={{
-            img: {position: 'relative', top: 20, zIndex: 1},
+            img: {
+              position: 'absolute',
+              top: -50,
+              left: 0,
+              zIndex: 1,
+              width: '90%',
+              height: '90%',
+            },
           }}>
           <img src={bg} />
         </Box>
         <Box
           sx={{
-            width: '100%',
-            position: 'relative',
+            px: 2,
+            position: 'absolute',
             zIndex: 3,
+            bottom: 10,
           }}>
           <MatchConfig entryFee={20} prize={200} time={20} />
         </Box>
@@ -54,7 +64,6 @@ const MakeMatch = () => {
         container
         spacing={1.5}
         px={2}
-        //   alignItems={'stretch'}
         sx={{
           height: '52px',
           button: {
