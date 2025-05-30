@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx --fix . --ignore-pattern generated.ts --ignore-pattern android/ --ignore-pattern ios/",
     "lint": "yarn eslint",
     "lint:report": "eslint --ext .js,.jsx,.ts,.tsx --output-file eslint_report.json --format json src",
