@@ -14,7 +14,7 @@ type Story = StoryObj<typeof ChallengeSmallItem>;
 export const ChallengeSmallItemStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
-      <ChallengeSmallItem />
+      <ChallengeSmallItem entfee={20} img="" matchType="1vs1" prize={12} />
     </Box>
   ),
 };

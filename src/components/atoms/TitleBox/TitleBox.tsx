@@ -1,12 +1,13 @@
 import type {FC} from 'react';
-import {Box, Typography} from '@mui/material';
+import type {TypographyProps} from '@mui/material';
+import {Typography} from '@mui/material';
 
-type ITitleBoxProps = {
+type ITitleBoxProps = TypographyProps & {
   title: string;
 };
 
-export const TitleBox: FC<ITitleBoxProps> = ({title}) => (
-  <Typography component="div">
-    <Box sx={{fontWeight: 'bold', m: 1}}>{title}</Box>
+export const TitleBox: FC<ITitleBoxProps> = ({title, ...rest}) => (
+  <Typography component="div" sx={{fontWeight: 'bold'}} {...rest}>
+    {title}
   </Typography>
 );

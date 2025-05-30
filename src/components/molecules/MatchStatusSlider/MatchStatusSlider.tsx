@@ -6,6 +6,7 @@ import {MatchStatusSliderTrack} from './components/MatchStatusSliderTrack';
 import {useElementRect} from '@/hooks/custom/useElementRect';
 
 export type MatchStatusSliderProps = {
+  scale?: number;
   player1: {
     name: string;
     progressPercent: number;
@@ -20,13 +21,14 @@ export type MatchStatusSliderProps = {
 
 export const MatchStatusSlider = (props?: MatchStatusSliderProps) => {
   const {containerRef, rect} = useElementRect({});
+  const scale = props?.scale ?? 1;
   return (
     <Grid container ref={containerRef} size={12}>
       <Grid
         container
         size={12}
         sx={{
-          height: '2.5rem',
+          height: `${2.5 * scale}rem`,
           position: 'relative',
         }}>
         <MatchStatusSliderMark
@@ -35,16 +37,17 @@ export const MatchStatusSlider = (props?: MatchStatusSliderProps) => {
           isPlayerCurrentUser={true}
           containerRect={rect}
           income={props?.player1.income}
+          scale={scale}
         />
       </Grid>
       <Grid size={12}>
-        <MatchStatusSliderTrack />
+        <MatchStatusSliderTrack scale={scale} />
       </Grid>
       <Grid
         size={12}
         container
         sx={{
-          height: '3rem',
+          height: `${3 * scale}rem`,
         }}>
         <MatchStatusSliderMark
           name={props?.player2?.name ?? 'MAMAD'}
@@ -52,6 +55,7 @@ export const MatchStatusSlider = (props?: MatchStatusSliderProps) => {
           progressPercent={props?.player2?.progressPercent ?? 90}
           containerRect={rect}
           income={props?.player2.income}
+          scale={scale}
         />
       </Grid>
     </Grid>

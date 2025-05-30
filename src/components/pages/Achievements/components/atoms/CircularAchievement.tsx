@@ -30,7 +30,6 @@ const CircularAchievement = ({isFullWidth, isSelected, title}: Props) => {
             : 'none',
           width: 1,
           height: 1,
-          aspectRatio: 1,
           p: isFullWidth ? '1rem' : '0.5rem',
           svg: {
             width: isFullWidth ? '3.5rem' : '1.875rem',

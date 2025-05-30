@@ -40,6 +40,7 @@ export const DoubleButtonSwitch = <T,>({
         onClick={() => {
           setSelectedOption(options[0]);
         }}
+        disableFocusRipple
         className="double-button-switch-option1"
         color="primary"
         variant={firstOptionIsSelected ? 'contained' : 'outlined'}
@@ -54,6 +55,7 @@ export const DoubleButtonSwitch = <T,>({
         onClick={() => {
           setSelectedOption(options[1]);
         }}
+        disableFocusRipple
         className="double-button-switch-option2"
         color={'primary'}
         variant={secondOptionIsSelected ? 'contained' : 'outlined'}

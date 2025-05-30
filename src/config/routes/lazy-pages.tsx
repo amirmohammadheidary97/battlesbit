@@ -15,9 +15,13 @@ const LeaderboardPage = lazy(() => import('@/components/pages/Leaderboard'));
 const AchievementPage = lazy(() => import('@/components/pages/Achievements'));
 const UserDetailsPage = lazy(() => import('@/components/pages/UserDetails'));
 const ProfilePage = lazy(() => import('@/components/pages/Profile'));
+const ChallengeDetailPage = lazy(
+  () => import('@/components/pages/ChallengeDetail'),
+);
 
 export {
   AchievementPage,
+  ChallengeDetailPage,
   ChallengesPage,
   HomePage,
   LeaderboardPage,

@@ -1,6 +1,7 @@
 import {Divider, Skeleton} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
+import PlayersPicturesSkeleton from './ChallengersPicturesSkeleton';
 import MatchResultBadgeContainerSkeleton from './MatchResultBadgeSkeleton';
 
 import {theme} from '@/config/theme';
@@ -8,15 +9,8 @@ import {theme} from '@/config/theme';
 const ChallengerDetailsSkeleton = () => (
   <Grid container size={12} height={'calc(100vh)'} pb={2} spacing={2}>
     {/* rivals picture */}
-    <Grid
-      size={12}
-      height={'35vh'}
-      p={0}
-      container
-      flexWrap={'nowrap'}
-      sx={{justifyContent: 'space-between'}}>
-      <Skeleton height={1} width={'49%'} />
-      <Skeleton height={1} width={'49%'} />
+    <Grid size={12} height={'35vh'} p={0} container flexWrap={'nowrap'}>
+      <PlayersPicturesSkeleton />
     </Grid>
     <Grid
       display={'flex'}

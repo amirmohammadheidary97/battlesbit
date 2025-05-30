@@ -6,10 +6,8 @@ import Grid from '@mui/material/Grid2';
 import DepositItem from '../../molecules/DepositItem';
 import FullPageDrawerContainer from '../../organism/DrawerContainer';
 
-// import BitcoinGenerateLinkDrawer from './BitcoinGenerateLinkDrawer';
-import NetworkSelectionDrawer from './NetworkSelectionDrawer';
+import SingleSelectionDrawer from './SingleSelectionDrawer';
 
-// import PaypalDrawer from './PaypalDrawer';
 import BitcoinGenerateLinkDrawerSkeleton from '@/components/templates/Wallet/LoadingStages/BitcoinGenerateSkeleton';
 import PaypalDrawerSkeleton from '@/components/templates/Wallet/LoadingStages/PaypalDrawerSkeleton';
 import {theme} from '@/config/theme';
@@ -93,9 +91,10 @@ const DepositDrawer = ({handleCloseDepositDrawer, isDepositopen}: Props) => {
               {' '}
               continue
             </Button>
-            <NetworkSelectionDrawer
+            <SingleSelectionDrawer
               openNetworkOptionDrawer={openNetworkOptionDrawer}
               setOpenNetworkOptionDrawer={setOpenNetworkOptionDrawer}
+              type="network"
             />
             {/*  */}
 

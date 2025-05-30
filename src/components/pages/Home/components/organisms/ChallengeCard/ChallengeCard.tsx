@@ -1,11 +1,13 @@
-// eslint-disable-next-line no-restricted-syntax
-import React from 'react';
-import styled from '@emotion/styled';
+import {useNavigate} from 'react-router';
+import {Button} from '@mui/material';
+import Grid from '@mui/material/Grid2';
 
-import {ContinueButton} from './ContinueButton';
-import {GameStatus} from './GameStatus';
-import {LivePulse} from './LivePulse';
-import {TimeRemaining} from './TimeRemaining';
+import {GameStatus} from './components/GameStatus';
+import {LivePulse} from './components/LivePulse';
+import {Players} from './components/Players/Players';
+import {TimeRemaining} from './components/TimeRemaining';
+
+import {theme} from '@/config/theme';
 
 type ChallengeCardProps = {
   minutesLeft: number;
@@ -17,54 +19,50 @@ export const ChallengeCard: React.FC<ChallengeCardProps> = ({
   minutesLeft,
   secondsLeft,
   matchState,
-}) => (
-  <GameContainer>
-    <GameContent>
-      <GameStatus matchState={matchState} />
-      <GameImage
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/51f0cd44e164a379dd494c71e4ab59c78888891887912b76f465c976ae920e3e?placeholderIfAbsent=true&apiKey=305c4308d1064f65b99840ae6fe4e523"
-        alt="Game visual"
-      />
-    </GameContent>
-    <GameActions>
-      <TimeRemaining minutes={minutesLeft} seconds={secondsLeft} />
-      <ContinueButton />
-    </GameActions>
-    <LivePulse />
-  </GameContainer>
-);
-
-const GameContainer = styled.section`
-  border-radius: 12px;
-  background-color: #181a20;
-  position: relative;
-  display: flex;
-  min-height: 133px;
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 12px;
-`;
-
-const GameContent = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-`;
-
-const GameImage = styled.img`
-  aspect-ratio: 2.22;
-  object-fit: contain;
-  object-position: center;
-  width: 115px;
-  align-self: start;
-`;
-
-const GameActions = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px 100px;
-  font-family: 'Nunito Sans', sans-serif;
-`;
+}) => {
+  const navigate = useNavigate();
+  const onContinueBtnClick = () => {
+    navigate('/live-challenge');
+  };
+  return (
+    <Grid
+      container
+      size={12}
+      p={2}
+      spacing={3}
+      sx={{
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: 'background.default',
+        position: 'relative',
+      }}>
+      <Grid container size={12} spacing={2}>
+        <Grid size="grow">
+          <GameStatus matchState={matchState} />
+        </Grid>
+        <Grid size="auto">
+          <Players />
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        size={12}
+        spacing={2}
+        justifyContent={'space-between'}
+        alignItems={'flex-end'}>
+        <TimeRemaining minutes={minutesLeft} seconds={secondsLeft} />
+        <Button
+          color="primary"
+          size="small"
+          variant="contained"
+          onClick={onContinueBtnClick}
+          sx={{
+            borderRadius: 10,
+            px: 2.5,
+          }}>
+          Continue
+        </Button>
+      </Grid>
+      <LivePulse />
+    </Grid>
+  );
+};

@@ -5,24 +5,29 @@ import {Box, useTheme} from '@mui/material';
 import {CentralButton} from './CentralButton';
 import {NavigationItem} from './NavigationItem';
 
+import achievementIcon from '@/assets/img/icons/landing-bottom-navbar/achievments.svg';
+import eventsIcon from '@/assets/img/icons/landing-bottom-navbar/events.svg';
+import homeIcon from '@/assets/img/icons/landing-bottom-navbar/home.svg';
+import walletIcon from '@/assets/img/icons/landing-bottom-navbar/wallet.svg';
+
 const navigationItems = [
   {
-    icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/4bd132d185a24e943179e118a0e9fcba322b3cc4d46674396b3e95d4b056a89b?apiKey=305c4308d1064f65b99840ae6fe4e523&',
+    icon: homeIcon,
     label: 'Home',
     path: '/',
   },
   {
-    icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/402afc7bf09cfe6d4df0399443826fbc2598fc15323bd2a657cff3314e4a2e82?apiKey=305c4308d1064f65b99840ae6fe4e523&',
+    icon: achievementIcon,
     label: 'Achievement',
     path: '/achievements',
   },
   {
-    icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/0abae68e375a0d4e44721cf728d2dc38eb398c693a6be713c608b4cc1aa990a8?apiKey=305c4308d1064f65b99840ae6fe4e523&',
-    label: 'Profile',
-    path: '/profile',
+    icon: eventsIcon,
+    label: 'Events',
+    path: '/events',
   },
   {
-    icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/e139d8baff6cacd5e07c4cb81f74e51f32915e1c24ba37df2f9af79c82dbf5ac?apiKey=305c4308d1064f65b99840ae6fe4e523&',
+    icon: walletIcon,
     label: 'Wallet',
     path: '/wallet',
   },

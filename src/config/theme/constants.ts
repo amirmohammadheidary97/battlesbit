@@ -15,6 +15,7 @@ export const commonPalette: PaletteOptions = {
     'red-gradiant': '#D32F2F',
     'primary-gradiant':
       'linear-gradient(180deg, rgba(254, 190, 16, 0.85) 44.5%, #FFDC60 100%)',
+    'ai-card-bg': 'rgba(24, 26, 32, 0.60)',
   },
 };
 // background: radial-gradient(92.77% 33.98% at 49.11% 1.76%, #181A20 16.5%, #202229 100%)
@@ -27,10 +28,11 @@ export const darkPalette: PaletteOptions = {
   primary: {
     main: '#F3C73B',
     dark: '#4D2E00',
+    lighter: '#4f4732',
   },
   text: {
     primary: '#FFFFFF',
-    secondary: '#6d6d6d',
+    secondary: '#B6B6B6',
   },
   divider: '#595959',
 };

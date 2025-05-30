@@ -12,6 +12,7 @@ type Props = {
   isPlayerCurrentUser?: boolean;
   containerRect: BoundingRect | undefined;
   income?: number;
+  scale: number;
 };
 
 const isNear = (args: {
@@ -37,6 +38,7 @@ export const MatchStatusSliderMark = ({
   isPlayerCurrentUser = false,
   containerRect,
   income,
+  scale,
 }: Props) => {
   //
   const {containerRef: markRef, rect: markRect} = useElementRect({
@@ -49,7 +51,7 @@ export const MatchStatusSliderMark = ({
   //
   const getXPosition = () => {
     const nearState = isNear({
-      markWidth: (markRect?.width ?? 1) + 32,
+      markWidth: (markRect?.width ?? 1) + 32 * scale,
       containerWidth: containerRect?.width,
       progressPercent,
     });
@@ -57,15 +59,15 @@ export const MatchStatusSliderMark = ({
     const rtlb = {
       right: 'unset',
       left: 'unset',
-      bottom: isPlayerCurrentUser ? '0.5rem' : 'unset',
-      top: !isPlayerCurrentUser ? '0.5rem' : 'unset',
+      bottom: isPlayerCurrentUser ? `${0.5 * scale}rem` : 'unset',
+      top: !isPlayerCurrentUser ? `${0.5 * scale}rem` : 'unset',
     };
 
-    if (nearState.nearToStart) rtlb.left = '2.25rem';
-    else if (nearState.nearToEnd) rtlb.right = '2.25rem';
+    if (nearState.nearToStart) rtlb.left = `${2.25 * scale}rem`;
+    else if (nearState.nearToEnd) rtlb.right = `${2.25 * scale}rem`;
     else {
-      if (isPlayerCurrentUser) rtlb.right = '2.5rem';
-      else rtlb.left = '2.5rem';
+      if (isPlayerCurrentUser) rtlb.right = `${2.5 * scale}rem`;
+      else rtlb.left = `${2.5 * scale}rem`;
     }
     return rtlb;
   };
@@ -77,9 +79,9 @@ export const MatchStatusSliderMark = ({
         spacing={2}
         sx={{
           transition: '0.2s',
-          marginInlineStart: `calc(${progressPercent}% - 1rem)`,
+          marginInlineStart: `calc(${progressPercent}% - ${1 * scale}rem)`,
           position: 'relative',
-          height: '2.5rem',
+          height: `${2.5 * scale}rem`,
         }}>
         <Box
           sx={{
@@ -93,7 +95,7 @@ export const MatchStatusSliderMark = ({
               ...getXPosition(),
               position: 'absolute',
               transition: '0.2s',
-              maxWidth: '4rem',
+              maxWidth: `${4 * scale}rem`,
             }}>
             <Typography
               variant="caption"
@@ -123,14 +125,14 @@ export const MatchStatusSliderMark = ({
           <Avatar
             src={fakeAvatar}
             sx={{
-              width: '2rem',
-              height: '2rem',
+              width: `${2 * scale}rem`,
+              height: `${2 * scale}rem`,
               border: `1px solid ${color}`,
             }}
           />
           <Box
             sx={{
-              height: '0.5rem',
+              height: `${0.5 * scale}rem`,
               borderLeft: `2px solid ${color}`,
             }}
           />

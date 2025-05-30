@@ -48,13 +48,13 @@ export const NavigationItem: React.FC<NavigationItemProps> = ({
       <Typography
         variant="caption"
         sx={{
-          color: theme.palette.text.secondary,
+          color: theme.palette.divider,
           whiteSpace: 'nowrap',
           textAlign: 'center',
-          letterSpacing: '0.04px',
+          letterSpacing: '0.4%',
           fontSize: '10px',
-          fontFamily: 'Nunito Sans, sans-serif',
-          fontWeight: 400,
+          fontWeight: 500,
+          lineHeight: '100%',
           marginTop: '4px',
         }}>
         {label}

@@ -3,6 +3,8 @@ import React from 'react';
 import {useNavigate} from 'react-router';
 import {Box, useTheme} from '@mui/material';
 
+import bottomNavbarIcon from '@/assets/img/bg/center-bottom-navbar-icon.png';
+
 export const CentralButton: React.FC = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ export const CentralButton: React.FC = () => {
       }}>
       <Box
         component="img"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/08a2612c0fb312ed3fb94ade86e0c33ee55a2021eb98fb8807771530edd0b449?apiKey=305c4308d1064f65b99840ae6fe4e523&"
+        src={bottomNavbarIcon}
         alt=""
         loading="lazy"
         sx={{

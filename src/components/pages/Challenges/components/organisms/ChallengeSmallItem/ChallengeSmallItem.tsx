@@ -3,12 +3,18 @@ import Grid from '@mui/material/Grid2';
 
 import {ChallengePriceItem} from '../../molecules/ChallengePriceItem';
 
-import panda2 from '@/assets/img/bg/panda2.png';
 import infoIcon from '@/assets/img/icons/general/info.png';
 import prizeIcon from '@/assets/img/icons/general/prize.png';
 import ticketIcon from '@/assets/img/icons/general/ticket.png';
 
-export const ChallengeSmallItem = () => (
+type Props = {
+  matchType: '1vs1';
+  img: string;
+  entfee: number;
+  prize: number;
+};
+
+export const ChallengeSmallItem = ({entfee, img, prize}: Props) => (
   <Grid
     size={6}
     p={0}
@@ -22,7 +28,7 @@ export const ChallengeSmallItem = () => (
     <Box
       component="img"
       alt="Nothing"
-      src={panda2}
+      src={img}
       minHeight={150}
       sx={{borderRadius: '12px', objectFit: 'cover'}}
     />
@@ -74,10 +80,10 @@ export const ChallengeSmallItem = () => (
           alignItems="start">
           <ChallengePriceItem
             icon={ticketIcon}
-            title="Ticket Price"
-            value={20}
+            title="Entry fee"
+            value={entfee}
           />
-          <ChallengePriceItem icon={prizeIcon} title="Prize" value={20} />
+          <ChallengePriceItem icon={prizeIcon} title="Prize" value={prize} />
         </Box>
       </Box>
     </Box>

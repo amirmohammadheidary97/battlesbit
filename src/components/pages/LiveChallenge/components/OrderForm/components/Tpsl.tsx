@@ -25,9 +25,7 @@ export const Tpsl = ({enabled, sl, tp, setTpsl}: Props) => {
   const theme = useTheme();
   const isOpen = enabled;
   const onToggle = () => {
-    // eslint-disable-next-line no-empty
-    if (enabled) {
-    } else setTpsl(state => ({...state, enabled: true}));
+    setTpsl(s => ({...s, enabled: !s.enabled}));
   };
   const onTpTriggerChange = (e: any) => {
     const inputVal = e.target.value;
@@ -78,6 +76,9 @@ export const Tpsl = ({enabled, sl, tp, setTpsl}: Props) => {
       },
     }));
   };
+  const onClose = () => {
+    setTpsl(s => ({...s, enabled: false}));
+  };
   //
   return (
     <Grid
@@ -97,14 +98,11 @@ export const Tpsl = ({enabled, sl, tp, setTpsl}: Props) => {
           control={<Checkbox checked={isOpen} onChange={onToggle} />}
           label="TP/SL"
         />
-        <IconButton
-          sx={{
-            svg: {
-              color: theme.palette.background.paper,
-            },
-          }}>
-          {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-        </IconButton>
+        {enabled && (
+          <IconButton onClick={onClose}>
+            {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        )}
       </Grid>
       <Grid
         container

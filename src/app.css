@@ -36,3 +36,7 @@ input[type='number'] {
   user-select: none;
   /* Standard Syntax */
 }
+
+#tv-attr-logo {
+  display: none !important;
+}

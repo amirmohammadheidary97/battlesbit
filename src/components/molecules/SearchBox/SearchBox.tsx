@@ -5,14 +5,13 @@ import Grid from '@mui/material/Grid2';
 import searchIcon from '@/assets/img/icons/general/search.png';
 
 type ISearchBoxProps = {
-  size: number;
+  size: number | 'auto' | 'grow';
 };
 
 const commonStyles = {
   border: '1px solid #595959',
-  // border: 1,
   width: '100%',
-  height: '3rem',
+  height: '2.5rem',
   px: 2,
 };
 
@@ -23,18 +22,18 @@ export const SearchBox: FC<ISearchBoxProps> = ({size}) => (
       flexDirection={'row'}
       justifyContent={'start'}
       alignItems={'center'}
-      sx={{...commonStyles, borderRadius: '14px'}}>
+      sx={{...commonStyles, borderRadius: '12px'}}>
       <FormControl variant="standard" sx={{width: '100%'}}>
         <Input
           id="input-with-icon-adornment"
           disableUnderline
-          sx={{width: '100%', border: 'none'}}
+          sx={{width: '100%', border: 'none', fontSize: '0.875rem'}}
           placeholder="Find Your Challenge"
           startAdornment={
             <InputAdornment position="start">
               <img
                 src={searchIcon}
-                style={{width: '1.5rem', height: '1.5rem'}}
+                style={{width: '1.2rem', height: '1.2rem'}}
               />
             </InputAdornment>
           }

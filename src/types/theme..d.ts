@@ -13,6 +13,12 @@ declare module '@mui/material/styles' {
     grey1: Palette['primary'];
     black: Palette['primary'];
   }
+  interface PaletteColor {
+    lighter: string;
+  }
+  interface SimplePaletteColorOptions {
+    lighter?: string;
+  }
   interface PaletteOptions {
     grey1?: PaletteOptions['primary'];
     black?: PaletteOptions['primary'];
@@ -20,6 +26,7 @@ declare module '@mui/material/styles' {
   interface CommonColors {
     'red-gradiant': string;
     'primary-gradiant': string;
+    'ai-card-bg': string;
   }
 }
 

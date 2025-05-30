@@ -1,18 +1,23 @@
-import {useNavigate} from 'react-router';
 import Grid from '@mui/material/Grid2';
 
-import {AiAssistantCard} from './components/organisms/AiAssistantCard';
-import {ChallengeCard} from './components/organisms/ChallengeCard';
+import BestTraders from './components/organisms/BestTraders';
 import {HomeHeader} from './components/organisms/HomeHeader';
-import {NewGameButton} from './components/organisms/NewGameButton';
-import {NextPrize} from './components/organisms/NextPrize';
-import panda from './components/organisms/pandaFrame.png';
+import LastChallenges from './components/organisms/LastChallanges';
+import LiveChallanges from './components/organisms/LiveChallenge';
+import QuickAccessButton from './components/organisms/QuickAccessButton/QuickAccessButton';
+import ViewBalance from './components/organisms/ViewBalance';
+import {useLanding} from './hook/useLanding';
+import {allQuickAccessButtonList, challangeInfoData} from './utils/fakeData';
+
+import {HomePageTemplate} from '@/components/templates/HomePageTemplate';
 
 const LandingPage = () => {
   //
-  const navigate = useNavigate();
+  const {iShowBalance, handleShowViewBalance, isLoading} = useLanding();
   //
-  return (
+  return isLoading ? (
+    <HomePageTemplate />
+  ) : (
     <Grid
       container
       spacing={2}
@@ -20,49 +25,36 @@ const LandingPage = () => {
       sx={{
         overflowY: 'auto',
         display: 'flex',
-        p: 2,
-        pb: '5.5rem',
+        fontFamily: 'Geogrotesque Wide',
+        pt: 2,
+        pb: '1.5rem',
       }}>
-      <Grid size={12} container spacing={3} flexWrap={'nowrap'}>
+      <Grid px={2} size={12} container spacing={3} flexWrap={'nowrap'}>
         <HomeHeader
+          level={13}
           current={123}
-          total={200}
-          usdtAmount={1234}
-          vsdAmount={5467}
+          total={150}
+          usdtAmount={2405}
+          vsdAmount={2405}
         />
       </Grid>
-      <Grid size={12} container>
-        <AiAssistantCard />
+      <Grid container size={12} mt={1} px={2}>
+        <ViewBalance
+          handleShowViewBalance={handleShowViewBalance}
+          iShowBalance={iShowBalance}
+        />
       </Grid>
-      <Grid size={12}>
-        <ChallengeCard matchState="Winning" minutesLeft={10} secondsLeft={56} />
+      <Grid container size={12} px={2}>
+        <QuickAccessButton buttonList={allQuickAccessButtonList} />
       </Grid>
-      <Grid
-        size={12}
-        sx={{
-          img: {
-            width: '100%',
-            height: '170px',
-          },
-        }}>
-        <img src={panda} />
+      <Grid container size={12} px={2}>
+        <LiveChallanges challangeInfo={challangeInfoData} />
       </Grid>
-      <Grid size={12} spacing={1} container>
-        <Grid size={6}>
-          <NewGameButton
-            onClick={() => navigate('/makematch')}
-            text="Quick Game"
-          />
-        </Grid>
-        <Grid size={6}>
-          <NewGameButton
-            onClick={() => navigate('/makematch')}
-            text="Play With Friends"
-          />
-        </Grid>
+      <Grid container size={12} pl={2}>
+        <BestTraders />
       </Grid>
-      <Grid size={12}>
-        <NextPrize />
+      <Grid container size={12} px={2}>
+        <LastChallenges />
       </Grid>
     </Grid>
   );

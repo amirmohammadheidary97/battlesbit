@@ -1,11 +1,9 @@
+/* eslint-disable max-lines */
 import {type Interpolation, type Theme} from '@mui/material';
 import createTheme from '@mui/material/styles/createTheme';
 
 import {commonPalette, darkPalette, lightPalette} from './constants';
-
-import AlfaSlabOne from '@/assets/font/AlfaSlabOne/AlfaSlabOne-Regular.ttf';
-import IBMPlexRegular from '@/assets/font/IBM_Plex_Sans/IBMPlexSans-Regular.ttf';
-import NunitoRegular from '@/assets/font/nunito/NunitoSans_10pt-Regular.ttf';
+import fontFaces from './fonts';
 
 export let theme = createTheme({});
 const getTheme = (mode: 'light' | 'dark') =>
@@ -32,7 +30,7 @@ const getTheme = (mode: 'light' | 'dark') =>
     },
     shape: {borderRadius: 3.47},
     typography: {
-      fontFamily: 'Nunito Sans',
+      fontFamily: 'Geogrotesque Wide',
       htmlFontSize: 16,
       h1: {
         fontSize: '6.125rem',
@@ -88,6 +86,11 @@ const getTheme = (mode: 'light' | 'dark') =>
       },
     },
     components: {
+      MuiButtonBase: {
+        defaultProps: {
+          disableRipple: true,
+        },
+      },
       MuiPaper: {
         styleOverrides: {
           root: {
@@ -112,20 +115,7 @@ const getTheme = (mode: 'light' | 'dark') =>
         },
       },
       MuiCssBaseline: {
-        styleOverrides: `
-        @font-face {
-          font-family: 'IBM Plex';
-          src: local('IBMPlex'), url(${IBMPlexRegular}) format('truetype');
-        }
-        @font-face {
-          font-family: 'Nunito Sans';
-          src: local('NunitoSans'), url(${NunitoRegular}) format('truetype');
-        }
-        @font-face {
-          font-family: 'Alfa Slab One';
-          src: local('AlfaSlabOne'), url(${AlfaSlabOne}) format('truetype');
-        }
-      `,
+        styleOverrides: `${fontFaces}`,
       },
     },
   });
@@ -144,6 +134,7 @@ export const globalStyles: Interpolation<Theme> = {
   body: {
     margin: '0 auto' + ' !important',
     padding: 0,
+    fontFamily: 'Geogrotesque Wide',
     maxWidth: '768px',
     minHeight: '100vh',
     overflowX: 'hidden',

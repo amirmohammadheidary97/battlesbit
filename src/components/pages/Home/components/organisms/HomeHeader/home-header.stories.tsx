@@ -14,7 +14,13 @@ type Story = StoryObj<typeof HomeHeader>;
 export const HomeHeaderStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
-      <HomeHeader current={50} total={100} usdtAmount={123} vsdAmount={12} />
+      <HomeHeader
+        current={50}
+        total={100}
+        usdtAmount={123}
+        vsdAmount={12}
+        level={1}
+      />
     </Box>
   ),
 };

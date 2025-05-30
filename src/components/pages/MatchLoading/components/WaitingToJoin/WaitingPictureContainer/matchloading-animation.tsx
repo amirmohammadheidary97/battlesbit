@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {Avatar, Container} from '@mui/material';
 
-import WaintingPicture from '@/assets/img/icons/avatars/loading.mp4';
+import WaintingPicture from '@/assets/img/bg/matchloading.gif';
 
 const MatchloadingPicture = () => (
   <Container
@@ -18,14 +18,13 @@ const MatchloadingPicture = () => (
     <MiddleImageConatiner> </MiddleImageConatiner>
     <HighestImageConatiner></HighestImageConatiner>
     <Avatar
+      src={WaintingPicture}
       sx={{
         width: '10.5rem',
         height: '10.5rem',
         zIndex: 9,
-        video: {width: 1, height: 1, scale: 1.8},
-      }}>
-      <video src={WaintingPicture} autoPlay muted loop />
-    </Avatar>
+      }}
+    />
   </Container>
 );
 export default MatchloadingPicture;

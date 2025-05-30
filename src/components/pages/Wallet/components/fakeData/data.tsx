@@ -33,8 +33,13 @@ export const networkItems: {id: number; title: string}[] = [
     title: 'Bitcoin Network',
   },
 ];
+export type TBalanceType = 'Balance' | 'Someth' | 'Another';
 
-export const selectBalanceOptions: string[] = ['Balance', 'Someth', 'Another'];
+export const selectBalanceOptions: TBalanceType[] = [
+  'Balance',
+  'Someth',
+  'Another',
+];
 
 export const navButton: WalletAction[] = [
   {icon: <AddRounded />, title: 'deposit'},

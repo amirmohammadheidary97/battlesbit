@@ -13,13 +13,20 @@ export const ChallengeDemoResultCard: FC<TChallengeDemoResultCardProps> = ({
   result,
   challengeDate,
 }) => (
-  <Grid container bgcolor="#25272F" py={1} px={2} mt={1} borderRadius={'.7rem'}>
+  <Grid
+    container
+    bgcolor="#25272F"
+    py={1}
+    px={2}
+    mt={1}
+    borderRadius={'.7rem'}
+    size={12}>
     {/* Left Grid Items */}
-    <Grid size={6}>
+    <Grid size={7.5}>
       <ChallengeDemoLeftCardItems date={challengeDate} result={result} />
     </Grid>
     {/* Right Grid Items */}
-    <Grid size={6}>
+    <Grid size={4.5} container>
       <ChallengeDemoRightCardItems />
     </Grid>
   </Grid>

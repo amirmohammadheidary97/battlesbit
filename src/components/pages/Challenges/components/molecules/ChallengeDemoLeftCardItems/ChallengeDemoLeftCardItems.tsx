@@ -26,7 +26,12 @@ const ChallengeDemoLeftCardItems: React.FC<DemoCardProps> = ({
 }) => (
   <StyledCard container direction="column" justifyContent="center">
     <Grid>
-      <Typography variant="subtitle1" color="textPrimary">
+      <Typography
+        variant="subtitle1"
+        color="textPrimary"
+        sx={{
+          textWrap: 'nowrap',
+        }}>
         Demo for Beginners
       </Typography>
     </Grid>
@@ -34,7 +39,7 @@ const ChallengeDemoLeftCardItems: React.FC<DemoCardProps> = ({
       <Typography variant="body2" color="textSecondary">
         Date: {date}
       </Typography>
-      <Grid container alignItems="center" sx={{marginTop: 1}}>
+      <Grid container alignItems="center" sx={{marginTop: 0}}>
         <Typography variant="body2" color="textSecondary" component="span">
           Result:
         </Typography>

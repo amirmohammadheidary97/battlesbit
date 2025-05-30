@@ -1,12 +1,15 @@
-import {useState} from 'react';
-import {Button, Typography} from '@mui/material';
+import {Suspense, useState} from 'react';
+import {ArrowDropDown} from '@mui/icons-material';
+import {Box, Button, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 import UsdInput from '../../atoms/UsdInput';
 import WarningTip from '../../atoms/WarningTip';
-import SelectionComponent from '../../molecules/BalanceTypeSelection';
 import FullPageDrawerContainer from '../../organism/DrawerContainer';
 
+import SingleSelectionDrawer from './SingleSelectionDrawer';
+
+import BitcoinImg from '@/assets/img/icons/general/bitcoin.png';
 import {flex} from '@/utils/flexHelper';
 
 type PaypalDrawerProps = {
@@ -14,11 +17,13 @@ type PaypalDrawerProps = {
   handleCloseDrawer?: () => void;
 };
 
-const optios = ['Bitcoin', 'Bitcoin2', 'Bitcoin3'];
+const options = ['Bitcoin', 'Bitcoin2', 'Bitcoin3'];
 ///
 const PaypalDrawer = ({isOpen, handleCloseDrawer}: PaypalDrawerProps) => {
   ///
   const [amount, setAmount] = useState<number>();
+  const [selectedCurrency, setSelectedCurrency] = useState<string>();
+  const [open, setOpen] = useState<boolean>(false);
   ///
   return (
     <FullPageDrawerContainer
@@ -38,23 +43,12 @@ const PaypalDrawer = ({isOpen, handleCloseDrawer}: PaypalDrawerProps) => {
         }}>
         <Grid container size={12}>
           <Grid size={12}>
-            <SelectionComponent
-              formControlProps={{
-                sx: {
-                  bgcolor: 'background.paper',
-                  borderRadius: theme => theme.shape.borderRadius,
-                  width: 1,
-                  '*': {fontSize: '16px !important'},
-                  '.MuiSvgIcon-root': {
-                    width: '1.5rem',
-                    height: '1.5rem',
-                    mr: '12px',
-                  },
-                },
-              }}
-              withPicture
-              options={optios}
+            {/* Currency Selection */}
+            <CurrencyContainer
+              onClick={() => setOpen(true)}
+              selectedCurrency={selectedCurrency}
             />
+            {/*  */}
           </Grid>
           <Grid size={12}>
             <UsdInput
@@ -95,9 +89,54 @@ const PaypalDrawer = ({isOpen, handleCloseDrawer}: PaypalDrawerProps) => {
             purchase
           </Button>
         </Grid>
+        <Suspense>
+          <SingleSelectionDrawer
+            openNetworkOptionDrawer={open}
+            setOpenNetworkOptionDrawer={setOpen}
+            type="paypal"
+            options={options}
+            selectedCurrency={selectedCurrency}
+            setSelectedCurrency={setSelectedCurrency}
+          />
+        </Suspense>
       </Grid>
     </FullPageDrawerContainer>
   );
 };
 
 export default PaypalDrawer;
+
+const CurrencyContainer = ({
+  onClick,
+  selectedCurrency,
+}: {
+  onClick: () => void;
+  selectedCurrency?: string;
+}) => (
+  <Box
+    onClick={onClick}
+    sx={{
+      px: '1rem',
+      py: '12px',
+      gap: '21px',
+      ...flex().acenter().jbetween().result,
+      bgcolor: 'background.paper',
+      borderRadius: theme => theme.shape.borderRadius,
+      svg: {
+        color: '#fff',
+      },
+    }}>
+    <Box sx={{...flex().acenter().gap('21px').result}}>
+      <img
+        src={BitcoinImg}
+        style={{width: '23px', height: '23px'}}
+        alt="bitcoin"
+      />
+
+      <Typography variant="body1">
+        {selectedCurrency ?? 'Select Currency'}
+      </Typography>
+    </Box>
+    <ArrowDropDown fontSize="large" />
+  </Box>
+);

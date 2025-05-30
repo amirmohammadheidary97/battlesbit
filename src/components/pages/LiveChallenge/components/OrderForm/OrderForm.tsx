@@ -1,8 +1,7 @@
 /* eslint-disable max-lines */
-import {useRef, useState} from 'react';
+import {useCallback, useRef, useState} from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CloseIcon from '@mui/icons-material/Close';
-import type {SelectChangeEvent} from '@mui/material';
 import {
   Box,
   Button,
@@ -15,16 +14,16 @@ import {
 import Grid from '@mui/material/Grid2';
 
 import {LeverageDrawer} from '../LeverageDrawer';
+import {SelectMarginTypeDrawer} from '../SelectMarginTypeDrawer';
+import {SelectOrderTypeDrawer} from '../SelectOrderTypeDrawer';
 
 import {AmountInput} from './components/AmountInput';
 import {ShowMargin} from './components/ShowMargin';
 import {Tpsl} from './components/Tpsl';
 import {useConnectedValues} from './hooks/useFormConnectedValues';
-import {miniSelectSlotProps} from './utils/miniSelectStyles';
 
 import {Center} from '@/components/atoms/Center';
 import {AmountSlider} from '@/components/molecules/AmountSlider';
-import {SelectControl} from '@/components/molecules/SelectControl';
 import {useDisclosure} from '@/hooks/custom/useDisclosure';
 import type {marginType, orderType} from '@/types/common';
 import {flex} from '@/utils/flexHelper';
@@ -43,7 +42,6 @@ export type TPSL = {
   };
 };
 const orderTypes: orderType[] = ['limit', 'market', 'stoplimit'];
-const marginTypes: marginType[] = ['cross', 'isolate'];
 const availableMargin = 1250;
 const marketPrice = 50000;
 
@@ -56,7 +54,6 @@ export const OrderForm = () => {
     sliderValue,
     setSliderValue,
     defferedProfit,
-    // defferedUsedMargin,
     usedMargin,
     amountValue,
     setAmountValue,
@@ -79,20 +76,27 @@ export const OrderForm = () => {
     onClose: onLeverageDrawerClose,
     onOpen: onLeverageDrawerOpen,
   } = useDisclosure();
+  const {
+    isOpen: isOrderTypeDrawerOpen,
+    onClose: onOrderTypeDrawerClose,
+    onOpen: onOrderTypeDrawerOpen,
+  } = useDisclosure();
+  const {
+    isOpen: isMarginTypeDrawerOpen,
+    onClose: onMarginTypeDrawerClose,
+    onOpen: onMarginTypeDrawerOpen,
+  } = useDisclosure();
   //
-  const handleOrderTypeChange = (event: SelectChangeEvent) => {
-    const value = event.target.value as orderType;
+  const handleOrderTypeChange = useCallback((value: orderType) => {
     setSelectedOrderType(value);
-
     if (value === 'market') {
       setPrice(undefined);
     }
     if (value !== 'stoplimit') {
       setLimit(undefined);
     }
-  };
-  const handleMarginTypeChange = (event: SelectChangeEvent) =>
-    setSelectedMarginType(event.target.value as marginType);
+  }, []);
+  const handleMarginTypeChange = (e: marginType) => setSelectedMarginType(e);
 
   const handleBuySellBtnClick = () => {
     if (!isBuySellOpen) onBuySellToggle();
@@ -102,8 +106,6 @@ export const OrderForm = () => {
     setSliderValue(v);
     // ** immidiately change amount
     setAmountValue(String((v / 100) * availableMargin * leverage));
-    // amount = (sliderValue / 100) * availableMargin * leverage
-    // sliderValue = (amount * 100)/(availableMargin * leverage)
   };
   const onLeverageChange = (v: number) => {
     setLeverage(v);
@@ -126,7 +128,13 @@ export const OrderForm = () => {
       {isBuySellOpen && (
         <Grid size={12} container>
           <Grid offset={'auto'}>
-            <IconButton onClick={onBuySellToggle}>
+            <IconButton
+              onClick={onBuySellToggle}
+              sx={{
+                svg: {
+                  color: 'text.primary',
+                },
+              }}>
               <CloseIcon />
             </IconButton>
           </Grid>
@@ -139,19 +147,20 @@ export const OrderForm = () => {
         display={isBuySellOpen ? 'flex' : 'none'}>
         <Grid size={12} container spacing={1} alignItems={'stretch'}>
           <Grid>
-            <SelectControl
-              selectedOption={{
-                name: selectedMarginType,
-                value: selectedMarginType,
-              }}
-              options={marginTypes.map(ot => ({name: ot, value: ot}))}
-              onChange={handleMarginTypeChange}
-              getValue={op => op.value}
-              getLabel={op => op.name}
-              slotProps={{
-                ...miniSelectSlotProps,
-              }}
-            />
+            <Box
+              onClick={onMarginTypeDrawerOpen}
+              sx={{
+                ...flex().row().acenter().result,
+                borderRadius: '0.2rem',
+                height: 1,
+                backgroundColor: theme.palette.background.paper,
+                cursor: 'pointer',
+                py: 0,
+                px: 0.5,
+              }}>
+              <Typography variant="overline">{selectedMarginType}</Typography>
+              <ArrowDropDownIcon />
+            </Box>
           </Grid>
           <Grid>
             <Box
@@ -171,25 +180,20 @@ export const OrderForm = () => {
           </Grid>
         </Grid>
         <Grid size={12}>
-          <SelectControl
-            label="Order Type"
-            selectedOption={{
-              name: selectedOrderType,
-              value: selectedOrderType,
-            }}
-            options={orderTypes.map(ot => ({name: ot, value: ot}))}
-            onChange={handleOrderTypeChange}
-            getValue={op => op.value}
-            getLabel={op => op.name}
-            slotProps={{
-              formControlProps: {fullWidth: true},
-              selectProps: {
-                MenuProps: {
-                  disableScrollLock: true,
-                },
-              },
-            }}
-          />
+          <Box
+            onClick={onOrderTypeDrawerOpen}
+            sx={{
+              ...flex().row().jbetween().acenter().result,
+              borderRadius: theme.shape.borderRadius,
+              height: '52px',
+              backgroundColor: theme.palette.background.paper,
+              cursor: 'pointer',
+              py: 0,
+              px: 2,
+            }}>
+            <Typography variant="overline">{`${selectedOrderType}`}</Typography>
+            <ArrowDropDownIcon />
+          </Box>
         </Grid>
         <Grid container size={12}>
           <Grid
@@ -372,6 +376,17 @@ export const OrderForm = () => {
         open={isLeverageDrawerOpen}
         onClose={onLeverageDrawerClose}
         onConfirm={onLeverageChange}
+      />
+      <SelectOrderTypeDrawer
+        handleOrderTypeChange={handleOrderTypeChange}
+        onClose={onOrderTypeDrawerClose}
+        open={isOrderTypeDrawerOpen}
+        orderTypes={orderTypes}
+      />
+      <SelectMarginTypeDrawer
+        handleSelect={handleMarginTypeChange}
+        onClose={onMarginTypeDrawerClose}
+        open={isMarginTypeDrawerOpen}
       />
     </Grid>
   );

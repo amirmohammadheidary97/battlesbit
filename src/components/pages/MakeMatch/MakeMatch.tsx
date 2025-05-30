@@ -9,7 +9,9 @@ import {useMakeMatchState} from './state/make-match.state';
 import bg from '@/assets/img/bg/makemach.svg';
 import {Center} from '@/components/atoms/Center';
 import {CustomIcon} from '@/components/atoms/icon';
+import {BackwardTitle} from '@/components/molecules/BackwardTitle';
 import {theme} from '@/config/theme';
+import {flex} from '@/utils/flexHelper';
 
 const MakeMatch = () => {
   const {toggleOpenDialoge, setStartMatch} = useMakeMatchState();
@@ -23,23 +25,36 @@ const MakeMatch = () => {
       container
       size={12}
       alignContent={'space-between'}
-      sx={{height: '100vh', padding: 2}}>
+      sx={{height: '100vh', position: 'relative', pb: 5}}>
+      {/* backward button */}
+      <BackwardTitle title="Make Match" />
       {/* BG */}
-      <Grid size={12} sx={{height: '75vh', position: 'relative'}}>
-        <Center
-          fullSize
-          containerProps={{
-            sx: {
-              img: {
-                Height: '100%',
-                maxHeight: '100%',
-                maxWidth: '100%',
-              },
+      <Grid
+        size={12}
+        px={2}
+        height={'70vh'}
+        position={'relative'}
+        sx={{...flex().column().jcenter().acenter().result}}>
+        <Box
+          sx={{
+            img: {
+              position: 'absolute',
+              top: -50,
+              left: 0,
+              zIndex: 1,
+              width: '90%',
+              height: '90%',
             },
           }}>
           <img src={bg} />
-        </Center>
-        <Box sx={{position: 'absolute', bottom: 0, left: 0, width: '100%'}}>
+        </Box>
+        <Box
+          sx={{
+            px: 2,
+            position: 'absolute',
+            zIndex: 3,
+            bottom: 10,
+          }}>
           <MatchConfig entryFee={20} prize={200} time={20} />
         </Box>
       </Grid>
@@ -48,7 +63,7 @@ const MakeMatch = () => {
         size={12}
         container
         spacing={1.5}
-        //   alignItems={'stretch'}
+        px={2}
         sx={{
           height: '52px',
           button: {

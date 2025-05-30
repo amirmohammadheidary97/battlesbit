@@ -17,7 +17,6 @@ export const ShowMoreBtn: FC<IShowMoreBtnProps> = ({
       justifyContent="center"
       alignItems="center"
       width={'100%'}
-      marginY={1}
       color={color}
       onClick={clickHandler}>
       show more
