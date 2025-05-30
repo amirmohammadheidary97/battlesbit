@@ -14,7 +14,11 @@ type Story = StoryObj<typeof InviteFriends>;
 export const InviteFriendsStories: Story = {
   render: () => (
     <Box display={'flex'} flexDirection={'column'} gap={2}>
-      <InviteFriends selectedId={1} setSelectedId={() => {}} />
+      <InviteFriends
+        selectedId={1}
+        setSelectedId={() => {}}
+        handleShowAddFriend={() => {}}
+      />
     </Box>
   ),
 };

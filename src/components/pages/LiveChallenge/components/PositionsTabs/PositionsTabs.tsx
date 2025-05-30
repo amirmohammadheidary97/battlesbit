@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid2';
 import {PositionItem} from '../PositionItem';
 import {PositionsFakeData} from '../PositionItem/position-item.stories';
 
-import {TabPanel} from '@/components/atoms/ TabPanel';
+import {TabPanel} from '@/components/atoms/TabPanel';
 // import {a11yProps} from '@/utils/a11yProps';
 
 const PositionsTabs = () => {

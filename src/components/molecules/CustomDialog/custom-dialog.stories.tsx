@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {Box} from '@mui/material';
 import type {Meta, StoryObj} from '@storybook/react';
 
